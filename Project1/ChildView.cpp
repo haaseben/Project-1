@@ -42,7 +42,8 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 	return TRUE;
 }
-/// test
+/// test 111
+/// test 3
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); // device context for painting
