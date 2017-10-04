@@ -51,5 +51,6 @@ void CChildView::OnPaint()
 	// TODO: Add your message handler code here
 	
 	// Do not call CWnd::OnPaint() for painting messages
+	// Test
 }
 
