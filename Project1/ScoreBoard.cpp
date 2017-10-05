@@ -2,9 +2,9 @@
 #include "ScoreBoard.h"
 
 
-CScoreBoard::CScoreBoard()
-{
-}
+//CScoreBoard::CScoreBoard()
+//{
+//}
 
 
 CScoreBoard::~CScoreBoard()
