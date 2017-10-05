@@ -12,6 +12,7 @@
 #include <memory>
 #include "XmlNode.h"
 
+
 using namespace Gdiplus;
 using namespace std;
 
@@ -76,6 +77,21 @@ public:
 	/// \returns game pointer
 	CGame *GetGame() { return mGame; }
 
+	double CGamePiece::GetMinionHeight();
+	double CGamePiece::GetMinionWidth();
+
+	/// Get the aquarium this item is in
+	/// \returns Aquarium pointer
+	CGame *GetGame() { return mGame; };
+
+	/// Set the mirror status
+	/// \param m New mirror flag
+	void SetMirrorX(bool m) { mMirrorX = m; };
+
+	/// Set the mirror status
+	/// \param m New mirror flag
+	void SetMirrorY(bool m) { mMirrorY = m; };
+
 protected:
 	CGamePiece(CGame *game);
 
@@ -92,4 +108,7 @@ private:
 
 	/// The file for this item
 	std::wstring mFile;
+
+	bool mMirrorX = false;   ///< True mirrors the item image for x
+	bool mMirrorY = false;   ///< True mirrors the item image for y
 };

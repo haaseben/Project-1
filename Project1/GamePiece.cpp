@@ -135,3 +135,23 @@ void CGamePiece::XmlLoad(const std::shared_ptr<xmlnode::CXmlNode> &node)
 	mY = node->GetAttributeIntValue(L"y", 0);
 	
 }
+
+/**
+*
+*\return width of minion
+*/
+double CGamePiece::GetMinionWidth()
+{
+	double width = mItemImage->GetWidth();
+	return width;
+}
+
+/**
+*
+*\return height of minion
+*/
+double CGamePiece::GetMinionHeight()
+{
+	double height = mItemImage->GetHeight();
+	return height;
+}

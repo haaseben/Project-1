@@ -186,6 +186,9 @@
     <ClInclude Include="GamePiece.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Minion.h" />
+    <ClInclude Include="MinionJerry.h" />
+    <ClInclude Include="MinionMutant.h" />
+    <ClInclude Include="MinionStuart.h" />
     <ClInclude Include="Project1.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -197,6 +200,9 @@
     <ClCompile Include="GamePiece.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Minion.cpp" />
+    <ClCompile Include="MinionJerry.cpp" />
+    <ClCompile Include="MinionMutant.cpp" />
+    <ClCompile Include="MinionStuart.cpp" />
     <ClCompile Include="Project1.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

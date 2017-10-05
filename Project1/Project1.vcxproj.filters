@@ -45,6 +45,15 @@
     <ClInclude Include="Minion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MinionJerry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MinionStuart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MinionMutant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project1.cpp">
@@ -66,6 +75,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Minion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionJerry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionStuart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionMutant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
