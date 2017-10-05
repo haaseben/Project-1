@@ -80,9 +80,6 @@ public:
 	double CGamePiece::GetMinionHeight();
 	double CGamePiece::GetMinionWidth();
 
-	/// Get the aquarium this item is in
-	/// \returns Aquarium pointer
-	CGame *GetGame() { return mGame; };
 
 	/// Set the mirror status
 	/// \param m New mirror flag
