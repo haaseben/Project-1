@@ -14,7 +14,7 @@
 #include "Project1.h"
 #include "ChildView.h"
 #include "DoubleBufferDC.h"
-
+#include <string>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -107,10 +107,9 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	// Get the size of the window
 	CRect rect;
 	GetClientRect(&rect);
-
 	Pen pen(Color(0, 128, 0), 3);
 	graphics.DrawRectangle(&pen, (int)(rect.Width()*.3), (int)(rect.Height()*0.1), rect.Height()*0.9, rect.Width()*0.35);
-
+	
 	//// Bottom minus image size minus margin is top of the image
 	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
 	//mTrashcanRight = TrashcanMargin + mTrashcan->GetWidth();
