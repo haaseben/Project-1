@@ -89,4 +89,4 @@ private:
 
 	/// The file for this item
 	std::wstring mFile;
-}
+};
