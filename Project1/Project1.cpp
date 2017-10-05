@@ -51,7 +51,6 @@ CProject1App theApp;
 
 BOOL CProject1App::InitInstance()
 {
-	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
 	// visual styles.  Otherwise, any window creation will fail.
@@ -63,6 +62,7 @@ BOOL CProject1App::InitInstance()
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinAppEx::InitInstance();
+	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
 
 	// Initialize OLE libraries
