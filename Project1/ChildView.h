@@ -1,10 +1,18 @@
+/**
+ * \file ChildView.h
+ *
+ * \author Team Jorge
+ *
+ * 
+ */
+
 
 // ChildView.h : interface of the CChildView class
 //
 
 
 #pragma once
-
+#include <memory>
 
 // CChildView window
 
@@ -32,5 +40,18 @@ public:
 protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
+
+
+private:							
+	bool mFirstDraw = true; ///< True until the first time we draw
+	long long mLastTime;    ///< Last time we read the timer
+	double mTimeFreq;       ///< Rate the timer updates											
+	//std::shared_ptr<GamePiece> mGrabbedItem; ///< Any item we are currently dragging
+public:
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 

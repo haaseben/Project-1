@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
+    <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Project1.h" />
     <ClInclude Include="Resource.h" />
