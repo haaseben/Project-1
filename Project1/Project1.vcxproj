@@ -183,8 +183,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GamePiece.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Minion.h" />
     <ClInclude Include="Project1.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -193,8 +195,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePiece.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="Minion.cpp" />
     <ClCompile Include="Project1.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
