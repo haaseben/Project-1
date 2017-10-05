@@ -17,6 +17,8 @@ public:
 	///  Copy constructor disabled
 	CScoreBoard(const CScoreBoard &) = delete;
 
+	CScoreBoard::~CScoreBoard();
+
 private:
 
 	int mAryaScore=0; ///< Score for Arya
