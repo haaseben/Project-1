@@ -1,0 +1,26 @@
+#pragma once
+#include <memory>
+#include <vector>
+#include "GamePiece.h"
+
+class CGame
+{
+
+public:
+	CGame();
+
+	virtual ~CGame();
+
+	void OnDraw(Gdiplus::Graphics * graphics);
+
+	void CGame::Add(std::shared_ptr<CGamePiece> item);
+
+	std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y);
+
+	void CGame::Update(double elapsed);
+
+private:
+	/// All of the items to populate in game
+	std::vector<std::shared_ptr<CGamePiece> > mItems;
+};
+
