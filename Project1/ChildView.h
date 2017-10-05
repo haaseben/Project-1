@@ -13,6 +13,7 @@
 
 #pragma once
 #include <memory>
+#include "Game.h"
 
 // CChildView window
 
@@ -43,6 +44,9 @@ protected:
 
 
 private:							
+	/// An object that describes our game
+	CGame  mGame;
+
 	bool mFirstDraw = true; ///< True until the first time we draw
 	long long mLastTime;    ///< Last time we read the timer
 	double mTimeFreq;       ///< Rate the timer updates											

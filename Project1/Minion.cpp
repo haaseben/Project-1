@@ -48,28 +48,28 @@ CMinion::XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node)
 */
 void CMinion::Update(double elapsed)
 {
-	SetLocation(GetX() + mSpeedX * elapsed,
-		GetY() + mSpeedY * elapsed);
-	///checks to see when the fish gets within 10 pixels of the edge in x direction on right
-	if (GetGame()->GetWidth() - GetX() - (GetMinionWidth() / 2) <= 10)
-	{
-		if (mSpeedX > 0 && GetX() >= GetGame()->GetWidth())
-		{
-			mSpeedX = -mSpeedX;
-			SetMirrorX(mSpeedX < 0);
-		}
+	//SetLocation(GetX() + mSpeedX * elapsed,
+	//	GetY() + mSpeedY * elapsed);
+	/////checks to see when the fish gets within 10 pixels of the edge in x direction on right
+	//if (GetGame()->GetWidth() - GetX() - (GetMinionWidth() / 2) <= 10)
+	//{
+	//	if (mSpeedX > 0 && GetX() >= GetGame()->GetWidth())
+	//	{
+	//		mSpeedX = -mSpeedX;
+	//		SetMirrorX(mSpeedX < 0);
+	//	}
 
-	}
+	//}
 
-	///checks to see when the fish gets within 10 pixels of the edge in x direction on left
-	if (GetX() <= 10)
-	{
-		if (mSpeedX < 0 && GetX() <= 0)
-		{
-			mSpeedX = -mSpeedX;
-			SetMirrorX(mSpeedX < 0);
-		}
-	}
+	/////checks to see when the fish gets within 10 pixels of the edge in x direction on left
+	//if (GetX() <= 10)
+	//{
+	//	if (mSpeedX < 0 && GetX() <= 0)
+	//	{
+	//		mSpeedX = -mSpeedX;
+	//		SetMirrorX(mSpeedX < 0);
+	//	}
+	//}
 
 	///checks to see when the fish gets within 10 pixels of the edge in y direction on bottom
 	//if (GetGame()->GetHeight() - GetY() - (GetMinionHeight() / 2) <= 10)
@@ -82,14 +82,14 @@ void CMinion::Update(double elapsed)
 
 	//}
 	///checks to see when the fish gets within 10 pixels of the edge in y direction on top
-	if (GetY() <= 10)
-	{
-		if (mSpeedY < 0 && GetY() <= 0)
-		{
-			mSpeedY = -mSpeedY;
-			SetMirrorY(mSpeedY < 0);
-		}
-	}
+	//if (GetY() <= 10)
+	//{
+	//	if (mSpeedY < 0 && GetY() <= 0)
+	//	{
+	//		mSpeedY = -mSpeedY;
+	//		SetMirrorY(mSpeedY < 0);
+	//	}
+	//}
 
 }
 

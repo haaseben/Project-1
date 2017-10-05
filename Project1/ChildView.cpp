@@ -76,6 +76,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 	Graphics graphics(dc.m_hDC);
 	graphics.Clear(Color(0, 0, 0));
+	mGame.OnDraw(&graphics);
 
 	if (mFirstDraw)
 	{

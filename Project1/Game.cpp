@@ -14,8 +14,8 @@ using namespace Gdiplus;
 */
 void CGame::OnDraw(Gdiplus::Graphics *graphics)
 {
-	graphics->DrawImage(mBackground.get(), 0, 0,
-		mBackground->GetWidth(), mBackground->GetHeight());
+	//graphics->DrawImage(mBackground.get(), 0, 0,
+	//	mBackground->GetWidth(), mBackground->GetHeight());
 
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 16);
