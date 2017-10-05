@@ -77,20 +77,10 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	Graphics graphics(dc.m_hDC);
 	graphics.Clear(Color(0, 0, 0));
 
-
-
-
 	if (mFirstDraw)
 	{
 		mFirstDraw = false;
 		SetTimer(1, FrameDuration, nullptr);
-		//Pen pen(Color(0, 128, 0), 3);
-		//graphics.DrawLine(&pen, 100, 100, 300, 200);
-		//graphics.DrawRectangle(&pen, 100, 125, 400, 50);
-		//SolidBrush brush(Color(0, 0, 255));
-		//graphics.FillRectangle(&brush, 100, 125, 400, 50);
-		
-
 
 		/*
 		* Initialize the elapsed time system
@@ -118,9 +108,15 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CRect rect;
 	GetClientRect(&rect);
 
+	Pen pen(Color(0, 128, 0), 3);
+	graphics.DrawRectangle(&pen, (int)(rect.Width()*.3), (int)(rect.Height()*0.1), rect.Height()*0.9, rect.Width()*0.35);
 
+	//// Bottom minus image size minus margin is top of the image
+	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
+	//mTrashcanRight = TrashcanMargin + mTrashcan->GetWidth();
 
-
+	//graphics.DrawImage(mTrashcan.get(), TrashcanMargin, mTrashcanTop,
+	//	mTrashcan->GetWidth(), mTrashcan->GetHeight());
 
 	/*
 	* Actually Draw the city
