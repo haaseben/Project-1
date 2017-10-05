@@ -8,8 +8,7 @@
 */
 #pragma once
 #include "GamePiece.h"
-
-
+#include "Game.h"
 
 
 /**
