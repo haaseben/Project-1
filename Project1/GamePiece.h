@@ -20,12 +20,10 @@ class CGame;
 class CGamePiece
 {
 public:
-	
 
-		  /** The directory were the images are stored */
+
+	/** The directory where the images are stored */
 	static const std::wstring ImagesDirectory;
-
-	
 
 	///  Default constructor (disabled)
 	CGamePiece() = delete;
@@ -58,8 +56,6 @@ public:
 	* \param graphics The graphics context to draw on */
 	virtual void Draw(Gdiplus::Graphics *graphics);
 
-	virtual void DrawBorder(Gdiplus::Graphics *graphics, Gdiplus::Pen *pen);
-
 	/**  Test this item to see if it has been clicked on
 	* \param x X location on the aquarium to test
 	* \param y Y location on the aquarium to test
@@ -77,15 +73,6 @@ public:
 	/// \returns game pointer
 	CGame *GetGame() { return mGame; }
 
-	
-
-	
-
-
-	
-
-	void PropertiesDlg();
-
 protected:
 	CGamePiece(CGame *game);
 
@@ -102,3 +89,4 @@ private:
 
 	/// The file for this item
 	std::wstring mFile;
+}
