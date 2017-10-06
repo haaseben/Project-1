@@ -110,16 +110,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 	//mCity.Update(elapsed);
 
-	//// Get the size of the window
-	//CRect rect;
-	//GetClientRect(&rect);
-	//Pen pen(Color(0, 128, 0), 3);
-	////graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Height()*0.8, rect.Height()*0.8);
-	//double mSquareHeight = rect.Height()*0.9; double mSquareWidth = rect.Width()*0.6;
-	//graphics.DrawRectangle(&pen, (int)((rect.Width()*.5)- mSquareHeight /2), (int)((rect.Height()*0.5)- mSquareHeight /2), mSquareHeight, mSquareHeight);
-
-
-
 
 	//FontFamily fontFamily(L"Arial");
 	//Gdiplus::Font font(&fontFamily, 16);

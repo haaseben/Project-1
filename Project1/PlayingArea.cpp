@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "PlayingArea.h"
 
+using namespace std;
+using namespace Gdiplus;
+
 /// The size of the playing area square in virtual pixels
 const double CPlayingArea::GridSize = 1000.0;
 
@@ -19,4 +22,10 @@ CPlayingArea::CPlayingArea()
 
 CPlayingArea::~CPlayingArea()
 {
+}
+
+void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics)
+{
+	Pen pen(Color(0, 128, 0), 1);
+	graphics->DrawRectangle(&pen, -500, -500, 1000, 1000);
 }

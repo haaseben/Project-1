@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include "GamePiece.h"
+#include "PlayingArea.h"
 
 class CGame
 {
@@ -11,7 +12,7 @@ public:
 
 	virtual ~CGame();
 
-	void OnDraw(Gdiplus::Graphics * graphics,int width,int height);
+	virtual void OnDraw(Gdiplus::Graphics * graphics,int width,int height);
 
 	void CGame::Add(std::shared_ptr<CGamePiece> item);
 
@@ -55,5 +56,8 @@ private:
 
 	/// Variable of YOffset
 	double mYOffset = 0;
+
+	/// An object that describes the playing area
+	CPlayingArea  mPlayingArea;
 };
 
