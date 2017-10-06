@@ -78,6 +78,48 @@ void CGame::Update(double elapsed)
 	}
 }
 
+
+/**  Delete an item from the game
+*
+* \param item The item to delete.
+*/
+void CGame::DeleteItem(std::shared_ptr<CGamePiece> item)
+{
+	auto loc = find(::begin(mItems), ::end(mItems), item);
+	if (loc != ::end(mItems))
+	{
+		mItems.erase(loc);
+	}
+}
+
+/**
+*  Clear the game data.
+*
+* Deletes all known items in the game.
+*/
+void CGame::Clear()
+{
+	mItems.clear();
+}
+
+
+/**  Move an item to the front of the list of items.
+*
+* Removes item from the list and adds it to the end so it
+* will display last.
+* \param item The item to move
+*/
+void CGame::MoveToFront(std::shared_ptr<CGamePiece> item)
+{
+	auto loc = find(::begin(mItems), ::end(mItems), item);
+	if (loc != ::end(mItems))
+	{
+		mItems.erase(loc);
+	}
+
+	mItems.push_back(item);
+}
+
 CGame::CGame()
 {
 }

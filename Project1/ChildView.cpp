@@ -112,7 +112,10 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CRect rect;
 	GetClientRect(&rect);
 	Pen pen(Color(0, 128, 0), 3);
-	graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
+	//graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Height()*0.8, rect.Height()*0.8);
+	double mSquareHeight = rect.Height()*0.9; double mSquareWidth = rect.Width()*0.6;
+	graphics.DrawRectangle(&pen, (int)((rect.Width()*.5)- mSquareHeight /2), (int)((rect.Height()*0.5)- mSquareHeight /2), mSquareHeight, mSquareHeight);
+
 
 
 
@@ -134,7 +137,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	graphics.DrawString(counter,  // String to draw
 		-1,         // String length, -1 means it figures it out on its own
 		&font,      // The font to use
-		PointF(rect.Width()*0.8, 10),   // Where to draw (top left corner)
+		PointF(((rect.Width()*.5) - mSquareHeight / 2 + rect.Height()*0.9 +10), (int)(rect.Height()*0.05)),   // Where to draw (top left corner)
 		&green);    // The brush to draw the text with
 
 	

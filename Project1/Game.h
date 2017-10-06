@@ -19,6 +19,13 @@ public:
 
 	void CGame::Update(double elapsed);
 
+	void DeleteItem(std::shared_ptr<CGamePiece> item);
+
+	void Clear();
+
+	void MoveToFront(std::shared_ptr<CGamePiece> item);
+
+
 	///// Get the width of the gaming area
 	///// \returns gaming area width
 	//int GetWidth() const { return mBackground->GetWidth(); }
