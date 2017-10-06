@@ -128,10 +128,10 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 		secondsString = to_wstring(0) + secondsString;
 	}
 
-	wstring full = to_wstring(minutes)+ L":" + secondsString;
-	const wchar_t* szName = full.c_str();
+	wstring fullTimeFormat = to_wstring(minutes)+ L":" + secondsString;
+	const wchar_t* counter = fullTimeFormat.c_str();
 
-	graphics.DrawString(szName,  // String to draw
+	graphics.DrawString(counter,  // String to draw
 		-1,         // String length, -1 means it figures it out on its own
 		&font,      // The font to use
 		PointF(rect.Width()*0.8, 10),   // Where to draw (top left corner)
