@@ -32,7 +32,7 @@ namespace Testing
 			extern wchar_t g_dir[];
 			::SetCurrentDirectory(g_dir);
 		}
-		
+
 		TEST_METHOD(TestCGamePieceConstruct)
 		{
 			CGame game;
@@ -50,7 +50,7 @@ namespace Testing
 			Assert::AreEqual(0, gamepiece.GetY(), 0);
 
 			// Test SetLocation, GetX, and GetY
-			gamepiece.SetLocation(20,25);
+			gamepiece.SetLocation(20, 25);
 			Assert::AreEqual(20, gamepiece.GetX(), 0.0001);
 			Assert::AreEqual(25, gamepiece.GetY(), 0.0001);
 
@@ -87,5 +87,6 @@ namespace Testing
 
 			// Of fish transparent pixel
 			Assert::IsFalse(gamepiece.HitTest(100 - 125 / 2 + 17, 200 - 117 / 2 + 16));
+		};
 	};
 }
