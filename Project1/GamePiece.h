@@ -10,8 +10,6 @@
 
 #include <string>
 #include <memory>
-#include "XmlNode.h"
-
 
 using namespace Gdiplus;
 using namespace std;

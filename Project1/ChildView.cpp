@@ -74,73 +74,75 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting
 	Graphics graphics(dc.m_hDC);
-	graphics.Clear(Color(0, 0, 0));
 
-	mGame.OnDraw(&graphics);
+	CRect rect;
+	GetClientRect(&rect);
+
+	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
 
 
-	
+	//
 
-	if (mFirstDraw)
-	{
-		mFirstDraw = false;
-		SetTimer(1, FrameDuration, nullptr);
+	//if (mFirstDraw)
+	//{
+	//	mFirstDraw = false;
+	//	SetTimer(1, FrameDuration, nullptr);
 
-		/*
-		* Initialize the elapsed time system
-		*/
-		LARGE_INTEGER time, freq;
-		QueryPerformanceCounter(&time);
-		QueryPerformanceFrequency(&freq);
+	//	/*
+	//	* Initialize the elapsed time system
+	//	*/
+	//	LARGE_INTEGER time, freq;
+	//	QueryPerformanceCounter(&time);
+	//	QueryPerformanceFrequency(&freq);
 
-		mLastTime = time.QuadPart;
-		mTimeFreq = double(freq.QuadPart);
-	}
+	//	mLastTime = time.QuadPart;
+	//	mTimeFreq = double(freq.QuadPart);
+	//}
 
-	/*
-	* Compute the elapsed time since the last draw
-	*/
-	LARGE_INTEGER time;
-	QueryPerformanceCounter(&time);
-	long long diff = time.QuadPart - mLastTime;
-	double elapsed = double(diff) / mTimeFreq;
-	mLastTime = time.QuadPart;
+	///*
+	//* Compute the elapsed time since the last draw
+	//*/
+	//LARGE_INTEGER time;
+	//QueryPerformanceCounter(&time);
+	//long long diff = time.QuadPart - mLastTime;
+	//double elapsed = double(diff) / mTimeFreq;
+	//mLastTime = time.QuadPart;
 
 	//mCity.Update(elapsed);
 
-	// Get the size of the window
-	CRect rect;
-	GetClientRect(&rect);
-	Pen pen(Color(0, 128, 0), 3);
-	//graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Height()*0.8, rect.Height()*0.8);
-	double mSquareHeight = rect.Height()*0.9; double mSquareWidth = rect.Width()*0.6;
-	graphics.DrawRectangle(&pen, (int)((rect.Width()*.5)- mSquareHeight /2), (int)((rect.Height()*0.5)- mSquareHeight /2), mSquareHeight, mSquareHeight);
+	//// Get the size of the window
+	//CRect rect;
+	//GetClientRect(&rect);
+	//Pen pen(Color(0, 128, 0), 3);
+	////graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Height()*0.8, rect.Height()*0.8);
+	//double mSquareHeight = rect.Height()*0.9; double mSquareWidth = rect.Width()*0.6;
+	//graphics.DrawRectangle(&pen, (int)((rect.Width()*.5)- mSquareHeight /2), (int)((rect.Height()*0.5)- mSquareHeight /2), mSquareHeight, mSquareHeight);
 
 
 
 
-	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 16);
-	SolidBrush green(Color(0, 255, 0));
+	//FontFamily fontFamily(L"Arial");
+	//Gdiplus::Font font(&fontFamily, 16);
+	//SolidBrush green(Color(0, 255, 0));
 
-	mTotalTime += elapsed;
-	int seconds = (int)mTotalTime % 60;
-	int minutes = mTotalTime / 60;
-	wstring secondsString = to_wstring(seconds);
-	if (seconds < 10) {
-		secondsString = to_wstring(0) + secondsString;
-	}
+	//mTotalTime += elapsed;
+	//int seconds = (int)mTotalTime % 60;
+	//int minutes = mTotalTime / 60;
+	//wstring secondsString = to_wstring(seconds);
+	//if (seconds < 10) {
+	//	secondsString = to_wstring(0) + secondsString;
+	//}
 
-	wstring fullTimeFormat = to_wstring(minutes)+ L":" + secondsString;
-	const wchar_t* counter = fullTimeFormat.c_str();
+	//wstring fullTimeFormat = to_wstring(minutes)+ L":" + secondsString;
+	//const wchar_t* counter = fullTimeFormat.c_str();
 
-	graphics.DrawString(counter,  // String to draw
-		-1,         // String length, -1 means it figures it out on its own
-		&font,      // The font to use
-		PointF(((rect.Width()*.5) - mSquareHeight / 2 + rect.Height()*0.9 +10), (int)(rect.Height()*0.05)),   // Where to draw (top left corner)
-		&green);    // The brush to draw the text with
+	//graphics.DrawString(counter,  // String to draw
+	//	-1,         // String length, -1 means it figures it out on its own
+	//	&font,      // The font to use
+	//	PointF(((rect.Width()*.5) - mSquareHeight / 2 + rect.Height()*0.9 +10), (int)(rect.Height()*0.05)),   // Where to draw (top left corner)
+	//	&green);    // The brush to draw the text with
 
-	
+	//
 	//// Bottom minus image size minus margin is top of the image
 	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
 	//mTrashcanRight = TrashcanMargin + mTrashcan->GetWidth();

@@ -9,23 +9,35 @@
 using namespace std;
 using namespace Gdiplus;
 
-/** Draw the game
+/**
+* Draw the game area
 * \param graphics The GDI+ graphics context to draw on
+* \param width Width of the client window
+* \param height Height of the client window
 */
-void CGame::OnDraw(Gdiplus::Graphics *graphics)
+void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 {
-	//graphics->DrawImage(mBackground.get(), 0, 0,
-	//	mBackground->GetWidth(), mBackground->GetHeight());
 
-	
-	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 16);
+	// Fill the background with black
+	SolidBrush brush(Color::Black);
+	graphics->FillRectangle(&brush, 0, 0, width, height);
 
-	// Get the size of the window
-	CRect rect;
-	//GetClientRect( &rect);
-	Pen pen(Color(0, 128, 0), 3);
-	graphics->DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
+	//
+	// Automatic Scaling
+	//
+	float scaleX = float(width) / float(Width);
+	float scaleY = float(height) / float(Height);
+	mScale = min(scaleX, scaleY);
+
+	mXOffset = width / 2.0f;
+	mYOffset = height / 2.0f;
+
+	graphics->TranslateTransform(mXOffset, mYOffset);
+	graphics->ScaleTransform(mScale, mScale);
+
+	// From here on you are drawing virtual pixels
+
+
 
 	for (auto item : mItems)
 	{
