@@ -1,3 +1,11 @@
+/**
+ * \file Project1.h
+ *
+ * \author Team Jorge
+ *
+ * 
+ */
+
 
 // Project1.h : main header file for the Project1 application
 //

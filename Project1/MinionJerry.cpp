@@ -1,3 +1,9 @@
+/**
+ * \file MinionJerry.cpp
+ *
+ * \author Team Jorge
+ */
+
 #include "stdafx.h"
 #include "MinionJerry.h"
 

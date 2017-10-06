@@ -1,3 +1,9 @@
+/**
+ * \file ScoreBoard.cpp
+ *
+ * \author Team Jorge
+ */
+
 #include <memory>
 #include <algorithm>
 #include "stdafx.h"

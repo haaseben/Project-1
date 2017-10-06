@@ -1,3 +1,9 @@
+/**
+ * \file PlayingArea.cpp
+ *
+ * \author Team Jorge
+ */
+
 #include "stdafx.h"
 #include "PlayingArea.h"
 

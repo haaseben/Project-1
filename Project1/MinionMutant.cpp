@@ -1,3 +1,9 @@
+/**
+ * \file MinionMutant.cpp
+ *
+ * \author Team Jorge
+ */
+
 #include "stdafx.h"
 #include "MinionMutant.h"
 

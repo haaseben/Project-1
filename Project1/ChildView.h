@@ -3,7 +3,7 @@
  *
  * \author Team Jorge
  *
- * 
+ * The ChildView Class
  */
 
 
