@@ -32,8 +32,6 @@ public:
 	/// \param NewSpeedY sets new speed for fish in y direction
 	void SetSpeedY(double NewSpeedY) { mSpeedY = NewSpeedY; }
 
-	std::shared_ptr<xmlnode::CXmlNode>
-		CMinion::XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node);
 
 	void CMinion::Update(double elapsed);
 
