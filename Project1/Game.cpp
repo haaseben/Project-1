@@ -28,7 +28,6 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics)
 	CRect rect;
 	//GetClientRect( &rect);
 	Pen pen(Color(0, 128, 0), 3);
-	graphics->DrawLine(&pen, 100, 100, 300, 200);
 	graphics->DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
 
 	for (auto item : mItems)

@@ -66,8 +66,6 @@ public:
 	* \return true if clicked on */
 	virtual bool HitTest(int x, int y);
 
-	virtual std::shared_ptr<xmlnode::CXmlNode> XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node);
-	virtual void XmlLoad(const std::shared_ptr<xmlnode::CXmlNode> &node);
 
 	///  Handle updates for animation
 	/// \param elapsed The time since the last update
