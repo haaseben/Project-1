@@ -21,9 +21,6 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics)
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 16);
 
-	SolidBrush green(Color(0, 64, 0));
-	graphics->DrawString(L"Under the Sea!", -1, &font, PointF(2, 2), &green);
-
 	// Get the size of the window
 	CRect rect;
 	//GetClientRect( &rect);
