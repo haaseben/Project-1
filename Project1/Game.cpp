@@ -9,6 +9,9 @@
 using namespace std;
 using namespace Gdiplus;
 
+/// New game button file name
+const wstring NewGameImageName = L"images/new-game.png";
+
 /**
 * Draw the game area
 * \param graphics The GDI+ graphics context to draw on
@@ -36,8 +39,14 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 	graphics->ScaleTransform(mScale, mScale);
 
 	mPlayingArea.OnDraw(graphics);
+
 	// From here on you are drawing virtual pixels
 
+	double wid = mNewGameImage->GetWidth();
+	double hit = mNewGameImage->GetHeight();
+	graphics->DrawImage(mNewGameImage.get(),
+		float(-723), float(-500),
+		(float)mNewGameImage->GetWidth(), (float)mNewGameImage->GetHeight());
 
 
 	for (auto item : mItems)
@@ -135,6 +144,14 @@ void CGame::MoveToFront(std::shared_ptr<CGamePiece> item)
 
 CGame::CGame()
 {
+	mNewGameImage = unique_ptr<Bitmap>(Bitmap::FromFile(NewGameImageName.c_str()));
+	if (mNewGameImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += NewGameImageName;
+		AfxMessageBox(msg.c_str());
+	}
+
 }
 
 

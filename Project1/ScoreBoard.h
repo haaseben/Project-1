@@ -17,6 +17,9 @@ public:
 	///  Copy constructor disabled
 	CScoreBoard(const CScoreBoard &) = delete;
 
+	/// Draw the socreboard
+	void OnDraw(Gdiplus::Graphics * graphics);
+
 	CScoreBoard::~CScoreBoard();
 
 private:
