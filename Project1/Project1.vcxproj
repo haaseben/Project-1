@@ -184,6 +184,7 @@
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GamePiece.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Minion.h" />
     <ClInclude Include="MinionJerry.h" />
