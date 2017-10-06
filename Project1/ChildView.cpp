@@ -13,6 +13,8 @@
 #include "stdafx.h"
 #include "Project1.h"
 #include "ChildView.h"
+#include "Game.h"
+#include "Villains.h"
 #include "DoubleBufferDC.h"
 #include <string>
 #ifdef _DEBUG

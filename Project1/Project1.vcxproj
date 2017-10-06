@@ -185,6 +185,7 @@
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePiece.h" />
+    <ClInclude Include="Juicer.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Minion.h" />
     <ClInclude Include="MinionJerry.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePiece.cpp" />
+    <ClCompile Include="Juicer.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Minion.cpp" />
     <ClCompile Include="MinionJerry.cpp" />

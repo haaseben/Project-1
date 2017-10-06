@@ -36,6 +36,7 @@ protected:
 private:
 	double mLocationx;
 	double mLocationy;
+
 };
 
 
