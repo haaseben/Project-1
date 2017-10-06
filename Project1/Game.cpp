@@ -1,3 +1,9 @@
+/**
+ * \file Game.cpp
+ *
+ * \author Team Jorge
+ */
+
 
 
 #include <memory>

@@ -1,3 +1,11 @@
+/**
+ * \file PlayingArea.h
+ *
+ * \author Team Jorge
+ *
+ * The class which will handle the Game Playing Area
+ */
+
 #pragma once
 
 class CPlayingArea

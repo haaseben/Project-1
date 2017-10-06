@@ -1,3 +1,11 @@
+/**
+ * \file Game.h
+ *
+ * \author Team Jorge
+ *
+ * The main game class
+ */
+
 #pragma once
 #include <memory>
 #include <vector>
