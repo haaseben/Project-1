@@ -170,6 +170,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	//	PointF(((rect.Width()*.5) - mSquareHeight / 2 + rect.Height()*0.9 +10), (int)(rect.Height()*0.05)),   // Where to draw (top left corner)
 	//	&green);    // The brush to draw the text with
 
+
 	//
 	//// Bottom minus image size minus margin is top of the image
 	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
