@@ -32,7 +32,8 @@ public:
 	/// \param NewSpeedY sets new speed for fish in y direction
 	void SetSpeedY(double NewSpeedY) { mSpeedY = NewSpeedY; }
 
-
+	///Updates the display over time
+	/// \param elapsed amount of time since start of project
 	void CMinion::Update(double elapsed);
 
 	
