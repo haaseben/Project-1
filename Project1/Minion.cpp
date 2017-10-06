@@ -21,22 +21,7 @@ CMinion::~CMinion()
 }
 
 
-/**
-* Save this item to an XML node
-* \param node The node we are going to be a child of
-* \return item node with the speed of the minion
-*/
-std::shared_ptr<xmlnode::CXmlNode>
-CMinion::XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node)
-{
-	auto itemNode = CGamePiece::XmlSave(node);
 
-	itemNode->SetAttribute(L"speedX", mSpeedX);
-	itemNode->SetAttribute(L"speedY", mSpeedY);
-
-
-	return itemNode;
-}
 
 
 /**Handle updates in time of our minion

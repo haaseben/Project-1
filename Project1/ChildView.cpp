@@ -73,9 +73,9 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting
-
 	Graphics graphics(dc.m_hDC);
 	graphics.Clear(Color(0, 0, 0));
+
 	mGame.OnDraw(&graphics);
 
 
@@ -112,7 +112,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CRect rect;
 	GetClientRect(&rect);
 	Pen pen(Color(0, 128, 0), 3);
-	graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
+	//graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
 
 
 
