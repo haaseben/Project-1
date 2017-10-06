@@ -105,36 +105,6 @@ bool CGamePiece::HitTest(int x, int y)
 }
 
 
-/**  Save this item to an XML node
-* \param node The node we are going to be a child of
-* \returns Created XML node
-*/
-std::shared_ptr<xmlnode::CXmlNode> CGamePiece::XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node)
-{
-	auto itemNode = node->AddChild(L"tile");
-
-	itemNode->SetAttribute(L"x", mX);
-	itemNode->SetAttribute(L"y", mY);
-
-	return itemNode;
-}
-
-
-/**
-* brief Load the attributes for an item node.
-*
-* This is the  base class version that loads the attributes
-* common to all items. Override this to load custom attributes
-* for specific items.
-*
-* \param node The Xml node we are loading the item from
-*/
-void CGamePiece::XmlLoad(const std::shared_ptr<xmlnode::CXmlNode> &node)
-{
-	mX = node->GetAttributeIntValue(L"x", 0);
-	mY = node->GetAttributeIntValue(L"y", 0);
-	
-}
 
 /**
 *

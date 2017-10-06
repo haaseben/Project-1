@@ -109,7 +109,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CRect rect;
 	GetClientRect(&rect);
 	Pen pen(Color(0, 128, 0), 3);
-	//graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
+	graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
 
 	
 	//// Bottom minus image size minus margin is top of the image

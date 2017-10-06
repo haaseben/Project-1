@@ -28,8 +28,6 @@ public:
 
 	CMinionJerry(CGame *game);
 
-	virtual std::shared_ptr<xmlnode::CXmlNode>
-		XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node) override;
 
 private:
 	///points minion is worth
