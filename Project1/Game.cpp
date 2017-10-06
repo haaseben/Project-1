@@ -17,7 +17,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics)
 	//graphics->DrawImage(mBackground.get(), 0, 0,
 	//	mBackground->GetWidth(), mBackground->GetHeight());
 
-	graphics->Clear(Color(0, 0, 0));
+	
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 16);
 
@@ -26,7 +26,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics)
 
 	// Get the size of the window
 	CRect rect;
-	GetClientRect( &rect);
+	//GetClientRect( &rect);
 	Pen pen(Color(0, 128, 0), 3);
 	graphics->DrawLine(&pen, 100, 100, 300, 200);
 	graphics->DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);

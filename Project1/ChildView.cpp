@@ -74,6 +74,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting
 	Graphics graphics(dc.m_hDC);
+	graphics.Clear(Color(0, 0, 0));
 
 	mGame.OnDraw(&graphics);
 
