@@ -33,8 +33,15 @@ const int InsideTolerance = 64;
 /**  Constructor
 * \param game The game this item is a member of
 */
-CGamePiece::CGamePiece(CGame *game) : mGame(game)
+CGamePiece::CGamePiece(CGame *game, const std::wstring &filename) : mGame(game)
 {
+	mItemImage = unique_ptr<Bitmap>(Bitmap::FromFile(filename.c_str()));
+	if (mItemImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += filename;
+		AfxMessageBox(msg.c_str());
+	}
 }
 
 

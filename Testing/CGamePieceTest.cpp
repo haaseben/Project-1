@@ -16,7 +16,7 @@ namespace Testing
 	{
 	public:
 		/** Constructor
-		* \param aquarium The aquarium this is a member of */
+		* \param game The game this is a member of */
 		CGamePieceMock(CGame *game) : CGamePiece(game, MinionJerryImageName) {}
 		/** Draw the item
 		* \param graphics The graphics context to draw on */
