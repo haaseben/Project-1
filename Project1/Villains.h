@@ -25,18 +25,9 @@ public:
 	CVillains(const CVillains &) = delete;
 
 	virtual ~CVillains();
-	/**
-	*Handles the location of each individual villain
-	*/
-	void Update(double elapsed);
 
 protected:
 	CVillains(CGame * game, const std::wstring & filename);
-
-private:
-	double mLocationx;
-	double mLocationy;
-
 };
 
 

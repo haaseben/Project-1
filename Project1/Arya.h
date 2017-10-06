@@ -1,9 +1,9 @@
 /**
-* \file Juicer.h
+* \file Arya.h
 *
 * \author Team Jorge
 *
-* Class the implements Juicer
+* Class the implements Arya.
 */
 
 #pragma once
@@ -15,18 +15,18 @@
 
 
 /**
-* Implements Juicer
+* Implements Arya
 */
-class CJuicer : public CGamePiece
+class CArya: public CGamePiece
 {
 public:
-	CJuicer(CGame *game);
+	CArya(CGame *game);
 
 	/// Default constructor (disabled)
-	CJuicer() = delete;
+	CArya() = delete;
 
 	/// Copy constructor (disabled)
-	CJuicer(const CJuicer &) = delete;
+	CArya(const CArya &) = delete;
 
-	virtual ~CJuicer();
+	virtual ~CArya();
 };

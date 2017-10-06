@@ -63,6 +63,15 @@
     <ClInclude Include="Juicer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PokeBall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Arya.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gru.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project1.cpp">
@@ -102,6 +111,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Juicer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Arya.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gru.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -12,23 +12,11 @@
 #include "GamePiece.h"
 #include "Game.h"
 
-CVillains(CGame * game, const std::wstring & filename)
-	CGame(game, filename)
+CVillains::CVillains(CGame *game, const std::wstring & filename) :
+	CGamePiece(game, filename)
 {
-	mLocationx = 200;
-	mLocationy = 200;
 }
 	
-
 CVillains::~CVillains()
 {
-}
-
-
-void CVillains::SetLocation(double x, double y)
-{
-void CFish::Update(double elapsed)
-{
-	SetLocation(GetX() + mLocationX * elapsed,
-		GetY() + mLocationY * elapsed);
 }

@@ -15,6 +15,10 @@
 #include "ChildView.h"
 #include "Game.h"
 #include "Villains.h"
+#include "Juicer.h"
+#include "PokeBall.h"
+#include "Arya.h"
+#include "Gru.h"
 #include "DoubleBufferDC.h"
 #include <string>
 #ifdef _DEBUG
@@ -27,6 +31,10 @@ using namespace std;
 
 /// Frame duration in milliseconds
 const int FrameDuration = 100;
+
+///Base numbers for villain drawing
+const int LocationX = 300;
+const int LocationY = 300;
 
 // CChildView
 
@@ -82,6 +90,34 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
 
+
+	/**Draw the Juicer
+	*/
+	auto villain = make_shared<CJuicer>(&mGame);
+	villain->SetLocation(LocationX*-1+50, LocationY*-1-160);
+	mGame.Add(villain);
+	Invalidate();
+
+	/**Draw the PokeBall
+	*/
+	auto villain_2 = make_shared<CPokeBall>(&mGame);
+	villain_2->SetLocation(LocationX-50, LocationY*-1+25);
+	mGame.Add(villain_2);
+	Invalidate();
+
+	/**Draw Arya
+	*/
+	auto villain_3 = make_shared<CArya>(&mGame);
+	villain_3->SetLocation(LocationX*0-80, LocationY-260);
+	mGame.Add(villain_3);
+	Invalidate();
+
+	/**Draw Gru
+	*/
+	auto Gru = make_shared<CGru>(&mGame);
+	Gru->SetLocation(LocationX * 0 - 40, LocationY * -1+70);
+	mGame.Add(Gru);
+	Invalidate();
 
 	//
 

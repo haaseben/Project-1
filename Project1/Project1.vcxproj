@@ -182,9 +182,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arya.h" />
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePiece.h" />
+    <ClInclude Include="Gru.h" />
     <ClInclude Include="Juicer.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Minion.h" />
@@ -192,6 +194,7 @@
     <ClInclude Include="MinionMutant.h" />
     <ClInclude Include="MinionStuart.h" />
     <ClInclude Include="PlayingArea.h" />
+    <ClInclude Include="PokeBall.h" />
     <ClInclude Include="Project1.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBoard.h" />
@@ -199,9 +202,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arya.cpp" />
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePiece.cpp" />
+    <ClCompile Include="Gru.cpp" />
     <ClCompile Include="Juicer.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Minion.cpp" />
@@ -209,6 +214,7 @@
     <ClCompile Include="MinionMutant.cpp" />
     <ClCompile Include="MinionStuart.cpp" />
     <ClCompile Include="PlayingArea.cpp" />
+    <ClCompile Include="PokeBall.cpp" />
     <ClCompile Include="Project1.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="stdafx.cpp">
