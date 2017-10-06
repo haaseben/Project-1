@@ -16,7 +16,7 @@ namespace Testing
 	{
 	public:
 		/** Constructor
-		* \param aquarium The aquarium this is a member of */
+		* \param game The game this is a member of */
 		CGamePieceMock(CGame *game) : CGamePiece(game, MinionJerryImageName) {}
 		/** Draw the item
 		* \param graphics The graphics context to draw on */
@@ -87,5 +87,6 @@ namespace Testing
 
 			// Of fish transparent pixel
 			Assert::IsFalse(gamepiece.HitTest(100 - 125 / 2 + 17, 200 - 117 / 2 + 16));
+		}
 	};
 }

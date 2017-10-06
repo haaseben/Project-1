@@ -86,7 +86,8 @@ public:
 	void SetMirrorY(bool m) { mMirrorY = m; };
 
 protected:
-	CGamePiece(CGame *game);
+	CGamePiece(CGame *game, const std::wstring &filename);
+
 
 private:
 	/// The city this item is contained in
