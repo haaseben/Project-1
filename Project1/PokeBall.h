@@ -11,13 +11,13 @@
 #include <memory>
 
 #include "GamePiece.h"
-#include "Villains.h"
+#include "Villain.h"
 
 
 /**
 * Implements Pokeball
 */
-class CPokeBall : public CGamePiece
+class CPokeBall : public CVillain
 {
 public:
 	CPokeBall(CGame *game);

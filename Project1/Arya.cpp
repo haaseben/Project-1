@@ -21,7 +21,7 @@ const wstring AryaImageName = L"images/Arya.png";
 * \param game The game this is a member of
 */
 CArya::CArya(CGame *game) :
-	CGamePiece(game, AryaImageName)
+	CVillain(game, AryaImageName)
 {
 }
 /**

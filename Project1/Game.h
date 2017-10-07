@@ -71,5 +71,6 @@ private:
 	/// New Game Image
 	std::unique_ptr<Gdiplus::Bitmap> mNewGameImage;
 
+
 };
 

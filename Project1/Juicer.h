@@ -11,13 +11,13 @@
 #include <memory>
 
 #include "GamePiece.h"
-#include "Villains.h"
+#include "Villain.h"
 
 
 /**
 * Implements Juicer
 */
-class CJuicer : public CGamePiece
+class CJuicer : public CVillain
 {
 public:
 	CJuicer(CGame *game);

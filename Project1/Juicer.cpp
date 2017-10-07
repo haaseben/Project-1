@@ -21,12 +21,15 @@ const wstring JuicerImageName = L"images/Juicer.png";
 * \param game The game this is a member of
 */
 CJuicer::CJuicer(CGame *game) :
-	CGamePiece(game, JuicerImageName)
+	CVillain(game, JuicerImageName)
 {
+
 }
+
 /**
 * Destructor
 */
 CJuicer::~CJuicer()
 {
 }
+

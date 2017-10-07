@@ -21,7 +21,7 @@ const wstring PokeBallImageName = L"images/pokeball.png";
 * \param game The game this is a member of
 */
 CPokeBall::CPokeBall(CGame *game) :
-	CGamePiece(game, PokeBallImageName)
+	CVillain(game, PokeBallImageName)
 {
 }
 /**

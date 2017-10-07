@@ -9,15 +9,14 @@
 #pragma once
 
 #include <memory>
-
 #include "GamePiece.h"
-#include "Villains.h"
+#include "Villain.h"
 
 
 /**
 * Implements Arya
 */
-class CArya: public CGamePiece
+class CArya: public CVillain
 {
 public:
 	CArya(CGame *game);

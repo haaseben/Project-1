@@ -97,7 +97,7 @@ private:
 	int   mX = 0;     ///< X location for the center of the item
 	int   mY = 0;     ///< Y location for the center of the item
 
-					  /// The image of this tile
+	/// The image of this tile
 	std::unique_ptr<Gdiplus::Bitmap> mItemImage;
 
 	/// The file for this item
