@@ -10,10 +10,15 @@
 #include <algorithm>
 #include "stdafx.h"
 #include "Game.h"
+#include "Juicer.h"
 #include "Minion.h"
 
 using namespace std;
 using namespace Gdiplus;
+
+///Base numbers for villain drawing
+const int LocationX = 300;
+const int LocationY = 300;
 
 /// New game button file name
 const wstring NewGameImageName = L"images/new-game.png";
@@ -146,6 +151,29 @@ void CGame::MoveToFront(std::shared_ptr<CGamePiece> item)
 	}
 
 	mItems.push_back(item);
+}
+
+/**
+* Handle a mouse move position
+* \param x X location moved on
+* \param y Y location moved on
+*/
+void CGame::OnMouseMove(int x, int y) 
+{
+	double mvX = (x - mXOffset) / mScale;
+	double mvY = (y - mYOffset) / mScale;
+}
+
+/**
+* Handle a click on the playing area
+* \param x X location clicked on
+* \param y Y location clicked on
+*/
+void CGame::OnLButtonDown(int x, int y)
+{
+	double oX = (x - mXOffset) / mScale;
+	double oY = (y - mYOffset) / mScale;
+
 }
 
 CGame::CGame()

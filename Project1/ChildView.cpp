@@ -30,7 +30,7 @@ using namespace std;
 
 
 /// Frame duration in milliseconds
-const int FrameDuration = 100;
+const int FrameDuration = 30;
 
 ///Base numbers for villain drawing
 const int LocationX = 300;
@@ -214,7 +214,8 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 */
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
+	int mvX = point.x; int mvY = point.y;
+	mGame.OnMouseMove(mvX , mvY);
 
 	CWnd::OnMouseMove(nFlags, point);
 }
@@ -239,7 +240,8 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
-
+	int x = point.x; int y = point.y;
+	mGame.OnLButtonDown(x, y);
 	CWnd::OnLButtonDown(nFlags, point);
 }
 

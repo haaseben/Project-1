@@ -34,6 +34,10 @@ public:
 
 	void MoveToFront(std::shared_ptr<CGamePiece> item);
 
+	void CGame::OnLButtonDown(int x, int y);
+
+	void CGame::OnMouseMove(int x, int y);
+
 
 	///// Get the width of the gaming area
 	///// \returns gaming area width
@@ -46,7 +50,9 @@ public:
 
 private:
 
-	//std::unique_ptr<Gdiplus::Bitmap> mBackground; ///< Background image
+	/// Any item we are currently dragging
+	std::shared_ptr<CGamePiece> mGrabbedItem; 
+
 	/// All of the items to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mItems;
 

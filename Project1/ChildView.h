@@ -50,7 +50,6 @@ private:
 	bool mFirstDraw = true; ///< True until the first time we draw
 	long long mLastTime;    ///< Last time we read the timer
 	double mTimeFreq;       ///< Rate the timer updates											
-	//std::shared_ptr<GamePiece> mGrabbedItem; ///< Any item we are currently dragging
 	double mTotalTime = 0;
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
