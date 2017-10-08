@@ -38,6 +38,7 @@ public:
 
 	void CGame::OnMouseMove(int x, int y);
 
+	void CGame::AddVillain();
 
 	///// Get the width of the gaming area
 	///// \returns gaming area width
@@ -76,6 +77,12 @@ private:
 
 	/// New Game Image
 	std::unique_ptr<Gdiplus::Bitmap> mNewGameImage;
+
+	/// All of the items to populate in game
+	std::vector<std::shared_ptr<CGamePiece> > mVillain;
+
+	/// If villains has been drawn for the new game. 
+	bool mVillainDrawn = 0;
 
 
 };

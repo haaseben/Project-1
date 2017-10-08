@@ -7,6 +7,9 @@
  */
 
 #pragma once
+#include <vector>
+#include <memory>
+#include "GamePiece.h"
 
 class CPlayingArea
 {
@@ -22,6 +25,7 @@ public:
 	void OnDraw(Gdiplus::Graphics * graphics);
 
 private:
+
 
 };
 

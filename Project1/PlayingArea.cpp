@@ -6,9 +6,16 @@
 
 #include "stdafx.h"
 #include "PlayingArea.h"
+#include "Juicer.h"
+#include "GamePiece.h"
+#include "Villain.h"
 
 using namespace std;
 using namespace Gdiplus;
+
+///Base numbers for villain drawing
+const int LocationX = 300;
+const int LocationY = 300;
 
 /// The size of the playing area square in virtual pixels
 const double CPlayingArea::GridSize = 1000.0;
@@ -34,4 +41,8 @@ void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics)
 {
 	Pen pen(Color(0, 128, 0), 1);
 	graphics->DrawRectangle(&pen, -500, -500, 1000, 1000);
+
+
+
+
 }

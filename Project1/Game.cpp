@@ -11,6 +11,8 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Juicer.h"
+#include "PokeBall.h"
+#include "Arya.h"
 #include "Minion.h"
 
 using namespace std;
@@ -59,8 +61,16 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 		float(-723), float(-500),
 		(float)mNewGameImage->GetWidth(), (float)mNewGameImage->GetHeight());
 
+	AddVillain();
+
+
 
 	for (auto item : mItems)
+	{
+		item->Draw(graphics);
+	}
+
+	for (auto item : mVillain)
 	{
 		item->Draw(graphics);
 	}
@@ -191,4 +201,33 @@ CGame::CGame()
 
 CGame::~CGame()
 {
+}
+
+void CGame::AddVillain()
+{
+	if (mVillainDrawn == 0)
+	{
+		/**Draw the Juicer
+		*/
+		shared_ptr<CGamePiece> juicer(new CJuicer(this));
+
+		juicer->SetLocation(LocationX*-1 + 50, LocationY*-1 - 160);
+		mVillain.push_back(juicer);
+
+		/**Draw the PokeBall
+		*/
+		auto pokeball = make_shared<CPokeBall>(this);
+		pokeball->SetLocation(LocationX - 50, LocationY*-1 + 25);
+		mVillain.push_back(pokeball);
+
+		/**Draw Arya
+		*/
+		auto arya = make_shared<CArya>(this);
+		arya->SetLocation(LocationX * 0 - 80, LocationY - 260);
+		mVillain.push_back(arya);
+
+	}
+
+	mVillainDrawn = 1;
+
 }
