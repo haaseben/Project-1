@@ -11,6 +11,7 @@
 #include <vector>
 #include "GamePiece.h"
 #include "PlayingArea.h"
+#include "ScoreBoard.h"
 
 class CGame
 {
@@ -20,7 +21,7 @@ public:
 
 	virtual ~CGame();
 
-	virtual void OnDraw(Gdiplus::Graphics * graphics,int width,int height);
+	void OnDraw(Gdiplus::Graphics * graphics,int width,int height);
 
 	void CGame::Add(std::shared_ptr<CGamePiece> item);
 
@@ -36,7 +37,7 @@ public:
 
 	void CGame::OnLButtonDown(int x, int y);
 
-	void CGame::OnMouseMove(int x, int y);
+	void CGame::OnMouseMove(int x, int y, UINT nFlags);
 
 	void CGame::AddVillain();
 
@@ -78,11 +79,17 @@ private:
 	/// New Game Image
 	std::unique_ptr<Gdiplus::Bitmap> mNewGameImage;
 
-	/// All of the items to populate in game
+	/// All of the villains to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mVillain;
+
+	/// Gru object
+	std::vector<std::shared_ptr<CGamePiece> > mGru;
 
 	/// If villains has been drawn for the new game. 
 	bool mVillainDrawn = 0;
+
+	/// An object that describes the scorebaord
+	CScoreBoard mScoreBoard;
 
 
 };

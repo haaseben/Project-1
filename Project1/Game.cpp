@@ -14,6 +14,9 @@
 #include "PokeBall.h"
 #include "Arya.h"
 #include "Minion.h"
+#include "Gru.h"
+#include "ChildView.h"
+#include "ScoreBoard.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -63,7 +66,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 
 	AddVillain();
 
-
+	mScoreBoard.OnDraw(graphics);
 
 	for (auto item : mItems)
 	{
@@ -74,7 +77,53 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 	{
 		item->Draw(graphics);
 	}
+	for (auto item : mGru)
+	{
+		item->Draw(graphics);
+	}
 
+
+}
+
+void CGame::AddVillain()
+{
+	if (mVillainDrawn == 0)
+	{
+		/**Draw the Juicer
+		*/
+		shared_ptr<CGamePiece> juicer(new CJuicer(this));
+		double juicerX = ((720) - mXOffset) / mScale;
+		double juicerY = ((100) - mYOffset) / mScale;
+
+		juicer->SetLocation(juicerX, juicerY);
+		//juicer->SetLocation(LocationX*-1 + 50, LocationY*-1 - 160);
+		mVillain.push_back(juicer);
+
+		/**Draw the PokeBall
+		*/
+		auto pokeball = make_shared<CPokeBall>(this);
+		pokeball->SetLocation(LocationX - 50, LocationY*-1 + 25);
+		mVillain.push_back(pokeball);
+
+		/**Draw Arya
+		*/
+		auto arya = make_shared<CArya>(this);
+		arya->SetLocation(LocationX * 0 - 80, LocationY - 260);
+		mVillain.push_back(arya);
+
+		/**Draw Gru
+		*/
+		auto Gru = make_shared<CGru>(this);
+		double GruX = ((920) - mXOffset) / mScale;
+		double GryY = ((250) - mYOffset) / mScale;
+		Gru->SetLocation(GruX, GryY);
+		mGru.push_back(Gru);
+	}
+
+
+
+
+	mVillainDrawn = 1;
 
 }
 
@@ -86,8 +135,9 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 */
 std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
-	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
+	for (auto i = mGru.rbegin(); i != mGru.rend(); i++)
 	{
+
 		if ((*i)->HitTest(x, y))
 		{
 			return *i;
@@ -163,15 +213,35 @@ void CGame::MoveToFront(std::shared_ptr<CGamePiece> item)
 	mItems.push_back(item);
 }
 
+
 /**
 * Handle a mouse move position
 * \param x X location moved on
 * \param y Y location moved on
 */
-void CGame::OnMouseMove(int x, int y) 
+void CGame::OnMouseMove(int x, int y, UINT nFlags)
 {
 	double mvX = (x - mXOffset) / mScale;
 	double mvY = (y - mYOffset) / mScale;
+
+	// See if an item is currently being moved by the mouse
+	if (mGrabbedItem != nullptr)
+	{
+		// If an item is being moved, we only continue to 
+		// move it while the left button is down.
+		if (nFlags & MK_LBUTTON)
+		{
+			mGrabbedItem->SetLocation(mvX-25, mvY-170);
+		}
+		else
+		{
+			// When the left button is released, we release the
+			// item.
+			mGrabbedItem = nullptr;
+		}
+	}
+
+
 }
 
 /**
@@ -184,7 +254,12 @@ void CGame::OnLButtonDown(int x, int y)
 	double oX = (x - mXOffset) / mScale;
 	double oY = (y - mYOffset) / mScale;
 
+	auto mGrabbedItem = HitTest(oX, oX);
+
+
+
 }
+
 
 CGame::CGame()
 {
@@ -203,31 +278,3 @@ CGame::~CGame()
 {
 }
 
-void CGame::AddVillain()
-{
-	if (mVillainDrawn == 0)
-	{
-		/**Draw the Juicer
-		*/
-		shared_ptr<CGamePiece> juicer(new CJuicer(this));
-
-		juicer->SetLocation(LocationX*-1 + 50, LocationY*-1 - 160);
-		mVillain.push_back(juicer);
-
-		/**Draw the PokeBall
-		*/
-		auto pokeball = make_shared<CPokeBall>(this);
-		pokeball->SetLocation(LocationX - 50, LocationY*-1 + 25);
-		mVillain.push_back(pokeball);
-
-		/**Draw Arya
-		*/
-		auto arya = make_shared<CArya>(this);
-		arya->SetLocation(LocationX * 0 - 80, LocationY - 260);
-		mVillain.push_back(arya);
-
-	}
-
-	mVillainDrawn = 1;
-
-}

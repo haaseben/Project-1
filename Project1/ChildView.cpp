@@ -91,14 +91,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
 
 
-	///**Draw Gru
-	//*/
-	//auto Gru = make_shared<CGru>(&mGame);
-	//Gru->SetLocation(LocationX * 0 - 40, LocationY * -1+70);
-	//mGame.Add(Gru);
-	//Invalidate();
 
-	//
 
 	//if (mFirstDraw)
 	//{
@@ -125,7 +118,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	//double elapsed = double(diff) / mTimeFreq;
 	//mLastTime = time.QuadPart;
 
-	//mCity.Update(elapsed);
+	//mGame.Update(elapsed);
 
 
 	//FontFamily fontFamily(L"Arial");
@@ -187,6 +180,19 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 	return TRUE;
 }
 
+/**  Called when there is a left mouse button press
+* \param nFlags Flags associated with the mouse button press
+* \param point Where the button was pressed
+*/
+void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	int x = point.x; int y = point.y;
+	mGame.OnLButtonDown(x, y);
+	CWnd::OnLButtonDown(nFlags, point);
+	Invalidate();
+}
+
 /**  Called when the mouse is moved
 * \param nFlags Flags associated with the mouse movement
 * \param point Where the button was pressed
@@ -194,9 +200,9 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	int mvX = point.x; int mvY = point.y;
-	mGame.OnMouseMove(mvX , mvY);
-
+	mGame.OnMouseMove(mvX , mvY, nFlags);
 	CWnd::OnMouseMove(nFlags, point);
+	Invalidate();
 }
 
 /**  Called when the left mouse button is released
@@ -209,20 +215,12 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 
 	CWnd::OnLButtonUp(nFlags, point);
+	Invalidate();
+
 }
 
 
-/**  Called when there is a left mouse button press
-* \param nFlags Flags associated with the mouse button press
-* \param point Where the button was pressed
-*/
-void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
-	int x = point.x; int y = point.y;
-	mGame.OnLButtonDown(x, y);
-	CWnd::OnLButtonDown(nFlags, point);
-}
+
 
 /**
 *  Handle timer events

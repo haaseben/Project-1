@@ -22,11 +22,20 @@ const wstring JuicerImageName = L"images/juicer.png";
 /// Minion filename 
 const wstring PokeballImageName = L"images/pokeball.png";
 
-//CScoreBoard::CScoreBoard()
-//{
-//}
+CScoreBoard::CScoreBoard()
+{
+}
 
 
 CScoreBoard::~CScoreBoard()
 {
+}
+
+/// Draw the socreboard
+void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics)
+{
+
+
+
+
 }

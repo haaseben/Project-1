@@ -11,7 +11,9 @@
 #include <memory>
 #include "GamePiece.h"
 
-class CPlayingArea
+class CGame;
+
+class CPlayingArea 
 {
 public:
 
@@ -25,6 +27,7 @@ public:
 	void OnDraw(Gdiplus::Graphics * graphics);
 
 private:
+
 
 
 };

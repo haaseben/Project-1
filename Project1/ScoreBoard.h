@@ -8,19 +8,20 @@
  */
 
 #pragma once
-class CScoreBoard
+class CScoreBoard 
 {
 public:
-	///  Default constructor disabled
-	CScoreBoard() = delete;
+	///  Default constructor
+
+	CScoreBoard() ;
 
 	///  Copy constructor disabled
 	CScoreBoard(const CScoreBoard &) = delete;
 
 	/// Draw the socreboard
-	void OnDraw(Gdiplus::Graphics * graphics);
+	void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics);
 
-	CScoreBoard::~CScoreBoard();
+	virtual ~CScoreBoard();
 
 private:
 
