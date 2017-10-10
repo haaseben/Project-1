@@ -23,13 +23,25 @@ public:
 
 	virtual ~CScoreBoard();
 
+	void CScoreBoard::Timer(double elapsed);
+
+
+	
+
 private:
+
+	const wchar_t *counter = nullptr;
 
 	int mAryaScore=0; ///< Score for Arya
 
 	int mJuicerScore = 0; ///< Score for Juicer
 
 	int mPokeBallScore = 0; ///< Score for PokeBall
+
+	double mTotalTime = 0; ///< Count the total time passed
+
+
+
 
 };
 

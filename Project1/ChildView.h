@@ -46,12 +46,12 @@ protected:
 private:							
 	/// An object that describes our game
 	CGame  mGame;
-
+	/// An object that describes our game
+	CScoreBoard  mScoreBoard;
 
 	bool mFirstDraw = true; ///< True until the first time we draw
 	long long mLastTime;    ///< Last time we read the timer
 	double mTimeFreq;       ///< Rate the timer updates											
-	double mTotalTime = 0;
 
 
 public:

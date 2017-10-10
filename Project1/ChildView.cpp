@@ -93,37 +93,36 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 
 
-	//if (mFirstDraw)
-	//{
-	//	mFirstDraw = false;
-	//	SetTimer(1, FrameDuration, nullptr);
+	if (mFirstDraw)
+	{
+		mFirstDraw = false;
+		SetTimer(1, FrameDuration, nullptr);
 
-	//	/*
-	//	* Initialize the elapsed time system
-	//	*/
-	//	LARGE_INTEGER time, freq;
-	//	QueryPerformanceCounter(&time);
-	//	QueryPerformanceFrequency(&freq);
+		/*
+		* Initialize the elapsed time system
+		*/
+		LARGE_INTEGER time, freq;
+		QueryPerformanceCounter(&time);
+		QueryPerformanceFrequency(&freq);
 
-	//	mLastTime = time.QuadPart;
-	//	mTimeFreq = double(freq.QuadPart);
-	//}
+		mLastTime = time.QuadPart;
+		mTimeFreq = double(freq.QuadPart);
+	}
 
-	///*
-	//* Compute the elapsed time since the last draw
-	//*/
-	//LARGE_INTEGER time;
-	//QueryPerformanceCounter(&time);
-	//long long diff = time.QuadPart - mLastTime;
-	//double elapsed = double(diff) / mTimeFreq;
-	//mLastTime = time.QuadPart;
+	/*
+	* Compute the elapsed time since the last draw
+	*/
+	LARGE_INTEGER time;
+	QueryPerformanceCounter(&time);
+	long long diff = time.QuadPart - mLastTime;
+	double elapsed = double(diff) / mTimeFreq;
+	mLastTime = time.QuadPart;
 
-	//mGame.Update(elapsed);
+	mGame.Update(elapsed);
+	mScoreBoard.Timer(elapsed);
 
 
-	//FontFamily fontFamily(L"Arial");
-	//Gdiplus::Font font(&fontFamily, 16);
-	//SolidBrush green(Color(0, 255, 0));
+
 
 	//mTotalTime += elapsed;
 	//int seconds = (int)mTotalTime % 60;
