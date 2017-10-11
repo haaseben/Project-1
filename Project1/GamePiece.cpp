@@ -117,8 +117,6 @@ bool CGamePiece::HitTest(int x, int y)
 	// Subtracting the center makes x, y relative to the center of 
 	// the image. Adding half the size makes x, y relative to the top 
 	// corner of the image.
-	double tempx = GetX();
-	double tempy = GetY();
 	double testX = (wid/2)-abs(x);
 	double testY = (hit/2)-abs(y);
 

@@ -73,16 +73,6 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 		item->Draw(graphics);
 	}
 
-	for (auto item : mVillain)
-	{
-		item->Draw(graphics);
-	}
-	for (auto item : mGru)
-	{
-		item->Draw(graphics);
-	}
-
-
 }
 
 void CGame::AddVillain()
@@ -96,19 +86,19 @@ void CGame::AddVillain()
 		double juicerY = LocationY*-1 - 160;
 
 		juicer->SetLocation(juicerX, juicerY);
-		mVillain.push_back(juicer);
+		mItems.push_back(juicer);
 
 		/**Draw the PokeBall
 		*/
 		auto pokeball = make_shared<CPokeBall>(this);
 		pokeball->SetLocation(LocationX-100, LocationY*-1 + 25);
-		mVillain.push_back(pokeball);
+		mItems.push_back(pokeball);
 
 		/**Draw Arya
 		*/
 		auto arya = make_shared<CArya>(this);
 		arya->SetLocation(-80, LocationY - 260);
-		mVillain.push_back(arya);
+		mItems.push_back(arya);
 
 		/**Draw Gru
 		*/
@@ -116,7 +106,7 @@ void CGame::AddVillain()
 		double GruX = ((920) - mXOffset) / mScale;
 		double GryY = ((250) - mYOffset) / mScale;
 		Gru->SetLocation(-40, LocationY*-1 + 70);
-		mGru.push_back(Gru);
+		mItems.push_back(Gru);
 	}
 
 
@@ -132,14 +122,12 @@ void CGame::AddVillain()
 */
 std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
-	for (auto i = mGru.rbegin(); i != mGru.rend(); i++)
+	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-
 		if ((*i)->HitTest(x, y))
 		{
 			return *i;
 		}
-
 	}
 
 	return  nullptr;
@@ -225,4 +213,52 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 		mItems.erase(loc);
 	}
 
+}
+
+
+/**  Called when there is a left mouse button press
+* \param nFlags Flags associated with the mouse button press
+* \param point Where the button was pressed
+*/
+void CGame::OnLButtonDown(UINT nFlags, CPoint point)
+{
+
+	mGrabbedItem = HitTest(point.x, point.y);
+	if (mGrabbedItem != nullptr)
+	{
+		// adds a duplicate to the end of the list of items
+		Add(mGrabbedItem);
+
+		//removes the initial object in the list
+		Remove(mGrabbedItem);
+	}
+
+}
+
+/**  Called when the mouse is moved
+* \param nFlags Flags associated with the mouse movement
+* \param point Where the button was pressed
+*/
+void CGame::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// See if an item is currently being moved by the mouse
+	if (mGrabbedItem != nullptr)
+	{
+		// If an item is being moved, we only continue to 
+		// move it while the left button is down.
+		if (nFlags & MK_LBUTTON)
+		{
+			mGrabbedItem->SetLocation(point.x, point.y);
+
+
+		}
+		else
+		{
+			// When the left button is released, we release the
+			// item.
+			mGrabbedItem = nullptr;
+		}
+
+		// Force the screen to redraw
+	}
 }
