@@ -47,15 +47,6 @@ public:
 
 	/// clear items
 	void Clear();
-	
-	/// move item to the front
-	void MoveToFront(std::shared_ptr<CGamePiece> item);
-
-	/// on button down handlower
-	void CGame::OnLButtonDown(int x, int y);
-
-	/// on mouse move handlower
-	void CGame::OnMouseMove(int x, int y, UINT nFlags);
 
 	/// adds a villian
 	void CGame::AddVillain();
@@ -73,7 +64,8 @@ public:
 	///// \returns gaming area height
 	//int GetHeight() const { return mBackground->GetHeight(); }
 
-
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 
 	/** Iterator that iterates over the city tiles */
 	class Iter
@@ -104,6 +96,8 @@ public:
 			mPos++;
 			return *this;
 		}
+
+
 
 
 	private:
@@ -149,17 +143,12 @@ private:
 	/// New Game Image
 	std::unique_ptr<Gdiplus::Bitmap> mNewGameImage;
 
-	/// All of the villains to populate in game
-	std::vector<std::shared_ptr<CGamePiece> > mVillain;
-
-	/// Gru object
-	std::vector<std::shared_ptr<CGamePiece> > mGru;
-
 	/// If villains has been drawn for the new game. 
 	bool mVillainDrawn = 0;
 
 	/// An object that describes the scorebaord
 	CScoreBoard mScoreBoard;
+
 
 
 };
