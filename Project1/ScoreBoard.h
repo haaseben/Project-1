@@ -21,8 +21,10 @@ public:
 	/// Draw the socreboard
 	void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics);
 
+	/// destructor
 	virtual ~CScoreBoard();
 
+	/// timer
 	void CScoreBoard::Timer(double elapsed);
 
 
@@ -30,7 +32,7 @@ public:
 
 private:
 
-	const wchar_t *counter = nullptr;
+	const wchar_t *counter = nullptr; ///< counter
 
 	int mAryaScore=0; ///< Score for Arya
 

@@ -19,6 +19,7 @@
 class CArya: public CVillain
 {
 public:
+	/// constructor
 	CArya(CGame *game);
 
 	/// Default constructor (disabled)
@@ -27,5 +28,6 @@ public:
 	/// Copy constructor (disabled)
 	CArya(const CArya &) = delete;
 
+	/// destructor
 	virtual ~CArya();
 };

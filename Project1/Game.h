@@ -17,28 +17,47 @@ class CGame
 {
 
 public:
+	/// cosntructor
 	CGame();
 
+	/// destructor
 	virtual ~CGame();
 
+	/**
+	* OnDraw
+	* \param graphics what we use to draw
+	* \param width width
+	* \param height height
+	*/
 	void OnDraw(Gdiplus::Graphics * graphics,int width,int height);
 
+	/**
+	* add
+	* \param item item we're using
+	*/
 	void CGame::Add(std::shared_ptr<CGamePiece> item);
 
+	/// hittest see if item moves
 	std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y);
 
+	/// update drawing
 	void CGame::Update(double elapsed);
 
 	void DeleteItem(std::shared_ptr<CGamePiece> item);
 
+	/// clear items
 	void Clear();
-
+	
+	/// move item to the front
 	void MoveToFront(std::shared_ptr<CGamePiece> item);
 
+	/// on button down handlower
 	void CGame::OnLButtonDown(int x, int y);
 
+	/// on mouse move handlower
 	void CGame::OnMouseMove(int x, int y, UINT nFlags);
 
+	/// adds a villian
 	void CGame::AddVillain();
 
 	///// Get the width of the gaming area

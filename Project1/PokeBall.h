@@ -20,6 +20,7 @@
 class CPokeBall : public CVillain
 {
 public:
+	/// constructor
 	CPokeBall(CGame *game);
 
 	/// Default constructor (disabled)
@@ -28,5 +29,6 @@ public:
 	/// Copy constructor (disabled)
 	CPokeBall(const CPokeBall &) = delete;
 
+	/// destructor
 	virtual ~CPokeBall();
 };
