@@ -34,7 +34,7 @@ const wstring NewGameImageName = L"images/new-game.png";
 * \param width Width of the client window
 * \param height Height of the client window
 */
-void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
+void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double elapsed)
 {
 
 	// Fill the background with black
@@ -66,7 +66,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height)
 
 	AddVillain();
 
-	mScoreBoard.OnDraw(graphics);
+	mScoreBoard.OnDraw(graphics,  elapsed);
 
 	for (auto item : mItems)
 	{
@@ -261,4 +261,8 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 		// Force the screen to redraw
 	}
+}
+void CGame::SetTimer(double elapsed) {
+
+	mScoreBoard.Timer(elapsed);
 }

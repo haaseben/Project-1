@@ -88,7 +88,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	CRect rect;
 	GetClientRect(&rect);
 
-	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
 
 	if (mFirstDraw)
 	{
@@ -116,29 +115,12 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	mLastTime = time.QuadPart;
 
 	mGame.Update(elapsed);
-	mScoreBoard.Timer(elapsed);
+	//mGame.SetTimer(elapsed);
+	mGame.OnDraw(&graphics, rect.Width(), rect.Height(), elapsed);
 
 
-	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 16);
-	SolidBrush green(Color(0, 255, 0));
 
-	mTotalTime += elapsed;
-	int seconds = (int)mTotalTime % 60;
-	int minutes = mTotalTime / 60;
-	wstring secondsString = to_wstring(seconds);
-	if (seconds < 10) {
-		secondsString = to_wstring(0) + secondsString;
-	}
 
-	wstring fullTimeFormat = to_wstring(minutes)+ L":" + secondsString;
-	const wchar_t* counter = fullTimeFormat.c_str();
-
-	graphics.DrawString(counter,  // String to draw
-		-1,         // String length, -1 means it figures it out on its own
-		&font,      // The font to use
-		PointF(rect.Width(), 10),   // Where to draw (top left corner)
-		&green);    // The brush to draw the text with
 
 	//
 	//// Bottom minus image size minus margin is top of the image

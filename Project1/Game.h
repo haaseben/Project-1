@@ -29,7 +29,11 @@ public:
 	* \param width width
 	* \param height height
 	*/
-	void OnDraw(Gdiplus::Graphics * graphics,int width,int height);
+	void OnDraw(Gdiplus::Graphics * graphics,int width,int height, double elapsed);
+
+
+	void SetTimer(double elapsed);
+
 
 	/**
 	* add
