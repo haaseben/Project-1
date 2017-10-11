@@ -27,15 +27,22 @@ const double CPlayingArea::GridRadius = CPlayingArea::GridSize / 2.0;
 /// to the playing area edges (virtual pixels)
 const double CPlayingArea::GridMargin = 50.0;
 
+
+/** Constructor
+*/
 CPlayingArea::CPlayingArea()
 {
 }
 
-
+/** destructor
+*/
 CPlayingArea::~CPlayingArea()
 {
 }
 
+/** Ondraw
+*\param graphics used to draw
+*/
 void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics)
 {
 	Pen pen(Color(0, 128, 0), 1);

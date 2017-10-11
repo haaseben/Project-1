@@ -22,7 +22,8 @@ CMinionStuart::CMinionStuart(CGame *game) :
 	SetSpeedY(70);
 }
 
-
+/** destructor
+*/
 CMinionStuart::~CMinionStuart()
 {
 }

@@ -13,12 +13,17 @@
 //{
 //}
 
+/** Constructor
+*\param game game we're using
+*\param filemname the file we're using 
+*/
 CVillain::CVillain(CGame *game, const std::wstring &filename) :
 	CGamePiece(game, filename)
 {
 
 }
-
+/** destructor
+*/
 CVillain::~CVillain()
 {
 

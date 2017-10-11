@@ -22,7 +22,8 @@ CMinionMutant::CMinionMutant(CGame *game) :
 	SetSpeedY(140);
 }
 
-
+/** destructor
+*/
 CMinionMutant::~CMinionMutant()
 {
 }

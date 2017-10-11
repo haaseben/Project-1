@@ -22,7 +22,8 @@ CMinionJerry::CMinionJerry(CGame *game) :
 	SetSpeedY(70);
 }
 
-
+/** destructor
+*/
 CMinionJerry::~CMinionJerry()
 {
 }
