@@ -92,23 +92,22 @@ void CGame::AddVillain()
 		/**Draw the Juicer
 		*/
 		shared_ptr<CGamePiece> juicer(new CJuicer(this));
-		double juicerX = ((720) - mXOffset) / mScale;
-		double juicerY = ((100) - mYOffset) / mScale;
+		double juicerX = LocationX*-1 + 50;
+		double juicerY = LocationY*-1 - 160;
 
 		juicer->SetLocation(juicerX, juicerY);
-		//juicer->SetLocation(LocationX*-1 + 50, LocationY*-1 - 160);
 		mVillain.push_back(juicer);
 
 		/**Draw the PokeBall
 		*/
 		auto pokeball = make_shared<CPokeBall>(this);
-		pokeball->SetLocation(LocationX - 50, LocationY*-1 + 25);
+		pokeball->SetLocation(LocationX-100, LocationY*-1 + 25);
 		mVillain.push_back(pokeball);
 
 		/**Draw Arya
 		*/
 		auto arya = make_shared<CArya>(this);
-		arya->SetLocation(LocationX * 0 - 80, LocationY - 260);
+		arya->SetLocation(-80, LocationY - 260);
 		mVillain.push_back(arya);
 
 		/**Draw Gru
@@ -116,11 +115,9 @@ void CGame::AddVillain()
 		auto Gru = make_shared<CGru>(this);
 		double GruX = ((920) - mXOffset) / mScale;
 		double GryY = ((250) - mYOffset) / mScale;
-		Gru->SetLocation(GruX, GryY);
+		Gru->SetLocation(-40, LocationY*-1 + 70);
 		mGru.push_back(Gru);
 	}
-
-
 
 
 	mVillainDrawn = 1;
@@ -196,71 +193,6 @@ void CGame::Clear()
 }
 
 
-/**  Move an item to the front of the list of items.
-*
-* Removes item from the list and adds it to the end so it
-* will display last.
-* \param item The item to move
-*/
-void CGame::MoveToFront(std::shared_ptr<CGamePiece> item)
-{
-	auto loc = find(::begin(mItems), ::end(mItems), item);
-	if (loc != ::end(mItems))
-	{
-		mItems.erase(loc);
-	}
-
-	mItems.push_back(item);
-}
-
-
-/**
-* Handle a mouse move position
-* \param x X location moved on
-* \param y Y location moved on
-*/
-void CGame::OnMouseMove(int x, int y, UINT nFlags)
-{
-	double mvX = (x - mXOffset) / mScale;
-	double mvY = (y - mYOffset) / mScale;
-
-	// See if an item is currently being moved by the mouse
-	if (mGrabbedItem != nullptr)
-	{
-		// If an item is being moved, we only continue to 
-		// move it while the left button is down.
-		if (nFlags & MK_LBUTTON)
-		{
-			mGrabbedItem->SetLocation(mvX-25, mvY-170);
-		}
-		else
-		{
-			// When the left button is released, we release the
-			// item.
-			mGrabbedItem = nullptr;
-		}
-	}
-
-
-}
-
-/**
-* Handle a click on the playing area
-* \param x X location clicked on
-* \param y Y location clicked on
-*/
-void CGame::OnLButtonDown(int x, int y)
-{
-	double oX = (x - mXOffset) / mScale;
-	double oY = (y - mYOffset) / mScale;
-
-	auto mGrabbedItem = HitTest(oX, oX);
-
-
-
-}
-
-
 CGame::CGame()
 {
 	mNewGameImage = unique_ptr<Bitmap>(Bitmap::FromFile(NewGameImageName.c_str()));
@@ -274,7 +206,23 @@ CGame::CGame()
 }
 
 
+/**
+*destructor
+*/
 CGame::~CGame()
 {
 }
 
+/**
+* move items to the back of a list
+* \param item item that needs to be deleted
+*/
+void CGame::Remove(std::shared_ptr<CGamePiece> item)
+{
+	auto loc = find(::begin(mItems), ::end(mItems), item);
+	if (loc != ::end(mItems))
+	{
+		mItems.erase(loc);
+	}
+
+}

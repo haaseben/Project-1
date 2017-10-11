@@ -122,25 +122,27 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	mScoreBoard.Timer(elapsed);
 
 
+	FontFamily fontFamily(L"Arial");
+	
+	Gdiplus::Font font(&fontFamily, 16);
+	SolidBrush green(Color(0, 255, 0));
 
+	mTotalTime += elapsed;
+	int seconds = (int)mTotalTime % 60;
+	int minutes = mTotalTime / 60;
+	wstring secondsString = to_wstring(seconds);
+	if (seconds < 10) {
+		secondsString = to_wstring(0) + secondsString;
+	}
 
-	//mTotalTime += elapsed;
-	//int seconds = (int)mTotalTime % 60;
-	//int minutes = mTotalTime / 60;
-	//wstring secondsString = to_wstring(seconds);
-	//if (seconds < 10) {
-	//	secondsString = to_wstring(0) + secondsString;
-	//}
+	wstring fullTimeFormat = to_wstring(minutes)+ L":" + secondsString;
+	const wchar_t* counter = fullTimeFormat.c_str();
 
-	//wstring fullTimeFormat = to_wstring(minutes)+ L":" + secondsString;
-	//const wchar_t* counter = fullTimeFormat.c_str();
-
-	//graphics.DrawString(counter,  // String to draw
-	//	-1,         // String length, -1 means it figures it out on its own
-	//	&font,      // The font to use
-	//	PointF(((rect.Width()*.5) - mSquareHeight / 2 + rect.Height()*0.9 +10), (int)(rect.Height()*0.05)),   // Where to draw (top left corner)
-	//	&green);    // The brush to draw the text with
-
+	graphics.DrawString(counter,  // String to draw
+		-1,         // String length, -1 means it figures it out on its own
+		&font,      // The font to use
+		PointF(rect.Width(), 10),   // Where to draw (top left corner)
+		&green);    // The brush to draw the text with
 
 	//
 	//// Bottom minus image size minus margin is top of the image
@@ -185,10 +187,17 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 */
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-	int x = point.x; int y = point.y;
-	mGame.OnLButtonDown(x, y);
-	CWnd::OnLButtonDown(nFlags, point);
+
+	mGrabbedItem = mGame.HitTest(point.x, point.y);
+	if (mGrabbedItem != nullptr)
+	{
+		// adds a duplicate to the end of the list of items
+		mGame.Add(mGrabbedItem);
+
+		//removes the initial object in the list
+		mGame.Remove(mGrabbedItem);
+	}
+
 	Invalidate();
 }
 
@@ -198,10 +207,27 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 */
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	int mvX = point.x; int mvY = point.y;
-	mGame.OnMouseMove(mvX , mvY, nFlags);
-	CWnd::OnMouseMove(nFlags, point);
-	Invalidate();
+	// See if an item is currently being moved by the mouse
+	if (mGrabbedItem != nullptr)
+	{
+		// If an item is being moved, we only continue to 
+		// move it while the left button is down.
+		if (nFlags & MK_LBUTTON)
+		{
+			mGrabbedItem->SetLocation(point.x, point.y);
+
+
+		}
+		else
+		{
+			// When the left button is released, we release the
+			// item.
+			mGrabbedItem = nullptr;
+		}
+
+		// Force the screen to redraw
+		Invalidate();
+	}
 }
 
 /**  Called when the left mouse button is released

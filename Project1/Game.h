@@ -60,6 +60,9 @@ public:
 	/// adds a villian
 	void CGame::AddVillain();
 
+	void Remove(std::shared_ptr<CGamePiece> item); ///< remove an item from the aquarium 
+
+
 	///// Get the width of the gaming area
 	///// \returns gaming area width
 	//int GetWidth() const { return mBackground->GetWidth(); }
@@ -69,6 +72,52 @@ public:
 
 	///// \returns gaming area height
 	//int GetHeight() const { return mBackground->GetHeight(); }
+
+
+
+	/** Iterator that iterates over the city tiles */
+	class Iter
+	{
+	public:
+		/** Constructor
+		* \param city The city we are iterating over
+		* \param pos postion
+		*/
+		Iter(CGame *city, int pos) : mGame(city), mPos(pos) {}
+
+		/** Test for end of the iterator
+		* \param other comparison
+		* \returns True if we this position equals not equal to the other position */
+		bool operator!=(const Iter &other) const
+		{
+			return mPos != other.mPos;
+		}
+
+		/** Get value at current position
+		* \returns Value at mPos in the collection */
+		std::shared_ptr<CGamePiece> operator *() const { return mGame->mItems[mPos]; }
+
+		/** Increment the iterator
+		* \returns Reference to this iterator */
+		const Iter& operator++()
+		{
+			mPos++;
+			return *this;
+		}
+
+
+	private:
+		CGame *mGame;   ///< City we are iterating over
+		int mPos;       ///< Position in the collection
+	};
+
+	/** Get an iterator for the beginning of the collection
+	* \returns Iter object at position 0 */
+	Iter begin() { return Iter(this, 0); }
+
+	/** Get an iterator for the end of the collection
+	* \returns Iter object at position past the end */
+	Iter end() { return Iter(this, mItems.size()); }
 
 
 private:

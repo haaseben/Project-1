@@ -52,11 +52,11 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics)
 	Gdiplus::Font font(&fontFamily, 16);
 	SolidBrush green(Color(0, 255, 0));
 
-	graphics->DrawString(L"Arial",  // String to draw
-		-1,         // String length, -1 means it figures it out on its own
-		&font,      // The font to use
-		PointF(0, 0),   // Where to draw (top left corner)
-		&green);    // The brush to draw the text with
+	//graphics->DrawString(L"Arial",  // String to draw
+	//	-1,         // String length, -1 means it figures it out on its own
+	//	&font,      // The font to use
+	//	PointF(0, 0),   // Where to draw (top left corner)
+	//	&green);    // The brush to draw the text with
 }
 
 
