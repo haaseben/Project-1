@@ -95,7 +95,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CGameTest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CGruTest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="CMinionTest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CScoreBoardTest.cpp">
       <SubType>
       </SubType>
     </ClCompile>
