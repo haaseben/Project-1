@@ -59,8 +59,8 @@ public:
 	virtual void Draw(Gdiplus::Graphics *graphics);
 
 	/**  Test this item to see if it has been clicked on
-	* \param x X location on the aquarium to test
-	* \param y Y location on the aquarium to test
+	* \param x X location on the gameto test
+	* \param y Y location on the game to test
 	* \return true if clicked on */
 	virtual bool HitTest(int x, int y);
 
@@ -93,7 +93,7 @@ private:
 	/// The city this item is contained in
 	CGame   *mGame;
 
-	// Item location in the aquarium
+	// Item location in the game
 	int   mX = 0;     ///< X location for the center of the item
 	int   mY = 0;     ///< Y location for the center of the item
 

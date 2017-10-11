@@ -70,22 +70,22 @@ namespace Testing
 			// Always make the numbers different, in case they are mixed up
 			gamepiece.SetLocation(100, 200);
 
-			// Center of the fish should be a true
+			// Center of the game piece should be a true
 			Assert::IsTrue(gamepiece.HitTest(100, 200));
 
-			// Left of the fish
+			// Left of the game piece
 			Assert::IsFalse(gamepiece.HitTest(10, 200));
 
-			// Right of the fish
+			// Right of the game piece
 			Assert::IsFalse(gamepiece.HitTest(200, 200));
 
-			// Above the fish
+			// Above the game piece
 			Assert::IsFalse(gamepiece.HitTest(100, 0));
 
-			// Below the fish
+			// Below the game piece
 			Assert::IsFalse(gamepiece.HitTest(100, 300));
 
-			// Of fish transparent pixel
+			// Of game piece transparent pixel
 			Assert::IsFalse(gamepiece.HitTest(100 - 125 / 2 + 17, 200 - 117 / 2 + 16));
 		};
 	};

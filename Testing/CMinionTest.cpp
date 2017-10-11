@@ -35,22 +35,22 @@ namespace Testing
 			// Always make the numbers different, in case they are mixed up
 			minion.SetLocation(300,150);
 
-			// Center of the fish should be a true
+			// Center of the game piece should be a true
 			Assert::IsTrue(minion.HitTest(300, 150));
 
-			// Left of the fish
+			// Left of the game piece
 			Assert::IsFalse(minion.HitTest(10, 150));
 
-			// Right of the fish
+			// Right of the game piece
 			Assert::IsFalse(minion.HitTest(150, 150));
 
-			// Above the fish
+			// Above the game piece
 			Assert::IsFalse(minion.HitTest(300, 0));
 
-			// Below the fish
+			// Below the game piece
 			Assert::IsFalse(minion.HitTest(300, 300));
 
-			// Of fish transparent pixel
+			// Of game piece transparent pixel
 			Assert::IsFalse(minion.HitTest(100 - 125 / 2 + 17, 200 - 117 / 2 + 16));
 		}
 

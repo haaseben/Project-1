@@ -128,7 +128,7 @@ void CGame::AddVillain()
 }
 
 /** Test an x,y click location to see if it clicked
-* on some item in the aquarium.
+* on some item in the game.
 * \param x X location
 * \param y Y location
 * \returns Pointer to item we clicked on or nullptr if none.

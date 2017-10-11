@@ -25,11 +25,11 @@ public:
 	CMinion(const CMinion &) = delete;
 
 	/// Set the Speed in x direction
-	/// \param NewSpeedX sets new speed for fish in x direction
+	/// \param NewSpeedX sets new speed for minion in x direction
 	void SetSpeedX(double NewSpeedX) { mSpeedX = NewSpeedX; }
 
 	/// Set the Speed in y direction
-	/// \param NewSpeedY sets new speed for fish in y direction
+	/// \param NewSpeedY sets new speed for minion in y direction
 	void SetSpeedY(double NewSpeedY) { mSpeedY = NewSpeedY; }
 
 	///Updates the display over time

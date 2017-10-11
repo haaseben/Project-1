@@ -45,7 +45,9 @@ public:
 	///// \returns gaming area width
 	//int GetWidth() const { return mBackground->GetWidth(); }
 
-	///// Get the height of the aquarium
+	///// Get the height of the 
+
+
 	///// \returns gaming area height
 	//int GetHeight() const { return mBackground->GetHeight(); }
 

@@ -41,7 +41,7 @@ void CMinion::Update(double elapsed)
 {
 	//SetLocation(GetX() + mSpeedX * elapsed,
 	//	GetY() + mSpeedY * elapsed);
-	/////checks to see when the fish gets within 10 pixels of the edge in x direction on right
+	/////checks to see when the minion gets within 10 pixels of the edge in x direction on right
 	//if (GetGame()->GetWidth() - GetX() - (GetMinionWidth() / 2) <= 10)
 	//{
 	//	if (mSpeedX > 0 && GetX() >= GetGame()->GetWidth())
@@ -52,7 +52,7 @@ void CMinion::Update(double elapsed)
 
 	//}
 
-	/////checks to see when the fish gets within 10 pixels of the edge in x direction on left
+	/////checks to see when the minion gets within 10 pixels of the edge in x direction on left
 	//if (GetX() <= 10)
 	//{
 	//	if (mSpeedX < 0 && GetX() <= 0)
@@ -62,17 +62,17 @@ void CMinion::Update(double elapsed)
 	//	}
 	//}
 
-	///checks to see when the fish gets within 10 pixels of the edge in y direction on bottom
+	///checks to see when the minion gets within 10 pixels of the edge in y direction on bottom
 	//if (GetGame()->GetHeight() - GetY() - (GetMinionHeight() / 2) <= 10)
 	//{
-	//	if (mSpeedY > 0 && GetY() >= GetAquarium()->GetHeight())
+	//	if (mSpeedY > 0 && GetY() >= Getgame()->GetHeight())
 	//	{
 	//		mSpeedY = -mSpeedY;
 	//		SetMirrorY(mSpeedY < 0);
 	//	}
 
 	//}
-	///checks to see when the fish gets within 10 pixels of the edge in y direction on top
+	///checks to see when the minion gets within 10 pixels of the edge in y direction on top
 	//if (GetY() <= 10)
 	//{
 	//	if (mSpeedY < 0 && GetY() <= 0)
