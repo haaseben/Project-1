@@ -49,7 +49,4 @@ void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics)
 	graphics->DrawRectangle(&pen, -500, -500, 1000, 1000);
 
 
-
-
-
 }

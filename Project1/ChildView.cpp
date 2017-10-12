@@ -115,7 +115,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	mLastTime = time.QuadPart;
 
 	mGame.Update(elapsed);
-	//mGame.SetTimer(elapsed);
 	mGame.OnDraw(&graphics, rect.Width(), rect.Height(), elapsed);
 
 

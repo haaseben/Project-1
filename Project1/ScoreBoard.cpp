@@ -58,6 +58,7 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed)
 	}
 	wstring fullTimeFormat = to_wstring(minutes) + L":" + secondsString;
 	mCounter = fullTimeFormat.c_str();
+	
 
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 16);

@@ -85,19 +85,23 @@ void CGame::AddVillain()
 		double juicerX = LocationX*-1 + 50;
 		double juicerY = LocationY*-1 - 160;
 
-		juicer->SetLocation(juicerX, juicerY);
+		juicer->SetLocation(-200, -200);
 		mItems.push_back(juicer);
 
 		/**Draw the PokeBall
 		*/
+
+		double oX = (- mXOffset) / mScale;
+		double oY = (- mYOffset) / mScale;
+
 		auto pokeball = make_shared<CPokeBall>(this);
-		pokeball->SetLocation(LocationX-100, LocationY*-1 + 25);
+		pokeball->SetLocation(200,-200 );
 		mItems.push_back(pokeball);
 
 		/**Draw Arya
 		*/
 		auto arya = make_shared<CArya>(this);
-		arya->SetLocation(-80, LocationY - 260);
+		arya->SetLocation(0,200);
 		mItems.push_back(arya);
 
 		/**Draw Gru
@@ -105,7 +109,7 @@ void CGame::AddVillain()
 		auto Gru = make_shared<CGru>(this);
 		double GruX = ((920) - mXOffset) / mScale;
 		double GryY = ((250) - mYOffset) / mScale;
-		Gru->SetLocation(-40, LocationY*-1 + 70);
+		Gru->SetLocation(0, 0);
 		mItems.push_back(Gru);
 	}
 
@@ -124,7 +128,10 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if ((*i)->HitTest(x, y))
+		double oX = (x - mXOffset) / mScale;
+		double oY = (y - mYOffset) / mScale;
+
+		if ((*i)->HitTest(oX, oY))
 		{
 			return *i;
 		}
@@ -222,8 +229,10 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 */
 void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	double oX = (point.x - mXOffset) / mScale;
+	double oY = (point.y - mYOffset) / mScale; 
 
-	mGrabbedItem = HitTest(point.x, point.y);
+	mGrabbedItem = HitTest(oX, oY);
 	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
@@ -241,6 +250,9 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 */
 void CGame::OnMouseMove(UINT nFlags, CPoint point)
 {
+	double oX = (point.x - mXOffset) / mScale;
+	double oY = (point.y - mYOffset) / mScale;
+
 	// See if an item is currently being moved by the mouse
 	if (mGrabbedItem != nullptr)
 	{
@@ -248,8 +260,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
-			mGrabbedItem->SetLocation(point.x, point.y);
-
+			mGrabbedItem->SetLocation(oX, oY);
 
 		}
 		else

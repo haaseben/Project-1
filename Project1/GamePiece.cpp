@@ -120,6 +120,7 @@ bool CGamePiece::HitTest(int x, int y)
 	double testX = (wid/2)-abs(x);
 	double testY = (hit/2)-abs(y);
 
+
 	// Test to see if x, y are in the image
 	if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
 	{
