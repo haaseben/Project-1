@@ -114,26 +114,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 	mGame.Update(elapsed);
 	mGame.OnDraw(&graphics, rect.Width(), rect.Height(), elapsed);
-
-	//
-	//// Bottom minus image size minus margin is top of the image
-	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
-	//mTrashcanRight = TrashcanMargin + mTrashcan->GetWidth();
-
-	//graphics.DrawImage(mTrashcan.get(), TrashcanMargin, mTrashcanTop,
-	//	mTrashcan->GetWidth(), mTrashcan->GetHeight());
-
-	/*
-	* Actually Draw the city
-	*/
-	//mCity.OnDraw(&graphics);
-	//Pen pen(Color::Green, 2);
-
-	//for (auto tile : mCity)
-	//{
-	//	tile->DrawBorder(&graphics, &pen);
-	//}
-
 }
 
 /**

@@ -115,15 +115,11 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		double oX = (x - mXOffset) / mScale;
-		double oY = (y - mYOffset) / mScale;
-
-		if ((*i)->HitTest(oX, oY))
+		if ((*i)->HitTest(0,0))
 		{
 			return *i;
 		}
 	}
-
 	return  nullptr;
 }
 
@@ -204,9 +200,7 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 	{
 		mItems.erase(loc);
 	}
-
 }
-
 
 /**  Called when there is a left mouse button press
 * \param nFlags Flags associated with the mouse button press
@@ -214,10 +208,10 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 */
 void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	double oX = (point.x - mXOffset) / mScale;
+	/*double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
-
-	mGrabbedItem = HitTest(oX, oY);
+	*/
+	mGrabbedItem = HitTest(point.x, point.y);
 	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
@@ -235,9 +229,9 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 */
 void CGame::OnMouseMove(UINT nFlags, CPoint point)
 {
-	/*double oX = (point.x - mXOffset) / mScale;
+	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale;
-*/
+
 	// See if an item is currently being moved by the mouse
 	if (mGrabbedItem != nullptr)
 	{
@@ -245,8 +239,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
-			mGrabbedItem->SetLocation(point.x, point.y);
-
+			mGrabbedItem->SetLocation(oX, oY);
 		}
 		else
 		{
