@@ -105,4 +105,5 @@ private:
 
 	bool mMirrorX = false;   ///< True mirrors the item image for x
 	bool mMirrorY = false;   ///< True mirrors the item image for y
+
 };

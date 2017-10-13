@@ -57,6 +57,9 @@ public:
 
 	void Remove(std::shared_ptr<CGamePiece> item); ///< remove an item from the aquarium 
 
+	int GetXOffset() { return mXOffset; }
+	int GetYOffset() { return mYOffset; }
+	double GetScale() { return mScale; }
 
 	///// Get the width of the gaming area
 	///// \returns gaming area width
