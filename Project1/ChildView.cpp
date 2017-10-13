@@ -13,6 +13,12 @@
 #include "stdafx.h"
 #include "Project1.h"
 #include "ChildView.h"
+#include "Game.h"
+#include "Villain.h"
+#include "Juicer.h"
+#include "PokeBall.h"
+#include "Arya.h"
+#include "Gru.h"
 #include "DoubleBufferDC.h"
 #include <string>
 #ifdef _DEBUG
@@ -24,7 +30,11 @@ using namespace std;
 
 
 /// Frame duration in milliseconds
-const int FrameDuration = 100;
+const int FrameDuration = 30;
+
+///Base numbers for villain drawing
+const int LocationX = 300;
+const int LocationY = 300;
 
 // CChildView
 
@@ -73,9 +83,11 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting
-
 	Graphics graphics(dc.m_hDC);
-	graphics.Clear(Color(0, 0, 0));
+
+	CRect rect;
+	GetClientRect(&rect);
+
 
 	if (mFirstDraw)
 	{
@@ -102,14 +114,14 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	double elapsed = double(diff) / mTimeFreq;
 	mLastTime = time.QuadPart;
 
-	//mCity.Update(elapsed);
+	mGame.Update(elapsed);
+	mGame.OnDraw(&graphics, rect.Width(), rect.Height(), elapsed);
 
-	// Get the size of the window
-	CRect rect;
-	GetClientRect(&rect);
-	Pen pen(Color(0, 128, 0), 3);
-	graphics.DrawRectangle(&pen, (int)(rect.Width()*.2), (int)(rect.Height()*0.1), rect.Width()*0.6, rect.Height()*0.8);
-	
+
+
+
+
+	//
 	//// Bottom minus image size minus margin is top of the image
 	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
 	//mTrashcanRight = TrashcanMargin + mTrashcan->GetWidth();
@@ -146,15 +158,25 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 	return TRUE;
 }
 
+/**  Called when there is a left mouse button press
+* \param nFlags Flags associated with the mouse button press
+* \param point Where the button was pressed
+*/
+void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+
+	mGame.OnLButtonDown(nFlags, point);
+	Invalidate();
+}
+
 /**  Called when the mouse is moved
 * \param nFlags Flags associated with the mouse movement
 * \param point Where the button was pressed
 */
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-
-	CWnd::OnMouseMove(nFlags, point);
+	mGame.OnMouseMove(nFlags, point);
+	Invalidate();
 }
 
 /**  Called when the left mouse button is released
@@ -167,19 +189,12 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 
 	CWnd::OnLButtonUp(nFlags, point);
+	Invalidate();
+
 }
 
 
-/**  Called when there is a left mouse button press
-* \param nFlags Flags associated with the mouse button press
-* \param point Where the button was pressed
-*/
-void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
 
-	CWnd::OnLButtonDown(nFlags, point);
-}
 
 /**
 *  Handle timer events

@@ -3,7 +3,7 @@
  *
  * \author Team Jorge
  *
- * 
+ * The ChildView Class
  */
 
 
@@ -13,6 +13,7 @@
 
 #pragma once
 #include <memory>
+#include "Game.h"
 
 // CChildView window
 
@@ -43,11 +44,17 @@ protected:
 
 
 private:							
+	/// An object that describes our game
+	CGame  mGame;
+	/// An object that describes our game
+	CScoreBoard  mScoreBoard;
+
 	bool mFirstDraw = true; ///< True until the first time we draw
 	long long mLastTime;    ///< Last time we read the timer
 	double mTimeFreq;       ///< Rate the timer updates											
-	//std::shared_ptr<GamePiece> mGrabbedItem; ///< Any item we are currently dragging
-	std::unique_ptr<Gdiplus::Bitmap> mNewGameButton; ///< New game button
+	std::shared_ptr<CGamePiece> mGrabbedItem;
+	double mTotalTime = 0;
+
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);

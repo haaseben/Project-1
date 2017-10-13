@@ -10,7 +10,9 @@
 
 #include <string>
 #include <memory>
-#include "XmlNode.h"
+
+using namespace Gdiplus;
+using namespace std;
 
 using namespace Gdiplus;
 using namespace std;
@@ -60,13 +62,11 @@ public:
 	virtual void Draw(Gdiplus::Graphics *graphics);
 
 	/**  Test this item to see if it has been clicked on
-	* \param x X location on the aquarium to test
-	* \param y Y location on the aquarium to test
+	* \param x X location on the gameto test
+	* \param y Y location on the game to test
 	* \return true if clicked on */
 	virtual bool HitTest(int x, int y);
 
-	virtual std::shared_ptr<xmlnode::CXmlNode> XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node);
-	virtual void XmlLoad(const std::shared_ptr<xmlnode::CXmlNode> &node);
 
 	///  Handle updates for animation
 	/// \param elapsed The time since the last update
@@ -76,20 +76,37 @@ public:
 	/// \returns game pointer
 	CGame *GetGame() { return mGame; }
 
+	double CGamePiece::GetMinionHeight();
+	double CGamePiece::GetMinionWidth();
+
+
+	/// Set the mirror status
+	/// \param m New mirror flag
+	void SetMirrorX(bool m) { mMirrorX = m; };
+
+	/// Set the mirror status
+	/// \param m New mirror flag
+	void SetMirrorY(bool m) { mMirrorY = m; };
+
 protected:
-	CGamePiece(CGame *game);
+	CGamePiece(CGame *game, const std::wstring &filename);
+
 
 private:
 	/// The city this item is contained in
 	CGame   *mGame;
 
-	// Item location in the aquarium
+	// Item location in the game
 	int   mX = 0;     ///< X location for the center of the item
 	int   mY = 0;     ///< Y location for the center of the item
 
-					  /// The image of this tile
+	/// The image of this tile
 	std::unique_ptr<Gdiplus::Bitmap> mItemImage;
 
 	/// The file for this item
 	std::wstring mFile;
+
+	bool mMirrorX = false;   ///< True mirrors the item image for x
+	bool mMirrorY = false;   ///< True mirrors the item image for y
+
 };

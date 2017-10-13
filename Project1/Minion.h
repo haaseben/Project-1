@@ -1,11 +1,14 @@
 /**
-* Base class for minion
+* \file:Minion.h
+*
+* \author: Team Jorge
+*  
+*  Base class for minion
 * applies to all minions in the game
 */
 #pragma once
 #include "GamePiece.h"
-
-
+#include "Game.h"
 
 
 /**
@@ -21,7 +24,24 @@ public:
 	/// Copy constructor (disabled)
 	CMinion(const CMinion &) = delete;
 
+	/// Set the Speed in x direction
+	/// \param NewSpeedX sets new speed for minion in x direction
+	void SetSpeedX(double NewSpeedX) { mSpeedX = NewSpeedX; }
+
+	/// Set the Speed in y direction
+	/// \param NewSpeedY sets new speed for minion in y direction
+	void SetSpeedY(double NewSpeedY) { mSpeedY = NewSpeedY; }
+
+	///Updates the display over time
+	/// \param elapsed amount of time since start of project
+	void CMinion::Update(double elapsed);
+
+	
+
 	CMinion::~CMinion();
+
+protected:
+	CMinion::CMinion(CGame *game, const std::wstring &filename);
 
 private:
 	///name for a particular minion

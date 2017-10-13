@@ -33,8 +33,15 @@ const int InsideTolerance = 64;
 /**  Constructor
 * \param game The game this item is a member of
 */
-CGamePiece::CGamePiece(CGame *game) : mGame(game)
+CGamePiece::CGamePiece(CGame *game, const std::wstring &filename) : mGame(game)
 {
+	mItemImage = unique_ptr<Bitmap>(Bitmap::FromFile(filename.c_str()));
+	if (mItemImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += filename;
+		AfxMessageBox(msg.c_str());
+	}
 }
 
 
@@ -79,8 +86,13 @@ void CGamePiece::Draw(Gdiplus::Graphics *graphics)
 {
 	if (mItemImage != nullptr)
 	{
+		int vmx = mGame->GetXOffset();
+		int vmy = mGame->GetYOffset();
+		int scale = mGame->GetScale();
+
 		int wid = mItemImage->GetWidth();
 		int hit = mItemImage->GetHeight();
+
 
 		graphics->DrawImage(mItemImage.get(),
 			mX , mY + hit,
@@ -101,37 +113,63 @@ void CGamePiece::Draw(Gdiplus::Graphics *graphics)
 bool CGamePiece::HitTest(int x, int y)
 {
 	// Simple manhattan distance 
-	return (abs(x - mX) + abs(y - mY) * 2) <= InsideTolerance;
+	//return (abs(x - mX) + abs(y - mY) * 2) <= InsideTolerance;
+
+	double wid = mItemImage->GetWidth();
+	double hit = mItemImage->GetHeight();
+
+	// Make x and y relative to the top-left corner of the bitmap image.
+	// Subtracting the center makes x, y relative to the center of 
+	// the image. Adding half the size makes x, y relative to the top 
+	// corner of the image.
+	double testX = (wid/2)-abs(x);
+	double testY = (hit/2)-abs(y);
+
+
+	// Test to see if x, y are in the image
+	if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+	{
+		// We are outside the image
+		return false;
+	}
+
+	// Test to see if x, y are in the drawn part of the image
+	auto format = mItemImage->GetPixelFormat();
+	if (format == PixelFormat32bppARGB || format == PixelFormat32bppPARGB)
+	{
+		// This image has an alpha map, which implements the 
+		// transparency. If so, we should check to see if we
+		// clicked on a pixel where alpha is not zero, meaning
+		// the pixel shows on the screen.
+		Color color;
+		mItemImage->GetPixel((int)testX, (int)testY, &color);
+		int a = color.GetAlpha();
+
+		return color.GetAlpha() != 0;
+	}
+	else {
+		return true;
+	}
 }
 
-
-/**  Save this item to an XML node
-* \param node The node we are going to be a child of
-* \returns Created XML node
-*/
-std::shared_ptr<xmlnode::CXmlNode> CGamePiece::XmlSave(const std::shared_ptr<xmlnode::CXmlNode> &node)
-{
-	auto itemNode = node->AddChild(L"tile");
-
-	itemNode->SetAttribute(L"x", mX);
-	itemNode->SetAttribute(L"y", mY);
-
-	return itemNode;
-}
 
 
 /**
-* brief Load the attributes for an item node.
 *
-* This is the  base class version that loads the attributes
-* common to all items. Override this to load custom attributes
-* for specific items.
-*
-* \param node The Xml node we are loading the item from
+*\return width of minion
 */
-void CGamePiece::XmlLoad(const std::shared_ptr<xmlnode::CXmlNode> &node)
+double CGamePiece::GetMinionWidth()
 {
-	mX = node->GetAttributeIntValue(L"x", 0);
-	mY = node->GetAttributeIntValue(L"y", 0);
-	
+	double width = mItemImage->GetWidth();
+	return width;
+}
+
+/**
+*
+*\return height of minion
+*/
+double CGamePiece::GetMinionHeight()
+{
+	double height = mItemImage->GetHeight();
+	return height;
 }
