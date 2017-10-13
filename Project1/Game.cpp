@@ -91,8 +91,6 @@ void CGame::AddVillain()
 		/**Draw the PokeBall
 		*/
 
-		double oX = (- mXOffset) / mScale;
-		double oY = (- mYOffset) / mScale;
 
 		auto pokeball = make_shared<CPokeBall>(this);
 		pokeball->SetLocation(200,-200 );
@@ -128,10 +126,8 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		double oX = (x - mXOffset) / mScale;
-		double oY = (y - mYOffset) / mScale;
 
-		if ((*i)->HitTest(oX, oY))
+		if ((*i)->HitTest(x, y))
 		{
 			return *i;
 		}
@@ -250,9 +246,9 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 */
 void CGame::OnMouseMove(UINT nFlags, CPoint point)
 {
-	double oX = (point.x - mXOffset) / mScale;
+	/*double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale;
-
+*/
 	// See if an item is currently being moved by the mouse
 	if (mGrabbedItem != nullptr)
 	{
@@ -260,7 +256,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
-			mGrabbedItem->SetLocation(oX, oY);
+			mGrabbedItem->SetLocation(point.x, point.y);
 
 		}
 		else
