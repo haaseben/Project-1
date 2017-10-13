@@ -269,7 +269,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 			if (mGrabbedItem->GruOrNot() == true && OtherItem != nullptr)
 			{
-				Remove(mGrabbedItem);
+				//Remove(mGrabbedItem);
 			}
 		}
 		else

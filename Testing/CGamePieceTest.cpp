@@ -22,6 +22,7 @@ namespace Testing
 		* \param graphics The graphics context to draw on */
 		virtual void Draw(Gdiplus::Graphics *graphics) {}
 
+		virtual bool GruOrNot() {};
 	};
 	TEST_CLASS(CGamePieceTest)
 	{
@@ -36,7 +37,7 @@ namespace Testing
 		TEST_METHOD(TestCGamePieceConstruct)
 		{
 			CGame game;
-			CGamePieceMock gamepiece(&game);
+			CGamePieceMock GamePiece(&game);
 		}
 
 		TEST_METHOD(TestCGamePieceGettersSetters)

@@ -90,7 +90,7 @@ public:
 
 	///virtual function for determining if gru
 	/// \returns true if it is
-	virtual bool GruOrNot() = 0;
+	virtual bool GruOrNot()=0;
 
 protected:
 	CGamePiece(CGame *game, const std::wstring &filename);
