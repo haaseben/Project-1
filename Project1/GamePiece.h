@@ -14,6 +14,9 @@
 using namespace Gdiplus;
 using namespace std;
 
+using namespace Gdiplus;
+using namespace std;
+
 class CGame;
 
 /**
