@@ -73,8 +73,8 @@ public:
 	/// \returns game pointer
 	CGame *GetGame() { return mGame; }
 
-	double CGamePiece::GetMinionHeight();
-	double CGamePiece::GetMinionWidth();
+	double CGamePiece::GetHeight();
+	double CGamePiece::GetWidth();
 
 
 	/// Set the mirror status

@@ -146,20 +146,18 @@ bool CGamePiece::HitTest(int x, int y)
 
 /**
 *
-*\return width of minion
+*\return width of piece
 */
-double CGamePiece::GetMinionWidth()
+double CGamePiece::GetWidth()
 {
-	double width = mItemImage->GetWidth();
-	return width;
+	return  mItemImage->GetWidth();;
 }
 
 /**
 *
-*\return height of minion
+*\return height of piece
 */
-double CGamePiece::GetMinionHeight()
+double CGamePiece::GetHeight()
 {
-	double height = mItemImage->GetHeight();
-	return height;
+	return  mItemImage->GetHeight();;
 }

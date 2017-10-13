@@ -239,7 +239,10 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
-			mGrabbedItem->SetLocation(oX, oY);
+			if(oX > -500 && oY > -500 && oX  < 500 - mGrabbedItem->GetWidth() && oY < 500 - mGrabbedItem->GetHeight()){
+				mGrabbedItem->SetLocation(oX, oY);
+			
+			}
 		}
 		else
 		{
