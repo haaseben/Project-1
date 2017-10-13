@@ -4,8 +4,6 @@
  * \author Team Jorge
  */
 
-
-
 #include <memory>
 #include <algorithm>
 #include "stdafx.h"
@@ -22,8 +20,8 @@ using namespace std;
 using namespace Gdiplus;
 
 ///Base numbers for villain drawing
-const int LocationX = 300;
-const int LocationY = 300;
+const double LocationX = 300.0;
+const double LocationY = 300.0;
 
 /// New game button file name
 const wstring NewGameImageName = L"images/new-game.png";
@@ -82,40 +80,29 @@ void CGame::AddVillain()
 		/**Draw the Juicer
 		*/
 		shared_ptr<CGamePiece> juicer(new CJuicer(this));
-		double juicerX = LocationX*-1 + 50;
-		double juicerY = LocationY*-1 - 160;
 
-		juicer->SetLocation(-200, -200);
+		juicer->SetLocation(-250.0, -325.0);
 		mItems.push_back(juicer);
 
 		/**Draw the PokeBall
 		*/
-
-		double oX = (- mXOffset) / mScale;
-		double oY = (- mYOffset) / mScale;
-
 		auto pokeball = make_shared<CPokeBall>(this);
-		pokeball->SetLocation(200,-200 );
+		pokeball->SetLocation(200.0, -250.0);
 		mItems.push_back(pokeball);
 
 		/**Draw Arya
 		*/
 		auto arya = make_shared<CArya>(this);
-		arya->SetLocation(0,200);
+		arya->SetLocation(-50.0,225.0);
 		mItems.push_back(arya);
 
 		/**Draw Gru
 		*/
 		auto Gru = make_shared<CGru>(this);
-		double GruX = ((920) - mXOffset) / mScale;
-		double GryY = ((250) - mYOffset) / mScale;
-		Gru->SetLocation(0, 0);
+		Gru->SetLocation(-15.0, -50.0);
 		mItems.push_back(Gru);
 	}
-
-
 	mVillainDrawn = 1;
-
 }
 
 /** Test an x,y click location to see if it clicked
@@ -163,7 +150,6 @@ void CGame::Update(double elapsed)
 	}
 }
 
-
 /**  Delete an item from the game
 *
 * \param item The item to delete.
@@ -199,7 +185,6 @@ CGame::CGame()
 	}
 
 }
-
 
 /**
 *destructor
@@ -250,9 +235,9 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 */
 void CGame::OnMouseMove(UINT nFlags, CPoint point)
 {
-	double oX = (point.x - mXOffset) / mScale;
+	/*double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale;
-
+*/
 	// See if an item is currently being moved by the mouse
 	if (mGrabbedItem != nullptr)
 	{
@@ -260,7 +245,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
-			mGrabbedItem->SetLocation(oX, oY);
+			mGrabbedItem->SetLocation(point.x, point.y);
 
 		}
 		else

@@ -56,8 +56,6 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
-
-
 // CChildView message handlers
 
 BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs) 
@@ -117,10 +115,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	mGame.Update(elapsed);
 	mGame.OnDraw(&graphics, rect.Width(), rect.Height(), elapsed);
 
-
-
-
-
 	//
 	//// Bottom minus image size minus margin is top of the image
 	//mTrashcanTop = rect.Height() - mTrashcan->GetHeight() - TrashcanMargin;
@@ -141,7 +135,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	//}
 
 }
-
 
 /**
 *  Erase the background prior to drawing.
@@ -192,9 +185,6 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	Invalidate();
 
 }
-
-
-
 
 /**
 *  Handle timer events

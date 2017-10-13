@@ -1,5 +1,3 @@
-
-
 /**
 * \file GamePiece.cpp
 *
@@ -43,7 +41,6 @@ CGamePiece::CGamePiece(CGame *game, const std::wstring &filename) : mGame(game)
 		AfxMessageBox(msg.c_str());
 	}
 }
-
 
 /**
 *  Destructor
@@ -93,17 +90,12 @@ void CGamePiece::Draw(Gdiplus::Graphics *graphics)
 		int wid = mItemImage->GetWidth();
 		int hit = mItemImage->GetHeight();
 
-
 		graphics->DrawImage(mItemImage.get(),
-			mX , mY + hit,
+			mX , mY,
 			wid, hit);
 	}
 
 }
-
-
-
-
 
 /**  Test to see if we hit this object with a mouse.
 * \param x X position to test
@@ -151,8 +143,6 @@ bool CGamePiece::HitTest(int x, int y)
 		return true;
 	}
 }
-
-
 
 /**
 *
