@@ -259,8 +259,97 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
-			if(oX > -500 && oY > -500 && oX  < 500 - mGrabbedItem->GetWidth() && oY < 500 - mGrabbedItem->GetHeight()){
-				mGrabbedItem->SetLocation(oX, oY);
+			//outside of left side
+			if (oX <= -500 ) 
+			{
+				//top left diagnol
+				if (oY <= -500) 
+				{
+					mGrabbedItem->SetLocation(-500 , -500);
+
+				}
+				//bottom left diagnol
+				else if (oY >= 500 - mGrabbedItem->GetHeight())
+				{
+					mGrabbedItem->SetLocation(-500, 500 - mGrabbedItem->GetHeight());
+				}
+				//rest
+				else 
+				{
+					mGrabbedItem->SetLocation(-500, oY);
+				}
+				
+			}
+
+			//outside of right side
+			else if (oX >= 500) {
+								
+				//top right diagnol
+				if (oY < -500)
+				{
+					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), -500);
+
+				}
+				//bottom right diagnol
+				else if (oY >= 500 - mGrabbedItem->GetHeight())
+				{
+					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), 500 - mGrabbedItem->GetHeight());
+				}
+
+				//rest
+				else
+				{
+						mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), oY);
+				}
+			
+			}
+			
+			//outside of the top
+			else if (oY <= -500 )
+			{
+				//top right corner
+				if (oX >= 500 - mGrabbedItem->GetWidth() / 2 &&  oX <= 500)
+				{
+					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), -500);
+				}
+				//top left corner
+				else if (oX <= -500 + mGrabbedItem->GetWidth() / 2 && oX >= -500)
+				{
+					mGrabbedItem->SetLocation(-500 , -500);
+				}
+				
+				else
+				{
+					mGrabbedItem->SetLocation(oX - 30, -500);
+
+				}
+			}
+			
+			//outside of the bottom
+			else if (oY > 500) 
+			{
+				//bottom right corner
+				if (oX >= 500 - mGrabbedItem->GetWidth() / 2 && oX <= 500)
+				{
+					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), 500 - mGrabbedItem->GetHeight());
+				}
+				//bottom left corner
+				else if (oX <= -500 + mGrabbedItem->GetWidth() / 2 && oX >= -500)
+				{
+					mGrabbedItem->SetLocation(-500, 500 - mGrabbedItem->GetHeight());
+				}
+
+				else
+				{
+					mGrabbedItem->SetLocation(oX - 30, 500 - mGrabbedItem->GetHeight());
+
+				}
+				
+			}
+			
+			else if(oX > -500 && oY > -500 && oX  < 500 - mGrabbedItem->GetWidth() && oY < 500 - mGrabbedItem->GetHeight()){
+				
+				mGrabbedItem->SetLocation(oX-30, oY-50);
 			
 			}
 			
