@@ -6,7 +6,6 @@
  * The ChildView Class
  */
 
-
 // ChildView.h : interface of the CChildView class
 //
 
@@ -62,4 +61,3 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
-
