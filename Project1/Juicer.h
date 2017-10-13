@@ -29,4 +29,6 @@ public:
 	CJuicer(const CJuicer &) = delete;
 
 	virtual ~CJuicer();
+
+	bool CJuicer::GruOrNot();
 };

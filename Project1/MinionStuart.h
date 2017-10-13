@@ -26,6 +26,8 @@ public:
 
 	CMinionStuart(CGame *game);
 
+	bool CMinionStuart::GruOrNot();
+
 private:
 	///points minion is worth
 	int mPoints = 1;

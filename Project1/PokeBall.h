@@ -31,4 +31,6 @@ public:
 
 	/// destructor
 	virtual ~CPokeBall();
+
+	bool CPokeBall::GruOrNot();
 };

@@ -27,4 +27,6 @@ public:
 	CGru(const CGru &) = delete;
 
 	virtual ~CGru();
+
+	bool CGru::GruOrNot();
 };

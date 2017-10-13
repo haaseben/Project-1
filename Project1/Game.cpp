@@ -123,6 +123,26 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 	return  nullptr;
 }
 
+/** Test an x,y click location to see if it clicked
+* on some item in the aquarium and if another fish is on top of it.
+* \param x X location
+* \param y Y location
+* \param item item that is being moved and or clicked on
+* \returns Pointer to item another fish is on top of.
+*/
+std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item)
+{
+	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
+	{
+		if ((*i)->HitTest(x, y) && *i != item)
+		{
+			return *i;
+		}
+	}
+
+	return  nullptr;
+}
+
 /**
 * Add an item to the game
 * \param item New item to add
@@ -242,6 +262,14 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			if(oX > -500 && oY > -500 && oX  < 500 - mGrabbedItem->GetWidth() && oY < 500 - mGrabbedItem->GetHeight()){
 				mGrabbedItem->SetLocation(oX, oY);
 			
+			}
+			
+			//calls collision test to see if another fish is under the one being moved currently
+			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
+
+			if (mGrabbedItem->GruOrNot() == true && OtherItem != nullptr)
+			{
+				Remove(mGrabbedItem);
 			}
 		}
 		else

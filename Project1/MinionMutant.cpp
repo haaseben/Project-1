@@ -29,3 +29,7 @@ CMinionMutant::~CMinionMutant()
 }
 
 
+bool CMinionMutant::GruOrNot()
+{
+	return false;
+}
