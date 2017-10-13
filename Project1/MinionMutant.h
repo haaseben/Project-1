@@ -26,6 +26,7 @@ public:
 
 	CMinionMutant(CGame *game);
 
+	bool CMinionMutant::GruOrNot();
 
 private:
 	///points minion is worth

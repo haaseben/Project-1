@@ -28,6 +28,7 @@ public:
 
 	CMinionJerry(CGame *game);
 
+	bool CMinionJerry::GruOrNot();
 
 private:
 	///points minion is worth

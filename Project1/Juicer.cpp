@@ -33,3 +33,7 @@ CJuicer::~CJuicer()
 {
 }
 
+bool CJuicer::GruOrNot()
+{
+	return false;
+}

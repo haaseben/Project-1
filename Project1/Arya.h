@@ -30,4 +30,6 @@ public:
 
 	/// destructor
 	virtual ~CArya();
+
+	bool CArya::GruOrNot();
 };

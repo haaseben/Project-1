@@ -30,3 +30,9 @@ CPokeBall::CPokeBall(CGame *game) :
 CPokeBall::~CPokeBall()
 {
 }
+
+
+bool CPokeBall::GruOrNot()
+{
+	return false;
+}

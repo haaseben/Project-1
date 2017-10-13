@@ -61,6 +61,8 @@ public:
 	int GetYOffset() { return mYOffset; }
 	double GetScale() { return mScale; }
 
+	std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item);
+
 	///// Get the width of the gaming area
 	///// \returns gaming area width
 	//int GetWidth() const { return mBackground->GetWidth(); }

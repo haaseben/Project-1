@@ -30,3 +30,8 @@ CArya::CArya(CGame *game) :
 CArya::~CArya()
 {
 }
+
+bool CArya::GruOrNot()
+{
+	return false;
+}

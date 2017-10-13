@@ -30,3 +30,9 @@ CGru::CGru(CGame *game) :
 CGru::~CGru()
 {
 }
+
+
+bool CGru::GruOrNot()
+{
+	return true;
+}
