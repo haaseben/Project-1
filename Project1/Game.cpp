@@ -410,7 +410,7 @@ void CGame::SetTimer(double elapsed) {
 
 std::shared_ptr<CGamePiece> CGame::MinionType() {
 	int counter = mNumberMinions - 3;
-	if (fmod(counter, 3) == 0 && counter >0)
+	if (fmod(counter, 6) == 0 && counter >0)
 	{
 		return  make_shared<CMinionMutant>(this);
 	}
