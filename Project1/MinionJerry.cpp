@@ -19,10 +19,8 @@ CMinionJerry::CMinionJerry(CGame *game) :
 	CMinion(game, MinionJerryImageName)
 {
 	
-	mV = CVector(100, 100);
+	mV = CVector(100,100);
 	
-	
-
 }
 
 /** destructor

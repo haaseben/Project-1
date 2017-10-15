@@ -18,8 +18,7 @@ const wstring MinionStuartImageName = L"images/stuart.png";
 CMinionStuart::CMinionStuart(CGame *game) :
 	CMinion(game, MinionStuartImageName)
 {
-	SetSpeedX(50);
-	SetSpeedY(70);
+	mV = CVector(100,100);
 }
 
 /** destructor

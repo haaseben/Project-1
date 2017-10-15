@@ -16,6 +16,8 @@
 #include "ChildView.h"
 #include "ScoreBoard.h"
 #include "MinionJerry.h"
+#include "MinionStuart.h"
+#include "MinionMutant.h"
 
 
 using namespace std;
@@ -177,7 +179,7 @@ void CGame::Update(double elapsed)
 
 	if ((fmod(mTotalTime, 1) < .05) && spawn == true)
 	{
-		SpawnMinion();
+		SpawnMinionTimer();
 		spawn = false;
 	}
 	if ((fmod(mTotalTime, 1) > .2) && spawn == false)
@@ -406,8 +408,31 @@ void CGame::SetTimer(double elapsed) {
 	mScoreBoard.Timer(elapsed);
 }
 
-void CGame::SpawnMinion() {
-	auto minion = make_shared<CMinionJerry>(this);
+std::shared_ptr<CGamePiece> CGame::MinionType() {
+	int counter = mNumberMinions - 3;
+	if (fmod(counter, 3) == 0 && counter >0)
+	{
+		return  make_shared<CMinionMutant>(this);
+	}
+	else
+	{
+		double minionType = ((double)rand() / RAND_MAX);
+		if (minionType > .5)
+		{
+			return make_shared<CMinionJerry>(this);
+		}
+		else
+		{
+			return make_shared<CMinionStuart>(this);
+		}
+	}
+}
+
+void CGame::SpawnMinionTimer() {
+	
+
+	std::shared_ptr<CGamePiece> minion = MinionType();
+
 	double signValue = ((double)rand() / RAND_MAX);
 	if (signValue > .5)
 	{
@@ -419,6 +444,6 @@ void CGame::SpawnMinion() {
 		double locX = ((double)rand() / RAND_MAX) * 500;
 		minion->SetLocation(-locX, -450);
 	}
-	
+	mNumberMinions += 1;
 	mMinions.push_back(minion);
 }

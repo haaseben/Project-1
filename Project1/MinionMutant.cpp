@@ -18,8 +18,7 @@ const wstring MinionMutantImageName = L"images/mutant.png";
 CMinionMutant::CMinionMutant(CGame *game) :
 	CMinion(game, MinionMutantImageName)
 {
-	SetSpeedX(100);
-	SetSpeedY(140);
+	mV = CVector(200, 200);
 }
 
 /** destructor

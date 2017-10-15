@@ -55,8 +55,11 @@ public:
 	/// adds a villian
 	void CGame::AddVillain();
 
-	/// Controls minions spawning
-	void CGame::SpawnMinion();
+	/// Controls minions spawning timer
+	void CGame::SpawnMinionTimer();
+
+	/// Gets Minion Type
+	std::shared_ptr<CGamePiece> CGame::MinionType();
 
 	void Remove(std::shared_ptr<CGamePiece> item); ///< remove an item from the aquarium 
 
@@ -127,6 +130,9 @@ public:
 
 
 private:
+
+	/// Minion Counter
+	int mNumberMinions=0;
 
 	/// Any item we are currently dragging
 	std::shared_ptr<CGamePiece> mGrabbedItem; 
