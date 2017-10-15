@@ -115,7 +115,7 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if ((*i)->HitTest(0,0))
+		if ((*i)->HitTest(x,y))
 		{
 			return *i;
 		}
@@ -228,10 +228,10 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 */
 void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	/*double oX = (point.x - mXOffset) / mScale;
+	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
-	*/
-	mGrabbedItem = HitTest(point.x, point.y);
+	
+	mGrabbedItem = HitTest(oX,oY);
 	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
@@ -358,7 +358,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 			if (mGrabbedItem->GruOrNot() == true && OtherItem != nullptr)
 			{
-				//Remove(mGrabbedItem);
+				Remove(mGrabbedItem);
 			}
 		}
 		else

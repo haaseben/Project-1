@@ -114,8 +114,10 @@ bool CGamePiece::HitTest(int x, int y)
 	// Subtracting the center makes x, y relative to the center of 
 	// the image. Adding half the size makes x, y relative to the top 
 	// corner of the image.
-	double testX = (wid/2)-abs(x);
-	double testY = (hit/2)-abs(y);
+	int tX = x;
+	int ttX = GetX();
+	double testX = x - GetX() + wid / 2;
+	double testY = y - GetY() + hit / 2;
 
 
 	// Test to see if x, y are in the image
@@ -134,9 +136,9 @@ bool CGamePiece::HitTest(int x, int y)
 		// clicked on a pixel where alpha is not zero, meaning
 		// the pixel shows on the screen.
 		Color color;
-		mItemImage->GetPixel((int)testX, (int)testY, &color);
+		mItemImage->GetPixel((int)GetX(), (int)GetY(), &color);
 		int a = color.GetAlpha();
-
+		bool uh = (color.GetAlpha() != 0);
 		return color.GetAlpha() != 0;
 	}
 	else {
