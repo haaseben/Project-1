@@ -19,7 +19,7 @@ CMinionJerry::CMinionJerry(CGame *game) :
 	CMinion(game, MinionJerryImageName)
 {
 	
-	mV = CVector(500, 500);
+	mV = CVector(100, 100);
 	
 	
 

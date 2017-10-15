@@ -17,6 +17,7 @@
 #include "ScoreBoard.h"
 #include "MinionJerry.h"
 
+
 using namespace std;
 using namespace Gdiplus;
 
@@ -71,6 +72,10 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
+	for (auto item : mMinions)
+	{
+		item->Draw(graphics);
+	}
 
 }
 
@@ -98,9 +103,7 @@ void CGame::AddVillain()
 		mItems.push_back(arya);
 
 		
-		auto minion = make_shared<CMinionJerry>(this);
-		minion->SetLocation(-200.0, -200.0);
-		mItems.push_back(minion);
+		
 		
 
 
@@ -168,7 +171,26 @@ void CGame::Add(std::shared_ptr<CGamePiece> item)
 */
 void CGame::Update(double elapsed)
 {
+	mTotalTime += elapsed;
+	bool spawn = true;
+	double halfSec = 0.5;
+
+	if ((fmod(mTotalTime, 1) < .05) && spawn == true)
+	{
+		SpawnMinion();
+		spawn = false;
+	}
+	if ((fmod(mTotalTime, 1) > .2) && spawn == false)
+	{
+		
+		spawn = true;
+	}
+
 	for (auto item : mItems)
+	{
+		item->Update(elapsed);
+	}
+	for (auto item : mMinions)
 	{
 		item->Update(elapsed);
 	}
@@ -382,4 +404,10 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 void CGame::SetTimer(double elapsed) {
 
 	mScoreBoard.Timer(elapsed);
+}
+
+void CGame::SpawnMinion() {
+	auto minion = make_shared<CMinionJerry>(this);
+	minion->SetLocation(-200.0, -200.0);
+	mMinions.push_back(minion);
 }

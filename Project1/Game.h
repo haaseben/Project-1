@@ -55,6 +55,9 @@ public:
 	/// adds a villian
 	void CGame::AddVillain();
 
+	/// Controls minions spawning
+	void CGame::SpawnMinion();
+
 	void Remove(std::shared_ptr<CGamePiece> item); ///< remove an item from the aquarium 
 
 	int GetXOffset() { return mXOffset; }
@@ -131,6 +134,9 @@ private:
 	/// All of the items to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mItems;
 
+	/// All of the items to populate in game
+	std::vector<std::shared_ptr<CGamePiece> > mMinions;
+
 	/// Game area width in virtual pixels
 	const static int Width = 1400;
 
@@ -154,6 +160,8 @@ private:
 
 	/// If villains has been drawn for the new game. 
 	bool mVillainDrawn = 0;
+
+	double mTotalTime = 0; ///< Count the total time passed
 
 	/// An object that describes the scorebaord
 	CScoreBoard mScoreBoard;
