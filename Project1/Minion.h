@@ -9,6 +9,7 @@
 #pragma once
 #include "GamePiece.h"
 #include "Game.h"
+#include "Vector.h"
 
 
 /**
@@ -36,6 +37,9 @@ public:
 	/// \param elapsed amount of time since start of project
 	void CMinion::Update(double elapsed);
 
+	CVector CMinion::GetP() { return mP; }
+
+	double GetMinionWidth() {};
 	
 
 	CMinion::~CMinion();
@@ -43,7 +47,16 @@ public:
 protected:
 	CMinion::CMinion(CGame *game, const std::wstring &filename);
 
+
+	// Item location in the playing area
+	CVector mP;			///< Position 
+
+						/// Velocity in virtual pixels/second
+	CVector mV;
+
 private:
+
+	
 	///name for a particular minion
 	string mName;
 

@@ -15,6 +15,7 @@
 #include "Gru.h"
 #include "ChildView.h"
 #include "ScoreBoard.h"
+#include "MinionJerry.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -95,6 +96,13 @@ void CGame::AddVillain()
 		auto arya = make_shared<CArya>(this);
 		arya->SetLocation(-50.0,225.0);
 		mItems.push_back(arya);
+
+		
+		auto minion = make_shared<CMinionJerry>(this);
+		minion->SetLocation(-200.0, -200.0);
+		mItems.push_back(minion);
+		
+
 
 		/**Draw Gru
 		*/
@@ -232,7 +240,7 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oY = (point.y - mYOffset) / mScale; 
 	
 	mGrabbedItem = HitTest(oX,oY);
-	if (mGrabbedItem != nullptr)
+	if ( mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
 		Add(mGrabbedItem);
@@ -253,7 +261,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 	double oY = (point.y - mYOffset) / mScale;
 
 	// See if an item is currently being moved by the mouse
-	if (mGrabbedItem != nullptr)
+	if (mGrabbedItem != nullptr && mGrabbedItem->GruOrNot() == true)
 	{
 		// If an item is being moved, we only continue to 
 		// move it while the left button is down.

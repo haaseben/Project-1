@@ -10,6 +10,7 @@
 
 #include <string>
 #include <memory>
+#include "Vector.h"
 
 using namespace Gdiplus;
 using namespace std;
@@ -90,22 +91,30 @@ public:
 
 	///virtual function for determining if gru
 	/// \returns true if it is
-	virtual bool GruOrNot()=0;
+	virtual bool GruOrNot()=0 ;
+
+	//virtual CVector CGamePiece::GetP();
 
 protected:
 	CGamePiece(CGame *game, const std::wstring &filename);
 
 
-private:
-	/// The city this item is contained in
-	CGame   *mGame;
+
+	/// The image of this item
+	std::unique_ptr<Gdiplus::Bitmap> mItemImage;
 
 	// Item location in the game
 	int   mX = 0;     ///< X location for the center of the item
 	int   mY = 0;     ///< Y location for the center of the item
 
-	/// The image of this tile
-	std::unique_ptr<Gdiplus::Bitmap> mItemImage;
+private:
+	/// The city this item is contained in
+	CGame   *mGame;
+
+
+	
+
+	
 
 	/// The file for this item
 	std::wstring mFile;

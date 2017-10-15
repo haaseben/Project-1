@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "Minion.h"
+#include "GamePiece.h"
 
 
 
@@ -15,19 +16,15 @@
 * \param filename Filename for the image we use
 */
 CMinion::CMinion(CGame *game, const std::wstring &filename) :
-	CMinion(game, filename)
+	CGamePiece(game, filename)
 {
-	mSpeedX;
-	mSpeedY;
+	mP = CVector(GetX(), GetY());
 
 }
 
 CMinion::~CMinion()
 {
 }
-
-
-
 
 
 /**Handle updates in time of our minion
@@ -39,49 +36,80 @@ CMinion::~CMinion()
 */
 void CMinion::Update(double elapsed)
 {
+	
+	mP = CVector(GetX(), GetY());
+
+	CVector newP = mP + mV * elapsed;
+	
+	SetLocation(newP.X(), newP.Y());
+
+	double wid = mItemImage->GetWidth();
+	double hit = mItemImage->GetHeight();
+
+	///checks to see when the minion gets within 10 pixels of the edge in x direction on right
+	if (500 - GetX() - (wid) <= 10)
+	{
+		if (abs(mSpeedX) > 0 && GetX() >= 460)
+		{
+			mV = CVector(-mV.X(), mV.Y());
+		}
+
+	}
+
+	
+	///checks to see when the minion gets within 10 pixels of the edge in x direction on left
+	if (GetX() <= -490)
+	{
+		if (mSpeedX < 0 && GetX() <= 0)
+		{
+			mV = CVector(-mV.X(), mV.Y());
+		}
+	}
+	
+	
+	double iegiahg = GetY();
+	//checks to see when the minion gets within 10 pixels of the edge in y direction on bottom
+	if (520 - GetY() - (hit) <= 10)
+	{
+		if (abs(mSpeedY) > 0 )//&& GetY() >= 510)
+		{
+			mV = CVector(mV.X(), -mV.Y());
+
+		}
+
+	}
+	
+	
+	//checks to see when the minion gets within 10 pixels of the edge in y direction on top
+	if (GetY() <= -500)
+	{
+		if (mSpeedY < 0 )//&& GetY() <= 0)
+		{
+			mV = CVector(mV.X(), -mV.Y());
+		}
+	}
+		
+}
+
+
+
+
+
+
+//void CMinion::Update(double elapsed)
+
+	//CVector newP = GetP() + mV * elapsed;
+
+	//SetLocation(newP.X(), newP.Y());
+
 	//SetLocation(GetX() + mSpeedX * elapsed,
 	//	GetY() + mSpeedY * elapsed);
-	/////checks to see when the minion gets within 10 pixels of the edge in x direction on right
-	//if (GetGame()->GetWidth() - GetX() - (GetMinionWidth() / 2) <= 10)
-	//{
-	//	if (mSpeedX > 0 && GetX() >= GetGame()->GetWidth())
-	//	{
-	//		mSpeedX = -mSpeedX;
-	//		SetMirrorX(mSpeedX < 0);
-	//	}
 
-	//}
 
-	/////checks to see when the minion gets within 10 pixels of the edge in x direction on left
-	//if (GetX() <= 10)
-	//{
-	//	if (mSpeedX < 0 && GetX() <= 0)
-	//	{
-	//		mSpeedX = -mSpeedX;
-	//		SetMirrorX(mSpeedX < 0);
-	//	}
-	//}
 
-	///checks to see when the minion gets within 10 pixels of the edge in y direction on bottom
-	//if (GetGame()->GetHeight() - GetY() - (GetMinionHeight() / 2) <= 10)
-	//{
-	//	if (mSpeedY > 0 && GetY() >= Getgame()->GetHeight())
-	//	{
-	//		mSpeedY = -mSpeedY;
-	//		SetMirrorY(mSpeedY < 0);
-	//	}
 
-	//}
-	///checks to see when the minion gets within 10 pixels of the edge in y direction on top
-	//if (GetY() <= 10)
-	//{
-	//	if (mSpeedY < 0 && GetY() <= 0)
-	//	{
-	//		mSpeedY = -mSpeedY;
-	//		SetMirrorY(mSpeedY < 0);
-	//	}
-	//}
+	
 
-}
+//}
 
 

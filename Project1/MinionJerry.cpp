@@ -18,8 +18,11 @@ const wstring MinionJerryImageName = L"images/jerry.png";
 CMinionJerry::CMinionJerry(CGame *game) :
 	CMinion(game, MinionJerryImageName)
 {
-	SetSpeedX(50);
-	SetSpeedY(70);
+	
+	mV = CVector(500, 500);
+	
+	
+
 }
 
 /** destructor

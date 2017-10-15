@@ -3,7 +3,7 @@
 *
 * \author Team Jorge
 *
-* Class the implements Arya.
+* Class the implements Gru.
 */
 
 #include "stdafx.h"
