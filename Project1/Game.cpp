@@ -408,6 +408,17 @@ void CGame::SetTimer(double elapsed) {
 
 void CGame::SpawnMinion() {
 	auto minion = make_shared<CMinionJerry>(this);
-	minion->SetLocation(-200.0, -200.0);
+	double signValue = ((double)rand() / RAND_MAX);
+	if (signValue > .5)
+	{
+		double locX = ((double)rand() / RAND_MAX) * 480;
+		minion->SetLocation(locX, -450);
+	}
+	else
+	{
+		double locX = ((double)rand() / RAND_MAX) * 500;
+		minion->SetLocation(-locX, -450);
+	}
+	
 	mMinions.push_back(minion);
 }

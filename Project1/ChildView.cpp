@@ -40,6 +40,7 @@ const int LocationY = 300;
 
 CChildView::CChildView()
 {
+	srand((unsigned int)time(nullptr));
 }
 
 CChildView::~CChildView()
