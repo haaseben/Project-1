@@ -74,10 +74,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
-	for (auto item : mMinions)
-	{
-		item->Draw(graphics);
-	}
+
 
 }
 
@@ -192,10 +189,7 @@ void CGame::Update(double elapsed)
 	{
 		item->Update(elapsed);
 	}
-	for (auto item : mMinions)
-	{
-		item->Update(elapsed);
-	}
+	
 }
 
 /**  Delete an item from the game
@@ -445,5 +439,5 @@ void CGame::SpawnMinionTimer() {
 		minion->SetLocation(-locX, -450);
 	}
 	mNumberMinions += 1;
-	mMinions.push_back(minion);
+	mItems.push_back(minion);
 }

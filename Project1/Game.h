@@ -140,8 +140,7 @@ private:
 	/// All of the items to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mItems;
 
-	/// All of the items to populate in game
-	std::vector<std::shared_ptr<CGamePiece> > mMinions;
+	
 
 	/// Game area width in virtual pixels
 	const static int Width = 1400;
