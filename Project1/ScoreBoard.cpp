@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "ScoreBoard.h"
 #include <string>
+#include <sstream>
 
 using namespace std;
 using namespace Gdiplus;
@@ -31,40 +32,23 @@ CScoreBoard::~CScoreBoard()
 {
 }
 
-void CScoreBoard::Timer(double elapsed)
-{
-	mTotalTime += elapsed;
-	int seconds = (int)mTotalTime % 60;
-	int minutes = mTotalTime / 60;
-	wstring secondsString = to_wstring(seconds);
-	if (seconds < 10) {
-		secondsString = to_wstring(0) + secondsString;
-	}
-	wstring fullTimeFormat = to_wstring(minutes) + L":" + secondsString;
-	mCounter = fullTimeFormat.c_str();
 
-}
 
 /// Draw the socreboard
 void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed)
 {
 
+	wstringstream time;
 	mTotalTime += elapsed;
 	int seconds = (int)mTotalTime % 60;
 	int minutes = mTotalTime / 60;
-	wstring secondsString = to_wstring(seconds);
-	if (seconds < 10) {
-		secondsString = to_wstring(0) + secondsString;
-	}
-	wstring fullTimeFormat = to_wstring(minutes) + L":" + secondsString;
-	mCounter = fullTimeFormat.c_str();
-	
+	time << minutes << ":" << seconds; 
 
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 16);
 	SolidBrush green(Color(0, 255, 0));
 	
-	graphics->DrawString(mCounter,  // String to draw
+	graphics->DrawString(time.str().c_str(),  // String to draw
 		-1,         // String length, -1 means it figures it out on its own
 		&font,      // The font to use
 		PointF(500, -500),   // Where to draw (top left corner)

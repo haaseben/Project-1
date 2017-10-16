@@ -14,8 +14,9 @@
 #include <memory>
 #include "Game.h"
 
-// CChildView window
-
+/**
+* The child window our program draws in.
+*/
 class CChildView : public CWnd
 {
 // Construction
@@ -51,8 +52,7 @@ private:
 	bool mFirstDraw = true; ///< True until the first time we draw
 	long long mLastTime;    ///< Last time we read the timer
 	double mTimeFreq;       ///< Rate the timer updates											
-	std::shared_ptr<CGamePiece> mGrabbedItem;
-	double mTotalTime = 0;
+	std::shared_ptr<CGamePiece> mGrabbedItem; ///< The pointer points to mouse grabbed item
 
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);

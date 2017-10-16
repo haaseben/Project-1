@@ -122,8 +122,9 @@ int CProject1App::ExitInstance()
 // CProject1App message handlers
 
 
-// CAboutDlg dialog used for App About
-
+/**
+* CAboutDlg dialog used for App About
+*/
 class CAboutDlg : public CDialogEx
 {
 public:
@@ -135,7 +136,11 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	/**
+	* DDX/DDV support
+	* \param *pDX Auto generated
+	*/
+	virtual void DoDataExchange(CDataExchange* pDX);
 
 // Implementation
 protected:

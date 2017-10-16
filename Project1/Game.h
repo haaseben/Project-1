@@ -13,6 +13,9 @@
 #include "PlayingArea.h"
 #include "ScoreBoard.h"
 
+ /**
+ * The class that handle the game and all components in the game. 
+ */
 class CGame
 {
 
@@ -25,18 +28,17 @@ public:
 
 	/**
 	* OnDraw
-	* \param graphics what we use to draw
-	* \param width width
-	* \param height height
+	* \param graphics What we use to draw
+	* \param width Width
+	* \param height Height
+	* \param elapsed Elapsed tiem
 	*/
 	void OnDraw(Gdiplus::Graphics * graphics,int width,int height, double elapsed);
 
 
-	void SetTimer(double elapsed);
-
 
 	/**
-	* add
+	* Add
 	* \param item item we're using
 	*/
 	void CGame::Add(std::shared_ptr<CGamePiece> item);
@@ -58,14 +60,13 @@ public:
 	/// Controls minions spawning timer
 	void CGame::SpawnMinionTimer();
 
-	/// Gets Minion Type
+	/** Gets Minion Type
+	*\return CGame::MinionType minion type
+	*/
 	std::shared_ptr<CGamePiece> CGame::MinionType();
 
 	void Remove(std::shared_ptr<CGamePiece> item); ///< remove an item from the aquarium 
 
-	int GetXOffset() { return mXOffset; }
-	int GetYOffset() { return mYOffset; }
-	double GetScale() { return mScale; }
 
 	std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item);
 

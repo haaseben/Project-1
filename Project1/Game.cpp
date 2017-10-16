@@ -23,9 +23,7 @@
 using namespace std;
 using namespace Gdiplus;
 
-///Base numbers for villain drawing
-const double LocationX = 300.0;
-const double LocationY = 300.0;
+
 
 /// New game button file name
 const wstring NewGameImageName = L"images/new-game.png";
@@ -292,23 +290,23 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		if (nFlags & MK_LBUTTON)
 		{
 			//outside of left side
-			if (oX <= -500 ) 
+			if (oX <= -500.0 ) 
 			{
 				//top left diagnol
-				if (oY <= -500) 
+				if (oY <= -500.0) 
 				{
-					mGrabbedItem->SetLocation(-500 , -500);
+					mGrabbedItem->SetLocation(-500.0 , -500.0);
 
 				}
 				//bottom left diagnol
 				else if (oY >= 500 - mGrabbedItem->GetHeight())
 				{
-					mGrabbedItem->SetLocation(-500, 500 - mGrabbedItem->GetHeight());
+					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
 				}
 				//rest
 				else 
 				{
-					mGrabbedItem->SetLocation(-500, oY);
+					mGrabbedItem->SetLocation(-500.0, oY);
 				}
 				
 			}
@@ -319,69 +317,69 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				//top right diagnol
 				if (oY < -500)
 				{
-					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), -500);
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), -500.0);
 
 				}
 				//bottom right diagnol
 				else if (oY >= 500 - mGrabbedItem->GetHeight())
 				{
-					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), 500 - mGrabbedItem->GetHeight());
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), 500.0 - mGrabbedItem->GetHeight());
 				}
 
 				//rest
 				else
 				{
-						mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), oY);
+						mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY);
 				}
 			
 			}
 			
 			//outside of the top
-			else if (oY <= -500 )
+			else if (oY <= -500.0)
 			{
 				//top right corner
-				if (oX >= 500 - mGrabbedItem->GetWidth() / 2 &&  oX <= 500)
+				if (oX >= 500.0 - mGrabbedItem->GetWidth() / 2.0 &&  oX <= 500.0)
 				{
-					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), -500);
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), -500.0);
 				}
 				//top left corner
-				else if (oX <= -500 + mGrabbedItem->GetWidth() / 2 && oX >= -500)
+				else if (oX <= -500.0 + mGrabbedItem->GetWidth() / 2.0 && oX >= -500.0)
 				{
-					mGrabbedItem->SetLocation(-500 , -500);
+					mGrabbedItem->SetLocation(-500.0, -500.0);
 				}
 				
 				else
 				{
-					mGrabbedItem->SetLocation(oX - 30, -500);
+					mGrabbedItem->SetLocation(oX - 30.0, -500.0);
 
 				}
 			}
 			
 			//outside of the bottom
-			else if (oY > 500) 
+			else if (oY > 500.0)
 			{
 				//bottom right corner
-				if (oX >= 500 - mGrabbedItem->GetWidth() / 2 && oX <= 500)
+				if (oX >= 500.0 - mGrabbedItem->GetWidth() / 2.0 && oX <= 500.0)
 				{
-					mGrabbedItem->SetLocation(500 - mGrabbedItem->GetWidth(), 500 - mGrabbedItem->GetHeight());
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), 500.0 - mGrabbedItem->GetHeight());
 				}
 				//bottom left corner
-				else if (oX <= -500 + mGrabbedItem->GetWidth() / 2 && oX >= -500)
+				else if (oX <= -500.0 + mGrabbedItem->GetWidth() / 2.0 && oX >= -500.0)
 				{
-					mGrabbedItem->SetLocation(-500, 500 - mGrabbedItem->GetHeight());
+					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
 				}
 
 				else
 				{
-					mGrabbedItem->SetLocation(oX - 30, 500 - mGrabbedItem->GetHeight());
+					mGrabbedItem->SetLocation(oX - 30.0, 500.0 - mGrabbedItem->GetHeight());
 
 				}
 				
 			}
 			
-			else if(oX > -500 && oY > -500 && oX  < 500 - mGrabbedItem->GetWidth() && oY < 500 - mGrabbedItem->GetHeight()){
+			else if(oX > -500.0 && oY > -500.0 && oX  < 500.0 - mGrabbedItem->GetWidth() && oY < 500.0 - mGrabbedItem->GetHeight()){
 				
-				mGrabbedItem->SetLocation(oX-30, oY-50);
+				mGrabbedItem->SetLocation(oX-30.0, oY-50.0);
 			
 			}
 			
@@ -402,10 +400,6 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 		// Force the screen to redraw
 	}
-}
-void CGame::SetTimer(double elapsed) {
-
-	mScoreBoard.Timer(elapsed);
 }
 
 std::shared_ptr<CGamePiece> CGame::MinionType() {

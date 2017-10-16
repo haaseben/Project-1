@@ -30,5 +30,9 @@ public:
 
 	virtual ~CJuicer();
 
+	/**
+	* Gru identifier
+	* \return CMinionStuart::GruOrNot If the object is Gru
+	*/
 	bool CJuicer::GruOrNot();
 };

@@ -32,5 +32,9 @@ public:
 	/// destructor
 	virtual ~CPokeBall();
 
+	/**
+	* Gru identifier
+	* \return CMinionStuart::GruOrNot If the object is Gru
+	*/
 	bool CPokeBall::GruOrNot();
 };

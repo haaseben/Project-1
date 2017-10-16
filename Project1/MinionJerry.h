@@ -1,5 +1,5 @@
 /**
-* \file:MinionJerry.h
+* \file MinionJerry.h
 *
 * \author: Team Jorge
 *
@@ -28,6 +28,10 @@ public:
 
 	CMinionJerry(CGame *game);
 
+	/**
+	* Gru identifier
+	* \return CMinionStuart::GruOrNot If the object is Gru
+	*/
 	bool CMinionJerry::GruOrNot();
 
 private:

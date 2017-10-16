@@ -83,10 +83,6 @@ void CGamePiece::Draw(Gdiplus::Graphics *graphics)
 {
 	if (mItemImage != nullptr)
 	{
-		int vmx = mGame->GetXOffset();
-		int vmy = mGame->GetYOffset();
-		int scale = mGame->GetScale();
-
 		int wid = mItemImage->GetWidth();
 		int hit = mItemImage->GetHeight();
 

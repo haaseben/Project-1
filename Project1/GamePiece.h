@@ -47,16 +47,16 @@ public:
 
 	/**  The X location of the center of the tile
 	* \returns X location in pixels */
-	int GetX() const { return mX; }
+	double GetX() const { return mX; }
 
 	/**  The Y location of the center of the tile
 	* \returns Y location in pixels */
-	int GetY() const { return mY; }
+	double GetY() const { return mY; }
 
 	/**  Set the item location
 	* \param x X location
 	* \param y Y location */
-	void SetLocation(int x, int y) { mX = x; mY = y; }
+	void SetLocation(double x, double y) { mX = x; mY = y; }
 
 	/**  Draw this item
 	* \param graphics The graphics context to draw on */
@@ -96,6 +96,11 @@ public:
 	//virtual CVector CGamePiece::GetP();
 
 protected:
+	/**
+	* Describe the gamepiece and it's file
+	* \param game Game object
+	* \param filename File name
+	*/
 	CGamePiece(CGame *game, const std::wstring &filename);
 
 
@@ -104,8 +109,8 @@ protected:
 	std::unique_ptr<Gdiplus::Bitmap> mItemImage;
 
 	// Item location in the game
-	int   mX = 0;     ///< X location for the center of the item
-	int   mY = 0;     ///< Y location for the center of the item
+	double   mX = 0;     ///< X location for the center of the item
+	double   mY = 0;     ///< Y location for the center of the item
 
 private:
 	/// The city this item is contained in

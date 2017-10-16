@@ -32,9 +32,6 @@ using namespace std;
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
-///Base numbers for villain drawing
-const int LocationX = 300;
-const int LocationY = 300;
 
 // CChildView
 

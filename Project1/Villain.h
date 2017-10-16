@@ -8,6 +8,10 @@
 
 #pragma once
 #include "GamePiece.h"
+
+ /**
+ * The class handle villain object. 
+ */
 class CVillain : public CGamePiece
 {
 

@@ -8,6 +8,10 @@
  */
 
 #pragma once
+
+ /**
+ * The class that handling the score counting and image drawing. 
+ */
 class CScoreBoard 
 {
 public:
@@ -18,22 +22,26 @@ public:
 	///  Copy constructor disabled
 	CScoreBoard(const CScoreBoard &) = delete;
 
-	/// Draw the socreboard
+	/** Draw the socreboard
+	*\param graphics graphics object
+	*\param elapsed elapsed time
+	*/
 	void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed);
 
 	/// destructor
 	virtual ~CScoreBoard();
 
-	/// timer
+	/** Timer
+	*\param elapsed elapsed time
+	*/
 	void CScoreBoard::Timer(double elapsed);
 
-	const wchar_t*  mCounter = nullptr;
+
 	
 
 private:
 
 	const wchar_t *counter = nullptr; ///< counter
-
 
 	int mAryaScore=0; ///< Score for Arya
 

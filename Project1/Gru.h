@@ -1,5 +1,5 @@
 /**
-* \file Gru
+* \file Gru.h
 *
 * \author Team Jorge
 *
@@ -28,5 +28,9 @@ public:
 
 	virtual ~CGru();
 
+	/**
+	* Gru identifier
+	* \return CMinionStuart::GruOrNot If the object is Gru
+	*/
 	bool CGru::GruOrNot();
 };

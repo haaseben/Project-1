@@ -31,5 +31,8 @@ public:
 	/// destructor
 	virtual ~CArya();
 
+	/** Gru identifier
+	*\return CArya::GruOrNot If it's a gru object
+	*/
 	bool CArya::GruOrNot();
 };

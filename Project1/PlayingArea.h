@@ -13,6 +13,9 @@
 
 class CGame;
 
+/**
+* The class that handling the playingarea and the object in it.
+*/
 class CPlayingArea 
 {
 public:

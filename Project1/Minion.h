@@ -1,5 +1,5 @@
 /**
-* \file:Minion.h
+* \file Minion.h
 *
 * \author: Team Jorge
 *  
@@ -37,11 +37,13 @@ public:
 	/// \param elapsed amount of time since start of project
 	void CMinion::Update(double elapsed);
 
+
+	/** Get the minion position
+	*\return mP Minion position
+	*/
 	CVector CMinion::GetP() { return mP; }
 
-	double GetMinionWidth() {};
-	
-
+	/// destructor
 	CMinion::~CMinion();
 
 protected:
