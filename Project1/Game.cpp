@@ -54,7 +54,6 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	graphics->TranslateTransform(mXOffset, mYOffset);
 	graphics->ScaleTransform(mScale, mScale);
 
-	mPlayingArea.OnDraw(graphics);
 
 	// From here on you are drawing virtual pixels
 
@@ -72,8 +71,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
-
-
+	mPlayingArea.OnDraw(graphics,mGameOver);
 }
 
 void CGame::AddVillain()
@@ -98,10 +96,6 @@ void CGame::AddVillain()
 		auto arya = make_shared<CArya>(this);
 		arya->SetLocation(-50.0,225.0);
 		mItems.push_back(arya);
-
-		
-		
-		
 
 
 		/**Draw Gru
@@ -144,6 +138,7 @@ std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<C
 	{
 		if ((*i)->HitTest(x, y) && *i != item)
 		{
+			mGameOver = true;
 			return *i;
 		}
 	}
@@ -435,3 +430,4 @@ void CGame::SpawnMinionTimer() {
 	mNumberMinions += 1;
 	mItems.push_back(minion);
 }
+

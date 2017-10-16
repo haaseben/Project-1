@@ -55,6 +55,7 @@ CGamePiece::~CGamePiece()
 */
 void CGamePiece::SetImage(const std::wstring &file)
 {
+
 	if (!file.empty())
 	{
 		wstring filename = ImagesDirectory + file;
@@ -81,6 +82,7 @@ void CGamePiece::SetImage(const std::wstring &file)
 */
 void CGamePiece::Draw(Gdiplus::Graphics *graphics)
 {
+
 	if (mItemImage != nullptr)
 	{
 		int wid = mItemImage->GetWidth();

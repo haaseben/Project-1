@@ -68,7 +68,6 @@ public:
 	* \return true if clicked on */
 	virtual bool HitTest(int x, int y);
 
-
 	///  Handle updates for animation
 	/// \param elapsed The time since the last update
 	virtual void Update(double elapsed) {}
@@ -80,14 +79,6 @@ public:
 	double CGamePiece::GetHeight();
 	double CGamePiece::GetWidth();
 
-
-	/// Set the mirror status
-	/// \param m New mirror flag
-	void SetMirrorX(bool m) { mMirrorX = m; };
-
-	/// Set the mirror status
-	/// \param m New mirror flag
-	void SetMirrorY(bool m) { mMirrorY = m; };
 
 	///virtual function for determining if gru
 	/// \returns true if it is
@@ -104,7 +95,6 @@ protected:
 	CGamePiece(CGame *game, const std::wstring &filename);
 
 
-
 	/// The image of this item
 	std::unique_ptr<Gdiplus::Bitmap> mItemImage;
 
@@ -116,15 +106,8 @@ private:
 	/// The city this item is contained in
 	CGame   *mGame;
 
-
-	
-
-	
-
 	/// The file for this item
 	std::wstring mFile;
 
-	bool mMirrorX = false;   ///< True mirrors the item image for x
-	bool mMirrorY = false;   ///< True mirrors the item image for y
 
 };

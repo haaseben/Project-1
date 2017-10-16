@@ -11,6 +11,7 @@
 #include <memory>
 #include "GamePiece.h"
 
+
 class CGame;
 
 /**
@@ -36,11 +37,12 @@ public:
 
 	/// drawfunction
 	/// \param graphics what we use to draw
-	void OnDraw(Gdiplus::Graphics * graphics);
+	void OnDraw(Gdiplus::Graphics * graphics, bool mGameOver);
 
 private:
-
-
+	/// Describe our game
+	CGame   *mGame;
+	
 
 };
 

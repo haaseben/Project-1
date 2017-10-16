@@ -70,18 +70,12 @@ public:
 
 	std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item);
 
-	///// Get the width of the gaming area
-	///// \returns gaming area width
-	//int GetWidth() const { return mBackground->GetWidth(); }
-
-	///// Get the height of the 
 
 
-	///// \returns gaming area height
-	//int GetHeight() const { return mBackground->GetHeight(); }
 
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+
 
 	/** Iterator that iterates over the city tiles */
 	class Iter
@@ -172,6 +166,8 @@ private:
 	/// An object that describes the scorebaord
 	CScoreBoard mScoreBoard;
 
+	/// If the game is over
+	bool mGameOver = false;
 
 
 };
