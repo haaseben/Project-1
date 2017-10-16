@@ -65,7 +65,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 
 	AddVillain();
 
-	mScoreBoard.OnDraw(graphics,  elapsed);
+	mScoreBoard.OnDraw(graphics,  elapsed, mGameOver);
 
 	for (auto item : mItems)
 	{

@@ -26,15 +26,10 @@ public:
 	*\param graphics graphics object
 	*\param elapsed elapsed time
 	*/
-	void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed);
+	void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool gameover);
 
 	/// destructor
 	virtual ~CScoreBoard();
-
-	/** Timer
-	*\param elapsed elapsed time
-	*/
-	void CScoreBoard::Timer(double elapsed);
 
 
 	

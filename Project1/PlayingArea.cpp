@@ -45,18 +45,18 @@ CPlayingArea::~CPlayingArea()
 /** Ondraw
 *\param graphics used to draw
 */
-void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics, bool mGameOver)
+void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics, bool gameover)
 {
 	
 	Pen pen(Color(0, 128, 0), 1);
 	graphics->DrawRectangle(&pen, -500, -500, 1000, 1000);
-	if (mGameOver )
+	if (gameover)
 	{
 		FontFamily fontFamily(L"Arial");
-		Gdiplus::Font font(&fontFamily, 90);
+		Gdiplus::Font font(&fontFamily, 99);
 
 		SolidBrush green(Color(255, 255, 0));
-		graphics->DrawString(L"Gru is Dead!", -1, &font, PointF(-445, -100), &green);
+		graphics->DrawString(L"Gru is Dead!", -1, &font, PointF(-510, -100), &green);
 
 	}
 

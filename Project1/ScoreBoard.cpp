@@ -35,23 +35,24 @@ CScoreBoard::~CScoreBoard()
 
 
 /// Draw the socreboard
-void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed)
+void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool gameover)
 {
-
 	wstringstream time;
-	mTotalTime += elapsed;
+	if (!gameover)
+	{
+		mTotalTime += elapsed;
+	}
 	int seconds = (int)mTotalTime % 60;
 	int minutes = mTotalTime / 60;
-	time << minutes << ":" << seconds; 
-
+	time << minutes << ":" << seconds;
 	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 16);
+	Gdiplus::Font font(&fontFamily, 30);
 	SolidBrush green(Color(0, 255, 0));
 	
 	graphics->DrawString(time.str().c_str(),  // String to draw
 		-1,         // String length, -1 means it figures it out on its own
 		&font,      // The font to use
-		PointF(500, -500),   // Where to draw (top left corner)
+		PointF(534, -500),   // Where to draw (top left corner)
 		&green);    // The brush to draw the text with
 }
 

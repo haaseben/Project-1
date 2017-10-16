@@ -37,7 +37,7 @@ public:
 
 	/// drawfunction
 	/// \param graphics what we use to draw
-	void OnDraw(Gdiplus::Graphics * graphics, bool mGameOver);
+	void OnDraw(Gdiplus::Graphics * graphics, bool gameover);
 
 private:
 	/// Describe our game
