@@ -34,3 +34,8 @@ bool CMinionJerry::GruOrNot()
 {
 	return false;
 }
+
+int CMinionJerry::GetPoints()
+{
+	return mPoints;
+}

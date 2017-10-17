@@ -10,6 +10,8 @@
 #include <string>
 #include "Arya.h"
 #include "Game.h"
+#include"VillainVisitor.h"
+
 
 using namespace std;
 using namespace Gdiplus;
@@ -34,4 +36,9 @@ CArya::~CArya()
 bool CArya::GruOrNot()
 {
 	return false;
+}
+
+int CArya::GetMultiplier()
+{
+	return mMultiplier;
 }

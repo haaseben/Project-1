@@ -31,3 +31,8 @@ bool CMinionStuart::GruOrNot()
 {
 	return false;
 }
+
+int CMinionStuart::GetPoints()
+{
+	return mPoints;
+}

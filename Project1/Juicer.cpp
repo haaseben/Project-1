@@ -10,6 +10,7 @@
 #include <string>
 #include "Juicer.h"
 #include "Game.h"
+#include"VillainVisitor.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -36,4 +37,9 @@ CJuicer::~CJuicer()
 bool CJuicer::GruOrNot()
 {
 	return false;
+}
+
+int CJuicer::GetMultiplier()
+{
+	return mMultiplier;
 }

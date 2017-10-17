@@ -26,15 +26,17 @@ public:
 
 	CMinionStuart(CGame *game);
 
-	/** Accept a visitor
-	* \param visitor The visitor we accept */
-	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinionStuart(this); }
+	///** Accept a visitor
+	//* \param visitor The visitor we accept */
+	//virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinionStuart(this); }
 
 	/**
 	* Gru identifier
 	* \return CMinionStuart::GruOrNot If the object is Gru
 	*/
 	bool CMinionStuart::GruOrNot();
+
+	int CMinionStuart::GetPoints();
 
 private:
 	///points minion is worth

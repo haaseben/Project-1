@@ -10,6 +10,7 @@
 #include <string>
 #include "Pokeball.h"
 #include "Game.h"
+#include"VillainVisitor.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -35,4 +36,9 @@ CPokeBall::~CPokeBall()
 bool CPokeBall::GruOrNot()
 {
 	return false;
+}
+
+int CPokeBall::GetMultiplier()
+{
+	return mMultiplier;
 }

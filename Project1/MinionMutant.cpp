@@ -32,3 +32,8 @@ bool CMinionMutant::GruOrNot()
 {
 	return false;
 }
+
+int CMinionMutant::GetPoints()
+{
+	return mPoints;
+}

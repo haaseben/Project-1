@@ -31,12 +31,17 @@ public:
 	/// destructor
 	virtual ~CArya();
 
-	/** Accept a visitor
-	* \param visitor The visitor we accept */
-	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitArya(this); }
+	///** Accept a visitor
+	//* \param visitor The visitor we accept */
+	//virtual void Accept(CGameVisitor *visitor) override { visitor->VisitArya(this); }
 
 	/** Gru identifier
 	*\return CArya::GruOrNot If it's a gru object
 	*/
 	bool CArya::GruOrNot();
+	
+	int CArya::GetMultiplier();
+
+private:
+	int mMultiplier = 1;
 };

@@ -26,6 +26,12 @@ public:
 
 	~CVillain();
 
+	/** Accept a visitor
+	* \param visitor The visitor we accept */
+	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitVillain(this); }
+
+	virtual int GetMultiplier()=0;
+
 protected:
 	/**
 	* Constructor

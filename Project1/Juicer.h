@@ -30,13 +30,18 @@ public:
 
 	virtual ~CJuicer();
 
-	/** Accept a visitor
-	* \param visitor The visitor we accept */
-	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitJuicer(this); }
+	///** Accept a visitor
+	//* \param visitor The visitor we accept */
+	//virtual void Accept(CGameVisitor *visitor) override { visitor->VisitJuicer(this); }
 
 	/**
 	* Gru identifier
 	* \return CMinionStuart::GruOrNot If the object is Gru
 	*/
 	bool CJuicer::GruOrNot();
+
+	int CJuicer::GetMultiplier();
+
+private:
+	int mMultiplier = 2;
 };

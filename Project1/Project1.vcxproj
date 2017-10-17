@@ -194,6 +194,7 @@
     <ClInclude Include="MinionJerry.h" />
     <ClInclude Include="MinionMutant.h" />
     <ClInclude Include="MinionStuart.h" />
+    <ClInclude Include="MinionVisitor.h" />
     <ClInclude Include="NewGame.h" />
     <ClInclude Include="PlayingArea.h" />
     <ClInclude Include="PokeBall.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Villain.h" />
+    <ClInclude Include="VillainVisitor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arya.cpp" />
@@ -218,6 +220,7 @@
     <ClCompile Include="MinionJerry.cpp" />
     <ClCompile Include="MinionMutant.cpp" />
     <ClCompile Include="MinionStuart.cpp" />
+    <ClCompile Include="MinionVisitor.cpp" />
     <ClCompile Include="NewGame.cpp" />
     <ClCompile Include="PlayingArea.cpp" />
     <ClCompile Include="PokeBall.cpp" />
@@ -231,6 +234,7 @@
     </ClCompile>
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Villain.cpp" />
+    <ClCompile Include="VillainVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project1.rc" />
