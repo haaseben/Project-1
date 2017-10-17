@@ -78,6 +78,12 @@ void CGame::AddVillain()
 {
 	if (mVillainDrawn == 0)
 	{
+		/**Draw Gru
+		*/
+		auto Gru = make_shared<CGru>(this);
+		Gru->SetLocation(-15.0, -50.0);
+		mItems.push_back(Gru);
+
 		/**Draw the Juicer
 		*/
 		shared_ptr<CGamePiece> juicer(new CJuicer(this));
@@ -97,12 +103,6 @@ void CGame::AddVillain()
 		arya->SetLocation(-50.0,225.0);
 		mItems.push_back(arya);
 
-
-		/**Draw Gru
-		*/
-		auto Gru = make_shared<CGru>(this);
-		Gru->SetLocation(-15.0, -50.0);
-		mItems.push_back(Gru);
 	}
 	mVillainDrawn = 1;
 }
@@ -254,7 +254,7 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	if ( mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
-		Add(mGrabbedItem);
+		mItems[0] = mGrabbedItem;
 
 		//removes the initial object in the list
 		Remove(mGrabbedItem);
