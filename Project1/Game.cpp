@@ -14,6 +14,7 @@
 #include "Minion.h"
 #include "Gru.h"
 #include "ChildView.h"
+#include "NewGame.h"
 #include "ScoreBoard.h"
 #include "MinionJerry.h"
 #include "MinionStuart.h"
@@ -24,9 +25,6 @@ using namespace std;
 using namespace Gdiplus;
 
 
-
-/// New game button file name
-const wstring NewGameImageName = L"images/new-game.png";
 
 /**
 * Draw the game area
@@ -57,13 +55,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 
 	// From here on you are drawing virtual pixels
 
-	double wid = mNewGameImage->GetWidth();
-	double hit = mNewGameImage->GetHeight();
-	graphics->DrawImage(mNewGameImage.get(),
-		float(-723), float(-500),
-		(float)mNewGameImage->GetWidth(), (float)mNewGameImage->GetHeight());
-
-	AddVillain();
+	AddInitialObjects();
 
 	mScoreBoard.OnDraw(graphics,  elapsed, mGameOver);
 
@@ -74,7 +66,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	mPlayingArea.OnDraw(graphics,mGameOver);
 }
 
-void CGame::AddVillain()
+void CGame::AddInitialObjects()
 {
 	if (mVillainDrawn == 0)
 	{
@@ -83,6 +75,13 @@ void CGame::AddVillain()
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
 		mItems.push_back(Gru);
+		
+
+		/**Draw NewGame Button
+		*/
+		auto NewGameButton = make_shared<CNewGame>(this);
+		NewGameButton->SetLocation(-740, -490.0);
+		mItems.push_back(NewGameButton);
 
 		/**Draw the Juicer
 		*/
@@ -205,19 +204,13 @@ void CGame::DeleteItem(std::shared_ptr<CGamePiece> item)
 */
 void CGame::Clear()
 {
+
 	mItems.clear();
 }
 
 
 CGame::CGame()
 {
-	mNewGameImage = unique_ptr<Bitmap>(Bitmap::FromFile(NewGameImageName.c_str()));
-	if (mNewGameImage->GetLastStatus() != Ok)
-	{
-		wstring msg(L"Failed to open ");
-		msg += NewGameImageName;
-		AfxMessageBox(msg.c_str());
-	}
 
 }
 
@@ -250,6 +243,7 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
 	
+	NewGame(oX, oY);
 	mGrabbedItem = HitTest(oX,oY);
 	if ( mGrabbedItem != nullptr)
 	{
@@ -431,3 +425,23 @@ void CGame::SpawnMinionTimer() {
 	mItems.push_back(minion);
 }
 
+void CGame::NewGame(double x, double y) 
+{
+	if ( (-540-200< x && x < -540) && (-380-112 <y && y < -380))
+	{
+		mItems.clear();
+		mVillainDrawn = 0;
+		AddInitialObjects();
+		mGameOver = false;
+		
+	}
+
+}
+
+void CGame::Accept(CGameVisitor *visitor)
+{
+	for (auto item : mItems)
+	{
+		item->Accept(visitor);
+	}
+}

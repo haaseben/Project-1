@@ -8,6 +8,7 @@
  */
 
 #pragma once
+#include "GameVisitor.h"
 
  /**
  * The class that handling the score counting and image drawing. 
@@ -31,6 +32,10 @@ public:
 	/// destructor
 	virtual ~CScoreBoard();
 
+	/** Accept a visitor
+	* \param visitor The visitor we accept */
+	virtual void Accept(CGameVisitor *visitor) { visitor->VisitSocreBoard(this); }
+
 
 	
 
@@ -45,8 +50,6 @@ private:
 	int mPokeBallScore = 0; ///< Score for PokeBall
 
 	double mTotalTime = 0; ///< Count the total time passed
-
-
 
 
 };

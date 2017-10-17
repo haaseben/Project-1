@@ -37,6 +37,8 @@ CScoreBoard::~CScoreBoard()
 /// Draw the socreboard
 void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool gameover)
 {
+
+
 	if (!gameover)
 	{
 		mTotalTime += elapsed;
@@ -59,6 +61,8 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 		&font,      // The font to use
 		PointF(534, -500),   // Where to draw (top left corner)
 		&green);    // The brush to draw the text with
+
+
 }
 
 

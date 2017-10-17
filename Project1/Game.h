@@ -36,7 +36,6 @@ public:
 	void OnDraw(Gdiplus::Graphics * graphics,int width,int height, double elapsed);
 
 
-
 	/**
 	* Add
 	* \param item item we're using
@@ -54,12 +53,14 @@ public:
 	/// clear items
 	void Clear();
 
-	/// adds a villian
-	void CGame::AddVillain();
+	/// add game initial objects
+	void CGame::AddInitialObjects();
 
 	/// Controls minions spawning timer
 	void CGame::SpawnMinionTimer();
 
+	/// Create a new game
+	void CGame::NewGame(double x, double y);
 	/** Gets Minion Type
 	*\return CGame::MinionType minion type
 	*/
@@ -67,8 +68,12 @@ public:
 
 	void Remove(std::shared_ptr<CGamePiece> item); ///< remove an item from the aquarium 
 
-
 	std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item);
+
+	/** Accept a visitor for the collection
+	* \param visitor The visitor for the collection
+	*/
+	void CGame::Accept(CGameVisitor *visitor);
 
 
 

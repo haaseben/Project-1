@@ -26,6 +26,10 @@ public:
 
 	CMinionStuart(CGame *game);
 
+	/** Accept a visitor
+	* \param visitor The visitor we accept */
+	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinionStuart(this); }
+
 	/**
 	* Gru identifier
 	* \return CMinionStuart::GruOrNot If the object is Gru

@@ -32,6 +32,10 @@ public:
 	/// destructor
 	virtual ~CPokeBall();
 
+	/** Accept a visitor
+	* \param visitor The visitor we accept */
+	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitPokeBall(this); }
+
 	/**
 	* Gru identifier
 	* \return CMinionStuart::GruOrNot If the object is Gru

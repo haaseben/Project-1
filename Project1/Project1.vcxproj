@@ -186,6 +186,7 @@
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePiece.h" />
+    <ClInclude Include="GameVisitor.h" />
     <ClInclude Include="Gru.h" />
     <ClInclude Include="Juicer.h" />
     <ClInclude Include="MainFrm.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="MinionJerry.h" />
     <ClInclude Include="MinionMutant.h" />
     <ClInclude Include="MinionStuart.h" />
+    <ClInclude Include="NewGame.h" />
     <ClInclude Include="PlayingArea.h" />
     <ClInclude Include="PokeBall.h" />
     <ClInclude Include="Project1.h" />
@@ -208,6 +210,7 @@
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePiece.cpp" />
+    <ClCompile Include="GameVisitor.cpp" />
     <ClCompile Include="Gru.cpp" />
     <ClCompile Include="Juicer.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -215,6 +218,7 @@
     <ClCompile Include="MinionJerry.cpp" />
     <ClCompile Include="MinionMutant.cpp" />
     <ClCompile Include="MinionStuart.cpp" />
+    <ClCompile Include="NewGame.cpp" />
     <ClCompile Include="PlayingArea.cpp" />
     <ClCompile Include="PokeBall.cpp" />
     <ClCompile Include="Project1.cpp" />

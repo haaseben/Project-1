@@ -14,7 +14,7 @@
 using namespace std;
 using namespace Gdiplus;
 
-/// Villain filename
+/// Gru filename
 const wstring GruImageName = L"images/gru.png";
 
 /** Constructor

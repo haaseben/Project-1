@@ -11,12 +11,12 @@
 #include <string>
 #include <memory>
 #include "Vector.h"
+#include "GameVisitor.h"
 
 using namespace Gdiplus;
 using namespace std;
 
-using namespace Gdiplus;
-using namespace std;
+
 
 class CGame;
 
@@ -84,7 +84,11 @@ public:
 	/// \returns true if it is
 	virtual bool GruOrNot()=0 ;
 
-	//virtual CVector CGamePiece::GetP();
+	//virtual CVector CGamePiece::GetP
+
+	/** Accept a visitor
+	* \param visitor The visitor we accept */
+	virtual void Accept(CGameVisitor *visitor) = 0;
 
 protected:
 	/**
