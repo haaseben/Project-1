@@ -186,6 +186,7 @@
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePiece.h" />
+    <ClInclude Include="GameReset.h" />
     <ClInclude Include="GameVisitor.h" />
     <ClInclude Include="Gru.h" />
     <ClInclude Include="Juicer.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePiece.cpp" />
+    <ClCompile Include="GameReset.cpp" />
     <ClCompile Include="GameVisitor.cpp" />
     <ClCompile Include="Gru.cpp" />
     <ClCompile Include="Juicer.cpp" />

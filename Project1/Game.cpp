@@ -15,6 +15,7 @@
 #include "Gru.h"
 #include "ChildView.h"
 #include "NewGame.h"
+#include "GameReset.h"
 #include "ScoreBoard.h"
 #include "MinionJerry.h"
 #include "MinionStuart.h"
@@ -429,10 +430,13 @@ void CGame::NewGame(double x, double y)
 {
 	if ( (-540-200< x && x < -540) && (-380-112 <y && y < -380))
 	{
+		CGameReset visitor;
+		mScoreBoard.Accept(&visitor);
 		mItems.clear();
 		mVillainDrawn = 0;
 		AddInitialObjects();
 		mGameOver = false;
+		
 		
 	}
 

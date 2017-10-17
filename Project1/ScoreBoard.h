@@ -36,7 +36,7 @@ public:
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) { visitor->VisitSocreBoard(this); }
 
-
+	void Initializer() { mInitialStatus = 1; }
 	
 
 private:
@@ -51,6 +51,7 @@ private:
 
 	double mTotalTime = 0; ///< Count the total time passed
 
+	bool mInitialStatus = 0;
 
 };
 

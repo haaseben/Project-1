@@ -62,6 +62,11 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 		PointF(534, -500),   // Where to draw (top left corner)
 		&green);    // The brush to draw the text with
 
+	if (mInitialStatus == 1 && !gameover) 
+	{
+		mTotalTime = 0;
+		mInitialStatus = 0;
+	}
 
 }
 
