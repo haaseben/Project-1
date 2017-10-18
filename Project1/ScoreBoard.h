@@ -9,7 +9,7 @@
 
 #pragma once
 #include "GameVisitor.h"
-
+#include <memory>
  /**
  * The class that handling the score counting and image drawing. 
  */
@@ -18,7 +18,7 @@ class CScoreBoard
 public:
 	///  Default constructor
 
-	CScoreBoard() ;
+	CScoreBoard();
 
 	///  Copy constructor disabled
 	CScoreBoard(const CScoreBoard &) = delete;
@@ -53,5 +53,13 @@ private:
 
 	bool mInitialStatus = 0;
 
+	/// The image of this item
+	std::unique_ptr<Gdiplus::Bitmap> mJuicerImage;
+
+	/// The image of this item
+	std::unique_ptr<Gdiplus::Bitmap> mPokeballImage;
+
+	/// The image of this item
+	std::unique_ptr<Gdiplus::Bitmap> mAryaImage;
 };
 

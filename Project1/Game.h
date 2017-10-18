@@ -50,6 +50,9 @@ public:
 
 	void DeleteItem(std::shared_ptr<CGamePiece> item);
 
+	void Destroy(std::shared_ptr<CGamePiece> item, int x, int y);
+
+
 	/// clear items
 	void Clear();
 
@@ -140,7 +143,8 @@ private:
 	/// All of the items to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mItems;
 
-	
+	/// Any item we are currently dragging
+	std::shared_ptr<CGamePiece> mGru;
 
 	/// Game area width in virtual pixels
 	const static int Width = 1400;

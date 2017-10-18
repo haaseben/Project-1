@@ -37,6 +37,7 @@ public:
 	/// \param elapsed amount of time since start of project
 	void CMinion::Update(double elapsed);
 
+	bool CanCollide() { return true; }
 
 	/** Accept a visitor
 	* \param visitor The visitor we accept */

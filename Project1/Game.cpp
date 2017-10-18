@@ -64,6 +64,8 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
+	//mGru->Draw(graphics);
+
 	mPlayingArea.OnDraw(graphics,mGameOver);
 }
 
@@ -76,7 +78,7 @@ void CGame::AddInitialObjects()
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
 		mItems.push_back(Gru);
-		
+		//mGru = Gru;
 
 		/**Draw NewGame Button
 		*/
@@ -177,10 +179,17 @@ void CGame::Update(double elapsed)
 		
 		spawn = true;
 	}
+	//mGru->Update(elapsed);
 
+	int sizeOfItems = mItems.size();
 	for (auto item : mItems)
 	{
 		item->Update(elapsed);
+		Destroy(item, item->GetX(), item->GetY());
+		if (mItems.size() < sizeOfItems)
+		{
+			break;
+		}
 	}
 	
 }
@@ -212,7 +221,6 @@ void CGame::Clear()
 
 CGame::CGame()
 {
-
 }
 
 /**
@@ -448,4 +456,24 @@ void CGame::Accept(CGameVisitor *visitor)
 	{
 		item->Accept(visitor);
 	}
+}
+
+
+/**
+* if minion hits villian gets destroyed
+* \param item item that is eating
+* \param x, x is the x position of the piece that is moving
+* \param y, x is the y position of the piec that is moving 
+*/
+void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
+
+	for (auto i = mItems.begin(); i != mItems.end(); i++)
+	{
+		if ((*i)->HitTest(x - ((*i)->GetWidth() / 2), y - 30) && (*i) != item && !(*i)->CanCollide())
+		{
+			DeleteItem(item);
+			break;
+		}
+	}
+
 }

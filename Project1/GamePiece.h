@@ -86,6 +86,9 @@ public:
 
 	//virtual CVector CGamePiece::GetP
 
+	/// determines if a game piece can be deleted
+	virtual bool CanCollide() { return false; }
+
 	/** Accept a visitor
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) = 0;
