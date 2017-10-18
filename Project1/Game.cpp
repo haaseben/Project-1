@@ -167,7 +167,7 @@ void CGame::Update(double elapsed)
 {
 	mTotalTime += elapsed;
 	bool spawn = true;
-	double halfSec = 1.0;
+	double halfSec = 0.5;
 
 	if ((fmod(mTotalTime, 1) < .05) && spawn == true)
 	{
@@ -417,12 +417,10 @@ void CGame::SpawnMinionTimer() {
 	if (signValue > 0 && signValue < .5)
 	{
 		minion->SetLocation(locX, -450);
-		locX = 0;
 	}
 	else
 	{
 		minion -> SetLocation(locX2, -450);
-		locX2 = 0;
 	}
 	mNumberMinions += 1;
 	mItems.push_back(minion);
