@@ -117,16 +117,24 @@ void CGame::AddInitialObjects()
 
 std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
-	if ((mGru)->HitTest(x, y))
+
+	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		return mGru;
-	}
-	else
-	{
-		return nullptr;
+
+		if ((mGru)->HitTest(x, y))
+		{
+			return mGru;
+		}
+		else if ((*i)->HitTest(x, y))
+		{
+			return *i;
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
 }
-
 /** Test an x,y click location to see if it clicked
 * on some item in the game.
 * \param x X location
@@ -250,8 +258,8 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
 	NewGame(oX, oY);
-	mGru = HitTest(oX,oY);
-	if ( mGru != nullptr)
+	mGrabbedItem = HitTest(oX, oY);
+	if ( mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
 		mGrabbedItem = mGru;
