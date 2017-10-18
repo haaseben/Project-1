@@ -78,7 +78,6 @@ void CGame::AddInitialObjects()
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
 		mGru = Gru;
-
 		/**Draw NewGame Button
 		*/
 		auto NewGameButton = make_shared<CNewGame>(this);
@@ -152,7 +151,6 @@ std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<C
 			return *i;
 		}
 	}
-
 	return  nullptr;
 }
 
@@ -267,7 +265,6 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 		//removes the initial object in the list
 		Remove(mGrabbedItem);
 	}
-
 }
 
 /**  Called when the mouse is moved
