@@ -64,7 +64,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
-	//mGru->Draw(graphics);
+	mGru->Draw(graphics);
 
 	mPlayingArea.OnDraw(graphics,mGameOver);
 }
@@ -77,8 +77,7 @@ void CGame::AddInitialObjects()
 		*/
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
-		mItems.push_back(Gru);
-		//mGru = Gru;
+		mGru = Gru;
 
 		/**Draw NewGame Button
 		*/
@@ -115,16 +114,17 @@ void CGame::AddInitialObjects()
 * \param y Y location
 * \returns Pointer to item we clicked on or nullptr if none.
 */
+
 std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
-	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
+	if ((mGru)->HitTest(x, y))
 	{
-		if ((*i)->HitTest(x,y))
-		{
-			return *i;
-		}
+		return mGru;
 	}
-	return  nullptr;
+	else
+	{
+		return nullptr;
+	}
 }
 
 /** Test an x,y click location to see if it clicked
@@ -250,11 +250,11 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
 	NewGame(oX, oY);
-	mGrabbedItem = HitTest(oX,oY);
-	if ( mGrabbedItem != nullptr)
+	mGru = HitTest(oX,oY);
+	if ( mGru != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
-		mItems[0] = mGrabbedItem;
+		mGrabbedItem = mGru;
 
 		//removes the initial object in the list
 		Remove(mGrabbedItem);
@@ -272,7 +272,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 	double oY = (point.y - mYOffset) / mScale;
 
 	// See if an item is currently being moved by the mouse
-	if (mGrabbedItem != nullptr && mGrabbedItem->GruOrNot() == true)
+	if (mGrabbedItem == mGru)
 	{
 		// If an item is being moved, we only continue to 
 		// move it while the left button is down.
@@ -374,7 +374,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			//calls collision test to see if Gru has been killed
 			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
 
-			if (mGrabbedItem->GruOrNot() == true && OtherItem != nullptr)
+			if (mGrabbedItem == mGru)
 			{
 				Remove(mGrabbedItem);
 			}
