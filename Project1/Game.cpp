@@ -167,7 +167,7 @@ void CGame::Update(double elapsed)
 {
 	mTotalTime += elapsed;
 	bool spawn = true;
-	double halfSec = 0.5;
+	double halfSec = 1.0;
 
 	if ((fmod(mTotalTime, 1) < .05) && spawn == true)
 	{
@@ -249,7 +249,6 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
-	
 	NewGame(oX, oY);
 	mGrabbedItem = HitTest(oX,oY);
 	if ( mGrabbedItem != nullptr)
@@ -344,7 +343,6 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 				}
 			}
-			
 			//outside of the bottom
 			else if (oY > 500.0)
 			{
@@ -409,25 +407,21 @@ std::shared_ptr<CGamePiece> CGame::MinionType() {
 		}
 	}
 }
-
 void CGame::SpawnMinionTimer() {
 
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
 	double signValue = ((double)rand() / RAND_MAX);
-	double locX = ((double)rand() / RAND_MAX) *-480;
-	double locX2 = ((double)rand() / RAND_MAX) * 480;
-	if (signValue > 0 && signValue < .9)
+	double locX = ((double)rand() / RAND_MAX) * 480;
+	double locX2 = ((double)rand() / RAND_MAX) *-480;
+	if (signValue > 0 && signValue < .5)
 	{
 		minion->SetLocation(locX, -450);
-		signValue = 0;
 		locX = 0;
 	}
-
-	if (signValue > 1)
+	else
 	{
 		minion -> SetLocation(locX2, -450);
-		signValue = 0;
 		locX2 = 0;
 	}
 	mNumberMinions += 1;
@@ -444,8 +438,6 @@ void CGame::NewGame(double x, double y)
 		mVillainDrawn = 0;
 		AddInitialObjects();
 		mGameOver = false;
-		
-		
 	}
 
 }
@@ -457,7 +449,6 @@ void CGame::Accept(CGameVisitor *visitor)
 		item->Accept(visitor);
 	}
 }
-
 
 /**
 * if minion hits villian gets destroyed
