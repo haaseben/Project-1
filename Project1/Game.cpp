@@ -128,11 +128,11 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 }
 
 /** Test an x,y click location to see if it clicked
-* on some item in the aquarium and if another fish is on top of it.
+* on some item in the game.
 * \param x X location
 * \param y Y location
 * \param item item that is being moved and or clicked on
-* \returns Pointer to item another fish is on top of.
+* \returns Pointer to item.
 */
 std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item)
 {
@@ -191,7 +191,6 @@ void CGame::Update(double elapsed)
 			break;
 		}
 	}
-	
 }
 
 /**  Delete an item from the game
@@ -217,7 +216,6 @@ void CGame::Clear()
 
 	mItems.clear();
 }
-
 
 CGame::CGame()
 {
@@ -290,7 +288,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 					mGrabbedItem->SetLocation(-500.0 , -500.0);
 
 				}
-				//bottom left diagnol
+				//bottom left diagnal
 				else if (oY >= 500 - mGrabbedItem->GetHeight())
 				{
 					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
@@ -306,13 +304,13 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			//outside of right side
 			else if (oX >= 500) {
 								
-				//top right diagnol
+				//top right diagnal
 				if (oY < -500)
 				{
 					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), -500.0);
 
 				}
-				//bottom right diagnol
+				//bottom right diagnal
 				else if (oY >= 500 - mGrabbedItem->GetHeight())
 				{
 					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), 500.0 - mGrabbedItem->GetHeight());
@@ -375,7 +373,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			
 			}
 			
-			//calls collision test to see if another fish is under the one being moved currently
+			//calls collision test to see if Gru has been killed
 			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
 
 			if (mGrabbedItem->GruOrNot() == true && OtherItem != nullptr)
@@ -389,8 +387,6 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			// item.
 			mGrabbedItem = nullptr;
 		}
-
-		// Force the screen to redraw
 	}
 }
 
@@ -415,7 +411,6 @@ std::shared_ptr<CGamePiece> CGame::MinionType() {
 }
 
 void CGame::SpawnMinionTimer() {
-	
 
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
