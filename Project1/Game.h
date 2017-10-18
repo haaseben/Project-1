@@ -12,6 +12,7 @@
 #include "GamePiece.h"
 #include "PlayingArea.h"
 #include "ScoreBoard.h"
+#include "Vector.h"
 
  /**
  * The class that handle the game and all components in the game. 
@@ -177,6 +178,4 @@ private:
 
 	/// If the game is over
 	bool mGameOver = false;
-
-
 };
