@@ -42,6 +42,9 @@ public:
 	
 	int CArya::GetMultiplier();
 
+
+
 private:
 	int mMultiplier = 1;
+
 };
