@@ -148,7 +148,7 @@ std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<C
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if ((*i)->HitTest(x, y) && *i != item)
+		if ((*i)->HitTest(x-50, y-70) && *i != item)
 		{
 			mGameOver = true;
 			return *i;
