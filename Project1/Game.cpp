@@ -64,7 +64,10 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
-	mGru->Draw(graphics);
+	if (!mGameOver)
+	{
+		mGru->Draw(graphics);
+	}
 
 	mPlayingArea.OnDraw(graphics,mGameOver);
 }
