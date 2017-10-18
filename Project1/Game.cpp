@@ -412,8 +412,8 @@ void CGame::SpawnMinionTimer() {
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
 	double signValue = ((double)rand() / RAND_MAX);
-	double locX = ((double)rand() / RAND_MAX) * 480;
-	double locX2 = ((double)rand() / RAND_MAX) *-480;
+	double locX = ((double)rand() / RAND_MAX) * 460;
+	double locX2 = ((double)rand() / RAND_MAX) *-460;
 	if (signValue > 0 && signValue < .5)
 	{
 		minion->SetLocation(locX, -450);

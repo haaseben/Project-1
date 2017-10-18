@@ -18,6 +18,8 @@
 class CGru : public CGamePiece
 {
 public:
+
+	bool CanCollide() { return  false; };
 	CGru(CGame *game);
 
 	/// Default constructor (disabled)
