@@ -64,7 +64,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	{
 		item->Draw(graphics);
 	}
-	//mGru->Draw(graphics);
+	mGru->Draw(graphics);
 
 	mPlayingArea.OnDraw(graphics,mGameOver);
 }
@@ -77,9 +77,7 @@ void CGame::AddInitialObjects()
 		*/
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
-		mItems.push_back(Gru);
-		//mGru = Gru;
-
+		mGru = Gru;
 		/**Draw NewGame Button
 		*/
 		auto NewGameButton = make_shared<CNewGame>(this);
@@ -115,18 +113,27 @@ void CGame::AddInitialObjects()
 * \param y Y location
 * \returns Pointer to item we clicked on or nullptr if none.
 */
+
 std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
+
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if ((*i)->HitTest(x,y))
+
+		if ((mGru)->HitTest(x, y))
+		{
+			return mGru;
+		}
+		else if ((*i)->HitTest(x, y))
 		{
 			return *i;
 		}
+		else
+		{
+			return nullptr;
+		}
 	}
-	return  nullptr;
 }
-
 /** Test an x,y click location to see if it clicked
 * on some item in the game.
 * \param x X location
@@ -144,7 +151,6 @@ std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<C
 			return *i;
 		}
 	}
-
 	return  nullptr;
 }
 
@@ -167,7 +173,7 @@ void CGame::Update(double elapsed)
 {
 	mTotalTime += elapsed;
 	bool spawn = true;
-	double halfSec = 1.0;
+	double halfSec = 0.5;
 
 	if ((fmod(mTotalTime, 1) < .05) && spawn == true)
 	{
@@ -250,16 +256,15 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale; 
 	NewGame(oX, oY);
-	mGrabbedItem = HitTest(oX,oY);
+	mGrabbedItem = HitTest(oX, oY);
 	if ( mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
-		mItems[0] = mGrabbedItem;
+		mGrabbedItem = mGru;
 
 		//removes the initial object in the list
 		Remove(mGrabbedItem);
 	}
-
 }
 
 /**  Called when the mouse is moved
@@ -272,7 +277,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 	double oY = (point.y - mYOffset) / mScale;
 
 	// See if an item is currently being moved by the mouse
-	if (mGrabbedItem != nullptr && mGrabbedItem->GruOrNot() == true)
+	if (mGrabbedItem == mGru)
 	{
 		// If an item is being moved, we only continue to 
 		// move it while the left button is down.
@@ -374,7 +379,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			//calls collision test to see if Gru has been killed
 			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
 
-			if (mGrabbedItem->GruOrNot() == true && OtherItem != nullptr)
+			if (mGrabbedItem == mGru)
 			{
 				Remove(mGrabbedItem);
 			}
@@ -412,17 +417,15 @@ void CGame::SpawnMinionTimer() {
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
 	double signValue = ((double)rand() / RAND_MAX);
-	double locX = ((double)rand() / RAND_MAX) * 480;
-	double locX2 = ((double)rand() / RAND_MAX) *-480;
+	double locX = ((double)rand() / RAND_MAX) * 460;
+	double locX2 = ((double)rand() / RAND_MAX) *-460;
 	if (signValue > 0 && signValue < .5)
 	{
 		minion->SetLocation(locX, -450);
-		locX = 0;
 	}
 	else
 	{
 		minion -> SetLocation(locX2, -450);
-		locX2 = 0;
 	}
 	mNumberMinions += 1;
 	mItems.push_back(minion);
