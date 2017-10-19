@@ -27,6 +27,12 @@ public:
 	/// destructor
 	virtual ~CGame();
 
+
+	void SetVelocity(CVector NewVector) { mV = NewVector; }
+
+	/// Velocity in virtual pixels/second
+	CVector mV;
+
 	/**
 	* OnDraw
 	* \param graphics What we use to draw
@@ -36,6 +42,24 @@ public:
 	*/
 	void OnDraw(Gdiplus::Graphics * graphics,int width,int height, double elapsed);
 
+	/*Potential flocking functions.
+	/ Adding all vectors.
+	*/
+
+	// Cohesion vector
+	CVector cv;
+
+	// Separation vector
+	CVector sv;
+
+	// Alignment vector
+	CVector av;
+
+	// Gru vector
+	CVector gruV;
+
+
+	CVector CGame::CohesionCenter();
 
 	/**
 	* Add
@@ -115,6 +139,8 @@ public:
 			mPos++;
 			return *this;
 		}
+
+
 
 
 

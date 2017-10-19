@@ -200,7 +200,103 @@ void CGame::Update(double elapsed)
 			break;
 		}
 	}
+	
+	/// Flocking Stuff//////////////////////////////////////////////////////
+	//
+	CVector cohesionCenter = CohesionCenter();
+
+	for (auto item3 : mItems)
+	{
+		if (item3->CanCollide() == true)
+		{
+			///Cohesion Vector for each Minion
+			CVector minionVector = CVector(item3->GetX(), item3->GetY());
+			cv = cohesionCenter - minionVector;
+			double l = cv.Length();
+			if (l > 0)
+			{
+				cv /= l;
+			}
+
+
+			///Seperation Vector
+			CVector closestMinion;
+			double distance = 10000;
+			int alignmentCount = 0;
+			CVector alignmentAverage;
+
+			alignmentAverage = alignmentAverage + minionVector;///USE GETTER TO GET MV FROM this MINION AND ADD TO THIS VECTOR
+			alignmentCount += 1;
+
+
+			for (auto item4 : mItems)
+			{
+				if (item4->CanCollide() == true)
+				{
+					if (item4 != item3)
+					{
+						CVector testMinion = CVector(item4->GetY(), item4->GetY());
+						double testDistance = minionVector.Distance(testMinion);
+						if (testDistance < distance)
+						{
+							closestMinion = testMinion;
+						}
+						if (testDistance < 200)
+						{
+							alignmentAverage = alignmentAverage + testMinion;///USE GETTER TO GET MV FROM EACH TEST MINION AND ADD TO THIS VECTOR
+							alignmentCount += 1;
+						}
+					}
+				}
+			}
+		
+	
+			av = alignmentAverage / alignmentCount;
+			av = av.Normalize();
+			sv = minionVector - closestMinion;
+			sv.Normalize();
+
+			/// gruv vector
+
+	//		gruV = CVector(mGru->GetX(),mGru->GetY()) - minionVector;
+	//		if (gruV.Length() > 0)
+	//		{
+	//			gruV.Normalize();
+	//		}
+	//		
+	//		CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+	//		mV.Normalize();
+
+	//		//item3->SetVelocity(mV);
+	//		///SET THE MINIONVECTOR SPEED VECTOR TO mv
+
+		}
+	}
+
+
+
 }
+
+
+CVector CGame::CohesionCenter() 
+{
+	CVector cohesionCenter;
+	int numMinions = 0;
+	for (auto item : mItems)
+	{
+		if (item->CanCollide() == true)
+		{
+			numMinions += 1;
+			CVector minionVector = CVector(item->GetX(), item->GetY());
+			cohesionCenter = cohesionCenter + minionVector;
+		}
+	}
+
+	cohesionCenter = cohesionCenter / numMinions;
+	return cohesionCenter;
+}
+
+
 
 /**  Delete an item from the game
 *
@@ -475,21 +571,7 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 
 }
 
-/*Potential flocking functions.
-/ Adding all vectors.
-*/
 
-// Cohesion vector
-CVector cv;
-
-// Separation vector
-CVector sv;
-
-// Alignment vector
-CVector av;
-
-// Gru vector
-CVector gruV;
 
 //
 // Cohesion

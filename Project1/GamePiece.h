@@ -31,6 +31,8 @@ public:
 	/** The directory where the images are stored */
 	static const std::wstring ImagesDirectory;
 
+
+
 	///  Default constructor (disabled)
 	CGamePiece() = delete;
 

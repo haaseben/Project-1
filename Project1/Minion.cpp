@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "Minion.h"
 #include "GamePiece.h"
-
+#include "Game.h"
 
 
 /**
