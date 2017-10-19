@@ -58,13 +58,13 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 
 	AddInitialObjects();
 
-	mScoreBoard.OnDraw(graphics,  elapsed, mGameOver);
+	mScoreBoard.OnDraw(graphics, elapsed, mGameOver);
 
 	for (auto item : mItems)
 	{
 		item->Draw(graphics);
 	}
-	mPlayingArea.OnDraw(graphics,mGameOver);
+	mPlayingArea.OnDraw(graphics, mGameOver);
 }
 
 void CGame::AddInitialObjects()
@@ -76,7 +76,7 @@ void CGame::AddInitialObjects()
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
 		mItems.push_back(Gru);
-		
+
 
 		/**Draw NewGame Button
 		*/
@@ -100,7 +100,7 @@ void CGame::AddInitialObjects()
 		/**Draw Arya
 		*/
 		auto arya = make_shared<CArya>(this);
-		arya->SetLocation(-50.0,225.0);
+		arya->SetLocation(-50.0, 225.0);
 		mItems.push_back(arya);
 
 	}
@@ -117,7 +117,7 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if ((*i)->HitTest(x,y))
+		if ((*i)->HitTest(x, y))
 		{
 			return *i;
 		}
@@ -174,7 +174,7 @@ void CGame::Update(double elapsed)
 	}
 	if ((fmod(mTotalTime, 1) > .2) && spawn == false)
 	{
-		
+
 		spawn = true;
 	}
 
@@ -182,7 +182,7 @@ void CGame::Update(double elapsed)
 	{
 		item->Update(elapsed);
 	}
-	
+
 }
 
 /**  Delete an item from the game
@@ -242,11 +242,11 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	double oX = (point.x - mXOffset) / mScale;
-	double oY = (point.y - mYOffset) / mScale; 
-	
+	double oY = (point.y - mYOffset) / mScale;
+
 	NewGame(oX, oY);
-	mGrabbedItem = HitTest(oX,oY);
-	if ( mGrabbedItem != nullptr)
+	mGrabbedItem = HitTest(oX, oY);
+	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
 		mItems[0] = mGrabbedItem;
@@ -274,12 +274,12 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		if (nFlags & MK_LBUTTON)
 		{
 			//outside of left side
-			if (oX <= -500.0 ) 
+			if (oX <= -500.0)
 			{
 				//top left diagnol
-				if (oY <= -500.0) 
+				if (oY <= -500.0)
 				{
-					mGrabbedItem->SetLocation(-500.0 , -500.0);
+					mGrabbedItem->SetLocation(-500.0, -500.0);
 
 				}
 				//bottom left diagnol
@@ -288,16 +288,16 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
 				}
 				//rest
-				else 
+				else
 				{
 					mGrabbedItem->SetLocation(-500.0, oY);
 				}
-				
+
 			}
 
 			//outside of right side
 			else if (oX >= 500) {
-								
+
 				//top right diagnol
 				if (oY < -500)
 				{
@@ -313,11 +313,11 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				//rest
 				else
 				{
-						mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY);
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY);
 				}
-			
+
 			}
-			
+
 			//outside of the top
 			else if (oY <= -500.0)
 			{
@@ -331,14 +331,14 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				{
 					mGrabbedItem->SetLocation(-500.0, -500.0);
 				}
-				
+
 				else
 				{
 					mGrabbedItem->SetLocation(oX - 30.0, -500.0);
 
 				}
 			}
-			
+
 			//outside of the bottom
 			else if (oY > 500.0)
 			{
@@ -358,15 +358,15 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 					mGrabbedItem->SetLocation(oX - 30.0, 500.0 - mGrabbedItem->GetHeight());
 
 				}
-				
+
 			}
-			
-			else if(oX > -500.0 && oY > -500.0 && oX  < 500.0 - mGrabbedItem->GetWidth() && oY < 500.0 - mGrabbedItem->GetHeight()){
-				
-				mGrabbedItem->SetLocation(oX-30.0, oY-50.0);
-			
+
+			else if (oX > -500.0 && oY > -500.0 && oX  < 500.0 - mGrabbedItem->GetWidth() && oY < 500.0 - mGrabbedItem->GetHeight()) {
+
+				mGrabbedItem->SetLocation(oX - 30.0, oY - 50.0);
+
 			}
-			
+
 			//calls collision test to see if another fish is under the one being moved currently
 			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
 
@@ -407,7 +407,7 @@ std::shared_ptr<CGamePiece> CGame::MinionType() {
 }
 
 void CGame::SpawnMinionTimer() {
-	
+
 
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
@@ -426,9 +426,9 @@ void CGame::SpawnMinionTimer() {
 	mItems.push_back(minion);
 }
 
-void CGame::NewGame(double x, double y) 
+void CGame::NewGame(double x, double y)
 {
-	if ( (-540-200< x && x < -540) && (-380-112 <y && y < -380))
+	if ((-540 - 200< x && x < -540) && (-380 - 112 <y && y < -380))
 	{
 		CGameReset visitor;
 		mScoreBoard.Accept(&visitor);
@@ -436,8 +436,8 @@ void CGame::NewGame(double x, double y)
 		mVillainDrawn = 0;
 		AddInitialObjects();
 		mGameOver = false;
-		
-		
+
+
 	}
 
 }
