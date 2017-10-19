@@ -10,6 +10,7 @@
 
 #include <memory>
 #include "GamePiece.h"
+#include "Vector.h"
 
 
 /**
