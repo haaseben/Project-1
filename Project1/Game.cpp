@@ -1,3 +1,9 @@
+/**
+ * \file Game.cpp
+ *
+ * \author Tiezheng Shao
+ */
+
 
 /**
 * \file Game.cpp
@@ -201,7 +207,22 @@ void CGame::Update(double elapsed)
 			break;
 		}
 	}
-
+	auto minion = make_shared<CMinionJerry>(this);
+	std::vector<std::shared_ptr<CGamePiece> > temp;
+	for (auto i : mItems) {
+		if (i->GruOrNot() == minion->GruOrNot())
+		{
+			temp.push_back(i);
+		}
+	}
+	for (auto i : temp)
+	{
+		//DeleteItem(i);
+	}
+	double x = 0;
+	if (mGrabbedItem != nullptr) {
+		double x = mGrabbedItem->GetX();
+	}
 	/// Flocking Stuff//////////////////////////////////////////////////////
 	//
 	CVector cohesionCenter = CohesionCenter();
@@ -356,7 +377,7 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale;
 	NewGame(oX, oY);
-	mGrabbedItem = HitTest(oX, oY);
+	mGrabbedItem = HitTest(oX-35, oY-75);
 	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
@@ -379,43 +400,44 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 	// See if an item is currently being moved by the mouse
 	if (mGrabbedItem == mGru)
 	{
+
 		// If an item is being moved, we only continue to 
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
 			//outside of left side
-			if (oX <= -500.0)
+			if (oX <= -500.0 +30)
 			{
 				//top left diagnol
-				if (oY <= -500.0)
+				if (oY <= -500.0+50)
 				{
-					mGrabbedItem->SetLocation(-500.0, -500.0);
+					mGrabbedItem->SetLocation(-500.0, -500.0 );
 
 				}
 				//bottom left diagnal
-				else if (oY >= 500 - mGrabbedItem->GetHeight())
+				else if (oY >= 500 -100)
 				{
 					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
 				}
 				//rest
 				else
 				{
-					mGrabbedItem->SetLocation(-500.0, oY);
+					mGrabbedItem->SetLocation(-500.0, oY-45);
 				}
 
 			}
 
 			//outside of right side
-			else if (oX >= 500) {
+			else if (oX >= 500 -40) {
 
 				//top right diagnal
-				if (oY < -500)
+				if (oY < -500 +50 )
 				{
 					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), -500.0);
 
 				}
 				//bottom right diagnal
-				else if (oY >= 500 - mGrabbedItem->GetHeight())
+				else if (oY >= 500 - 100)
 				{
 					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), 500.0 - mGrabbedItem->GetHeight());
 				}
@@ -423,13 +445,13 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				//rest
 				else
 				{
-					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY);
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY - 45);
 				}
 
 			}
 
 			//outside of the top
-			else if (oY <= -500.0)
+			else if (oY <= -500.0 + 50)
 			{
 				//top right corner
 				if (oX >= 500.0 - mGrabbedItem->GetWidth() / 2.0 &&  oX <= 500.0)
@@ -444,12 +466,13 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 				else
 				{
+
 					mGrabbedItem->SetLocation(oX - 30.0, -500.0);
 
 				}
 			}
 			//outside of the bottom
-			else if (oY > 500.0)
+			else if (oY > 500.0 -100 )
 			{
 				//bottom right corner
 				if (oX >= 500.0 - mGrabbedItem->GetWidth() / 2.0 && oX <= 500.0)
@@ -470,7 +493,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 			}
 
-			else if (oX > -500.0 && oY > -500.0 && oX  < 500.0 - mGrabbedItem->GetWidth() && oY < 500.0 - mGrabbedItem->GetHeight()) {
+			else if (oX > -500.0 && oY > -500.0 && oX  < 500.0  && oY < 500.0 ) {
 
 				mGrabbedItem->SetLocation(oX - 30.0, oY - 50.0);
 

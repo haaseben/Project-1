@@ -191,9 +191,6 @@ private:
 	/// An object that describes the playing area
 	CPlayingArea  mPlayingArea;
 
-	/// New Game Image
-	std::unique_ptr<Gdiplus::Bitmap> mNewGameImage;
-
 	/// If villains has been drawn for the new game. 
 	bool mVillainDrawn = 0;
 
