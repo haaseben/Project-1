@@ -56,6 +56,7 @@ public:
 protected:
 	CMinion::CMinion(CGame *game, const std::wstring &filename);
 
+	
 
 
 
