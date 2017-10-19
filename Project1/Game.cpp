@@ -113,6 +113,8 @@ void CGame::AddInitialObjects()
 		arya->SetLocation(-50.0, 225.0);
 		mItems.push_back(arya);
 
+		
+
 	}
 	mVillainDrawn = 1;
 }
@@ -225,91 +227,149 @@ void CGame::Update(double elapsed)
 	}
 	/// Flocking Stuff//////////////////////////////////////////////////////
 	//
-	CVector cohesionCenter = CohesionCenter();
+	Flocking();
+	int counter = 0;
+	
+	int count2 = counter;
+	
 
-	for (auto item3 : mItems)
+
+}
+
+
+void CGame::Flocking()
+{
+	CVector cohesionCenter = CohesionCenter();
+	int counter = 0;
+
+	for (auto item : mItems)
 	{
-		if (item3->CanCollide() == true)
+		if (item->CanCollide() == true)
 		{
+			///counter = counter + 1;
 			///Cohesion Vector for each Minion
-			CVector minionVector = CVector(item3->GetX(), item3->GetY());
+			
+			CVector minionVector = item->GetPVector();
+			////////////////////////////////////////////
 			cv = cohesionCenter - minionVector;
 			double l = cv.Length();
 			if (l > 0)
 			{
 				cv /= l;
 			}
-
+			/////////////////////////////////////////////
 
 			///Seperation Vector
-			CVector closestMinion;
-			double distance = 10000;
-			int alignmentCount = 0;
-			CVector alignmentAverage;
+			
+			sv = Seperation(item);
 
-			alignmentAverage = alignmentAverage + minionVector;///USE GETTER TO GET MV FROM this MINION AND ADD TO THIS VECTOR
-			alignmentCount += 1;
-
-
-			for (auto item4 : mItems)
+			///Alignment
+			double x = 0;
+			double y = 0;
+			av = Alignment(item);
+			if (mGru == nullptr)
 			{
-				if (item4->CanCollide() == true)
-				{
-					if (item4 != item3)
-					{
-						CVector testMinion = CVector(item4->GetY(), item4->GetY());
-						double testDistance = minionVector.Distance(testMinion);
-						if (testDistance < distance)
-						{
-							closestMinion = testMinion;
-						}
-						if (testDistance < 200)
-						{
-							alignmentAverage = alignmentAverage + testMinion;///USE GETTER TO GET MV FROM EACH TEST MINION AND ADD TO THIS VECTOR
-							alignmentCount += 1;
-						}
-					}
-				}
+				x = 0;
+				y = 0;
 			}
-
-
-			av = alignmentAverage / alignmentCount;
-			av = av.Normalize();
-			sv = minionVector - closestMinion;
-			sv.Normalize();
-
+			else
+			{
+				x = mGru->GetY();
+				y = mGru->GetX();
+			}
+			
+			
 			/// gruv vector
+			//double test = &mGru->GetX();
+			gruV = CVector(x, y);
+			if (gruV.Length() > 0)
+			{
+				gruV.Normalize();
+			}
+			
+			CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+			mV.Normalize();
+			mV = mV * 100;
+//			item->SetVelocity(mV);
+			////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
-			//		gruV = CVector(mGru->GetX(),mGru->GetY()) - minionVector;
-			//		if (gruV.Length() > 0)
-			//		{
-			//			gruV.Normalize();
-			//		}
-			//		
-			//		CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
-			//		mV.Normalize();
+		}
 
-			//		//item3->SetVelocity(mV);
-			//		///SET THE MINIONVECTOR SPEED VECTOR TO mv
+	}
 
+	CVector mV = CVector(0,0);
+	//return mV;
+}
+
+CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
+{
+	int alignmentCount = 0;
+	CVector minionVector = minion->GetPVector();
+	CVector alignmentAverage;
+
+	for (auto item : mItems)
+	{
+		if (item->CanCollide() == true)
+		{
+			CVector testMinion = item->GetPVector();
+			double testDistance = minionVector.Distance(testMinion);
+			if (testDistance < 200)
+			{
+				alignmentCount += 1;
+				alignmentAverage = alignmentAverage + item->GetVelocity();
+			}
+		}
+	}
+	av = alignmentAverage / alignmentCount;
+	av = av.Normalize();
+	return av;
+
+	//alignmentAverage = alignmentAverage + minionVector;///USE GETTER TO GET MV FROM this MINION AND ADD TO THIS VECTOR
+	
+}
+
+CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
+{
+	CVector closestMinion;
+	CVector closestMinionVector;
+	CVector minionVector = minion->GetVelocity();
+	double distance = 10000;
+	for (auto item : mItems)
+	{
+		if (item->CanCollide() == true)
+		{
+			if (item != minion)
+			{
+				CVector testMinion = item->GetPVector();
+				double testDistance = minionVector.Distance(testMinion);
+				if (testDistance < distance)
+				{
+					closestMinion = testMinion;
+					closestMinionVector = item->GetVelocity();
+				}
+				
+			}
 		}
 	}
 
-
+	sv = minionVector - closestMinionVector;
+	//sv = sv + .01;
+	sv.Normalize();
+	return sv;
 
 }
 
-
 CVector CGame::CohesionCenter()
 {
-	CVector cohesionCenter;
+	CVector cohesionCenter=CVector(0,0);
 	int numMinions = 0;
+
 	for (auto item : mItems)
 	{
 		if (item->CanCollide() == true)
 		{
 			numMinions += 1;
-			CVector minionVector = CVector(item->GetX(), item->GetY());
+			CVector minionVector = item->GetPVector();
 			cohesionCenter = cohesionCenter + minionVector;
 		}
 	}
