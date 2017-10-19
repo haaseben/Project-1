@@ -94,6 +94,8 @@ public:
 	void SetVelocity(CVector NewVector) { mV = NewVector; }/// Velocity in virtual pixels/second
 
 	const CVector GetVelocity() { return mV; }
+
+	const CVector GetPVector() { return mP; }
 	/** Accept a visitor
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) = 0;

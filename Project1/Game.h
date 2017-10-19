@@ -69,6 +69,12 @@ public:
 	/// hittest see if item moves
 	std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y);
 
+	CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion);
+
+	CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion);
+
+	void CGame::Flocking();
+
 	/// update drawing
 	void CGame::Update(double elapsed);
 
@@ -171,6 +177,10 @@ private:
 
 	/// Any item we are currently dragging
 	std::shared_ptr<CGamePiece> mGru;
+
+	double mGruX;
+
+	double mGruY;
 
 	/// Game area width in virtual pixels
 	const static int Width = 1400;
