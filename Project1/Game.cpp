@@ -244,7 +244,8 @@ void CGame::Update(double elapsed)
 						}
 						if (testDistance < 200)
 						{
-							alignmentAverage = alignmentAverage + testMinion;///USE GETTER TO GET MV FROM EACH TEST MINION AND ADD TO THIS VECTOR
+							CVector test = item4->GetVelocity();
+							alignmentAverage = alignmentAverage + test;///USE GETTER TO GET MV FROM EACH TEST MINION AND ADD TO THIS VECTOR
 							alignmentCount += 1;
 						}
 					}
@@ -259,16 +260,16 @@ void CGame::Update(double elapsed)
 
 			/// gruv vector
 
-			//		gruV = CVector(mGru->GetX(),mGru->GetY()) - minionVector;
-			//		if (gruV.Length() > 0)
-			//		{
-			//			gruV.Normalize();
-			//		}
-			//		
-			//		CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
-			//		mV.Normalize();
-
-			//		//item3->SetVelocity(mV);
+			gruV = CVector(0, 0);///(mGru->GetX(),mGru->GetY()) - minionVector;
+			if (gruV.Length() > 0)
+			{
+				gruV.Normalize();
+			}
+					
+			CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+			mV.Normalize();
+			
+			//item3->SetVelocity(mV);
 			//		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
 		}

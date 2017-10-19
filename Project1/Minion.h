@@ -57,11 +57,7 @@ protected:
 	CMinion::CMinion(CGame *game, const std::wstring &filename);
 
 
-	// Item location in the playing area
-	CVector mP;			///< Position 
 
-						/// Velocity in virtual pixels/second
-	CVector mV;
 
 private:
 

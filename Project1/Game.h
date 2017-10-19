@@ -28,10 +28,9 @@ public:
 	virtual ~CGame();
 
 
-	void SetVelocity(CVector NewVector) { mV = NewVector; }
+	
 
-	/// Velocity in virtual pixels/second
-	CVector mV;
+	
 
 	/**
 	* OnDraw

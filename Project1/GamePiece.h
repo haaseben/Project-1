@@ -91,6 +91,9 @@ public:
 	/// determines if a game piece can be deleted
 	virtual bool CanCollide() { return false; }
 
+	void SetVelocity(CVector NewVector) { mV = NewVector; }/// Velocity in virtual pixels/second
+
+	const CVector GetVelocity() { return mV; }
 	/** Accept a visitor
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) = 0;
@@ -110,6 +113,14 @@ protected:
 	// Item location in the game
 	double   mX = 0;     ///< X location for the center of the item
 	double   mY = 0;     ///< Y location for the center of the item
+
+						 // Item location in the playing area
+	CVector mP;			///< Position 
+
+	
+
+	CVector mV;
+
 
 private:
 	/// The city this item is contained in
