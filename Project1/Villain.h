@@ -32,6 +32,10 @@ public:
 
 	virtual int GetMultiplier()=0;
 
+	int CVillain::GetJuicerScore() { return mJuicerScore; }
+	int CVillain::GetPokeScore() { return mPokeScore; }
+	int CVillain::GetAryaScore() { return mAryaScroe; }
+
 protected:
 	/**
 	* Constructor
@@ -39,6 +43,17 @@ protected:
 	* \param filename Filename for the image we use
 	*/
 	CVillain::CVillain(CGame *game, const std::wstring &filename);
+
+private:
+	/// Collected score Juicer
+	int mJuicerScore = 0;
+
+	/// Collected socre Pokeball
+	int mPokeScore = 0;
+
+	/// Collected socre Arya
+	int mAryaScroe = 0;
+
 
 
 };

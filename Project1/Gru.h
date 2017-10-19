@@ -10,6 +10,7 @@
 
 #include <memory>
 #include "GamePiece.h"
+#include "Vector.h"
 
 
 /**
@@ -18,6 +19,8 @@
 class CGru : public CGamePiece
 {
 public:
+
+	bool CanCollide() { return  false; };
 	CGru(CGame *game);
 
 	/// Default constructor (disabled)

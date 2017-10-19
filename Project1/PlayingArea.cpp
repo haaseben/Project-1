@@ -19,8 +19,6 @@ using namespace Gdiplus;
 /// The size of the playing area square in virtual pixels
 const double CPlayingArea::GridSize = 1000.0;
 
-
-
 /// The range from the center to an edge for the playing area
 /// in virtual pixels
 const double CPlayingArea::GridRadius = CPlayingArea::GridSize / 2.0;
@@ -59,8 +57,4 @@ void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics, bool gameover)
 		graphics->DrawString(L"Gru is Dead!", -1, &font, PointF(-510, -100), &green);
 
 	}
-
-	
-
-
 }

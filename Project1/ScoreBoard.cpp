@@ -10,6 +10,9 @@
 #include "ScoreBoard.h"
 #include <string>
 #include <sstream>
+#include "GamePiece.h"
+#include "VillainVisitor.h"
+#include "Juicer.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -25,6 +28,31 @@ const wstring PokeballImageName = L"images/pokeball.png";
 
 CScoreBoard::CScoreBoard()
 {
+	mJuicerImage = unique_ptr<Bitmap>(Bitmap::FromFile(JuicerImageName.c_str()));
+	if (mJuicerImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += JuicerImageName;
+		AfxMessageBox(msg.c_str());
+	}
+
+	mPokeballImage = unique_ptr<Bitmap>(Bitmap::FromFile(PokeballImageName.c_str()));
+	if (mPokeballImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += PokeballImageName;
+		AfxMessageBox(msg.c_str());
+	}
+
+	mAryaImage = unique_ptr<Bitmap>(Bitmap::FromFile(AryaImageName.c_str()));
+	if (mAryaImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += AryaImageName;
+		AfxMessageBox(msg.c_str());
+	}
+	
+
 }
 
 
@@ -37,16 +65,22 @@ CScoreBoard::~CScoreBoard()
 /// Draw the socreboard
 void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool gameover)
 {
-
+	CVillainVisitor visitor;
+	mJuicerScore = visitor.GetJuicerScore();
+	mPokeBallScore = visitor.GetPokeScore();
+	mAryaScore = visitor.GetAryaScore();
 
 	if (!gameover)
 	{
 		mTotalTime += elapsed;
 	}
+
+
 	int seconds = (int)mTotalTime % 60;
 	int minutes = mTotalTime / 60;
 	wstring secondsString = to_wstring(seconds);
-	if (seconds < 10) {
+	if (seconds < 10) 
+	{
 		secondsString = to_wstring(0) + secondsString;
 	}
 	wstring fullTimeFormat = to_wstring(minutes) + L":" + secondsString;
@@ -62,9 +96,54 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 		PointF(534, -500),   // Where to draw (top left corner)
 		&green);    // The brush to draw the text with
 
+	Gdiplus::Font fontScore(&fontFamily, 15);
+
+
+	if (!mJuicerScore == 0)
+	{
+		int widJ = mJuicerImage->GetWidth();
+		int hitJ = mJuicerImage->GetHeight();
+		graphics->DrawImage(mJuicerImage.get(), 550, -400, widJ, hitJ);
+
+		graphics->DrawString((to_wstring(mJuicerScore).c_str()),  // String to draw
+			-1,         // String length, -1 means it figures it out on its own
+			&fontScore,      // The font to use
+			PointF(590, -240),   // Where to draw (top left corner)
+			&green);    // The brush to draw the text with
+	}
+
+	if (!mPokeBallScore == 0)
+	{
+		int widP = mPokeballImage->GetWidth();
+		int hitP = mPokeballImage->GetHeight();
+		graphics->DrawImage(mPokeballImage.get(), 575, -180, widP, hitP);
+
+		graphics->DrawString((to_wstring(mPokeBallScore).c_str()),  // String to draw
+			-1,         // String length, -1 means it figures it out on its own
+			&fontScore,      // The font to use
+			PointF(590, -125),   // Where to draw (top left corner)
+			&green);    // The brush to draw the text with
+	}
+
+	if (!mAryaScore == 0)
+	{
+		int widA = mAryaImage->GetWidth();
+		int hitA = mAryaImage->GetHeight();
+		graphics->DrawImage(mAryaImage.get(), 534, -50, widA, hitA);
+
+		graphics->DrawString((to_wstring(mAryaScore).c_str()),  // String to draw
+			-1,         // String length, -1 means it figures it out on its own
+			&fontScore,      // The font to use
+			PointF(590, 110),   // Where to draw (top left corner)
+			&green);    // The brush to draw the text with
+	}
+
 	if (mInitialStatus == 1 && !gameover) 
 	{
 		mTotalTime = 0;
+		mJuicerScore = 0;
+		mPokeBallScore = 0;
+		mAryaScore = 0;
 		mInitialStatus = 0;
 	}
 

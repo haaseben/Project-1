@@ -31,6 +31,8 @@ public:
 	/** The directory where the images are stored */
 	static const std::wstring ImagesDirectory;
 
+
+
 	///  Default constructor (disabled)
 	CGamePiece() = delete;
 
@@ -85,6 +87,9 @@ public:
 	virtual bool GruOrNot()=0 ;
 
 	//virtual CVector CGamePiece::GetP
+
+	/// determines if a game piece can be deleted
+	virtual bool CanCollide() { return false; }
 
 	/** Accept a visitor
 	* \param visitor The visitor we accept */

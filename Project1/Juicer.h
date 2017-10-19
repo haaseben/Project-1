@@ -42,6 +42,10 @@ public:
 
 	int CJuicer::GetMultiplier();
 
+
+
 private:
 	int mMultiplier = 2;
+	
+
 };

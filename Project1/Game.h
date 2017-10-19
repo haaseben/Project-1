@@ -12,6 +12,7 @@
 #include "GamePiece.h"
 #include "PlayingArea.h"
 #include "ScoreBoard.h"
+#include "Vector.h"
 
  /**
  * The class that handle the game and all components in the game. 
@@ -26,6 +27,12 @@ public:
 	/// destructor
 	virtual ~CGame();
 
+
+	void SetVelocity(CVector NewVector) { mV = NewVector; }
+
+	/// Velocity in virtual pixels/second
+	CVector mV;
+
 	/**
 	* OnDraw
 	* \param graphics What we use to draw
@@ -35,6 +42,24 @@ public:
 	*/
 	void OnDraw(Gdiplus::Graphics * graphics,int width,int height, double elapsed);
 
+	/*Potential flocking functions.
+	/ Adding all vectors.
+	*/
+
+	// Cohesion vector
+	CVector cv;
+
+	// Separation vector
+	CVector sv;
+
+	// Alignment vector
+	CVector av;
+
+	// Gru vector
+	CVector gruV;
+
+
+	CVector CGame::CohesionCenter();
 
 	/**
 	* Add
@@ -49,6 +74,9 @@ public:
 	void CGame::Update(double elapsed);
 
 	void DeleteItem(std::shared_ptr<CGamePiece> item);
+
+	void Destroy(std::shared_ptr<CGamePiece> item, int x, int y);
+
 
 	/// clear items
 	void Clear();
@@ -115,6 +143,8 @@ public:
 
 
 
+
+
 	private:
 		CGame *mGame;   ///< City we are iterating over
 		int mPos;       ///< Position in the collection
@@ -140,7 +170,8 @@ private:
 	/// All of the items to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mItems;
 
-	
+	/// Any item we are currently dragging
+	std::shared_ptr<CGamePiece> mGru;
 
 	/// Game area width in virtual pixels
 	const static int Width = 1400;
@@ -174,5 +205,19 @@ private:
 	/// If the game is over
 	bool mGameOver = false;
 
+	/*Potential flocking functions.
+	/ Adding all vectors.
+	*/
 
+	// Cohesion vector
+	CVector cv;
+
+	// Separation vector
+	CVector sv;
+
+	// Alignment vector
+	CVector av;
+
+	// Gru vector
+	CVector gruV;
 };
