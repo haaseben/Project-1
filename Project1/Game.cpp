@@ -90,6 +90,7 @@ void CGame::AddInitialObjects()
 		mGru = Gru;
 		/**Draw NewGame Button
 		*/
+
 		auto NewGameButton = make_shared<CNewGame>(this);
 		NewGameButton->SetLocation(-740, -490.0);
 		mItems.push_back(NewGameButton);
@@ -113,6 +114,17 @@ void CGame::AddInitialObjects()
 		arya->SetLocation(-50.0, 225.0);
 		mItems.push_back(arya);
 
+		//auto minion1 = make_shared<CMinionStuart>(this);
+		//minion1->SetLocation(280, 225);
+		//mItems.push_back(minion1);
+
+		//auto minion2 = make_shared<CMinionStuart>(this);
+		//minion2->SetLocation(-250, 225.0);
+		//mItems.push_back(minion2);
+
+		//auto minion3 = make_shared<CMinionStuart>(this);
+		//minion3->SetLocation(290,250);
+		//mItems.push_back(minion3);
 		
 
 	}
@@ -274,14 +286,15 @@ void CGame::Flocking()
 			}
 			else
 			{
-				x = mGru->GetY();
-				y = mGru->GetX();
+				x = mGru->GetX();
+				y = mGru->GetY();
 			}
 			
 			
 			/// gruv vector
 			//double test = &mGru->GetX();
 			gruV = CVector(x, y);
+			gruV = gruV - minionVector;
 			if (gruV.Length() > 0)
 			{
 				gruV.Normalize();
@@ -290,7 +303,7 @@ void CGame::Flocking()
 			CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
 			mV.Normalize();
 			mV = mV * 100;
-//			item->SetVelocity(mV);
+			item->SetVelocity(mV);
 			////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
 		}
@@ -305,7 +318,7 @@ CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 {
 	int alignmentCount = 0;
 	CVector minionVector = minion->GetPVector();
-	CVector alignmentAverage;
+	CVector alignmentAverage=CVector(0,0);
 
 	for (auto item : mItems)
 	{
@@ -324,15 +337,14 @@ CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 	av = av.Normalize();
 	return av;
 
-	//alignmentAverage = alignmentAverage + minionVector;///USE GETTER TO GET MV FROM this MINION AND ADD TO THIS VECTOR
 	
 }
 
 CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 {
-	CVector closestMinion;
+	
 	CVector closestMinionVector;
-	CVector minionVector = minion->GetVelocity();
+	CVector minionVector = minion->GetPVector();
 	double distance = 10000;
 	for (auto item : mItems)
 	{
@@ -344,8 +356,8 @@ CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 				double testDistance = minionVector.Distance(testMinion);
 				if (testDistance < distance)
 				{
-					closestMinion = testMinion;
-					closestMinionVector = item->GetVelocity();
+					closestMinionVector = item->GetPVector();
+					distance = testDistance;
 				}
 				
 			}
@@ -353,7 +365,6 @@ CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 	}
 
 	sv = minionVector - closestMinionVector;
-	//sv = sv + .01;
 	sv.Normalize();
 	return sv;
 
