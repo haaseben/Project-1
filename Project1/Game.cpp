@@ -1,8 +1,9 @@
+
 /**
- * \file Game.cpp
- *
- * \author Team Jorge
- */
+* \file Game.cpp
+*
+* \author Team Jorge
+*/
 
 #include <memory>
 #include <algorithm>
@@ -58,7 +59,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 
 	AddInitialObjects();
 
-	mScoreBoard.OnDraw(graphics,  elapsed, mGameOver);
+	mScoreBoard.OnDraw(graphics, elapsed, mGameOver);
 
 	for (auto item : mItems)
 	{
@@ -69,7 +70,7 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 		mGru->Draw(graphics);
 	}
 
-	mPlayingArea.OnDraw(graphics,mGameOver);
+	mPlayingArea.OnDraw(graphics, mGameOver);
 }
 
 void CGame::AddInitialObjects()
@@ -103,7 +104,7 @@ void CGame::AddInitialObjects()
 		/**Draw Arya
 		*/
 		auto arya = make_shared<CArya>(this);
-		arya->SetLocation(-50.0,225.0);
+		arya->SetLocation(-50.0, 225.0);
 		mItems.push_back(arya);
 
 	}
@@ -148,7 +149,7 @@ std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<C
 {
 	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if ((*i)->HitTest(x-50, y-70) && *i != item)
+		if ((*i)->HitTest(x - 50, y - 70) && *i != item)
 		{
 			mGameOver = true;
 			return *i;
@@ -185,7 +186,7 @@ void CGame::Update(double elapsed)
 	}
 	if ((fmod(mTotalTime, 1) > .2) && spawn == false)
 	{
-		
+
 		spawn = true;
 	}
 	//mGru->Update(elapsed);
@@ -200,7 +201,7 @@ void CGame::Update(double elapsed)
 			break;
 		}
 	}
-	
+
 	/// Flocking Stuff//////////////////////////////////////////////////////
 	//
 	CVector cohesionCenter = CohesionCenter();
@@ -249,8 +250,8 @@ void CGame::Update(double elapsed)
 					}
 				}
 			}
-		
-	
+
+
 			av = alignmentAverage / alignmentCount;
 			av = av.Normalize();
 			sv = minionVector - closestMinion;
@@ -258,17 +259,17 @@ void CGame::Update(double elapsed)
 
 			/// gruv vector
 
-	//		gruV = CVector(mGru->GetX(),mGru->GetY()) - minionVector;
-	//		if (gruV.Length() > 0)
-	//		{
-	//			gruV.Normalize();
-	//		}
-	//		
-	//		CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
-	//		mV.Normalize();
+			//		gruV = CVector(mGru->GetX(),mGru->GetY()) - minionVector;
+			//		if (gruV.Length() > 0)
+			//		{
+			//			gruV.Normalize();
+			//		}
+			//		
+			//		CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+			//		mV.Normalize();
 
-	//		//item3->SetVelocity(mV);
-	//		///SET THE MINIONVECTOR SPEED VECTOR TO mv
+			//		//item3->SetVelocity(mV);
+			//		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
 		}
 	}
@@ -278,7 +279,7 @@ void CGame::Update(double elapsed)
 }
 
 
-CVector CGame::CohesionCenter() 
+CVector CGame::CohesionCenter()
 {
 	CVector cohesionCenter;
 	int numMinions = 0;
@@ -353,10 +354,10 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	double oX = (point.x - mXOffset) / mScale;
-	double oY = (point.y - mYOffset) / mScale; 
+	double oY = (point.y - mYOffset) / mScale;
 	NewGame(oX, oY);
 	mGrabbedItem = HitTest(oX, oY);
-	if ( mGrabbedItem != nullptr)
+	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
 		mGrabbedItem = mGru;
@@ -383,12 +384,12 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 		if (nFlags & MK_LBUTTON)
 		{
 			//outside of left side
-			if (oX <= -500.0 ) 
+			if (oX <= -500.0)
 			{
 				//top left diagnol
-				if (oY <= -500.0) 
+				if (oY <= -500.0)
 				{
-					mGrabbedItem->SetLocation(-500.0 , -500.0);
+					mGrabbedItem->SetLocation(-500.0, -500.0);
 
 				}
 				//bottom left diagnal
@@ -397,16 +398,16 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
 				}
 				//rest
-				else 
+				else
 				{
 					mGrabbedItem->SetLocation(-500.0, oY);
 				}
-				
+
 			}
 
 			//outside of right side
 			else if (oX >= 500) {
-								
+
 				//top right diagnal
 				if (oY < -500)
 				{
@@ -422,11 +423,11 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				//rest
 				else
 				{
-						mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY);
+					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), oY);
 				}
-			
+
 			}
-			
+
 			//outside of the top
 			else if (oY <= -500.0)
 			{
@@ -440,7 +441,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				{
 					mGrabbedItem->SetLocation(-500.0, -500.0);
 				}
-				
+
 				else
 				{
 					mGrabbedItem->SetLocation(oX - 30.0, -500.0);
@@ -466,15 +467,15 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 					mGrabbedItem->SetLocation(oX - 30.0, 500.0 - mGrabbedItem->GetHeight());
 
 				}
-				
+
 			}
-			
-			else if(oX > -500.0 && oY > -500.0 && oX  < 500.0 - mGrabbedItem->GetWidth() && oY < 500.0 - mGrabbedItem->GetHeight()){
-				
-				mGrabbedItem->SetLocation(oX-30.0, oY-50.0);
-			
+
+			else if (oX > -500.0 && oY > -500.0 && oX  < 500.0 - mGrabbedItem->GetWidth() && oY < 500.0 - mGrabbedItem->GetHeight()) {
+
+				mGrabbedItem->SetLocation(oX - 30.0, oY - 50.0);
+
 			}
-			
+
 			//calls collision test to see if Gru has been killed
 			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
 
@@ -524,15 +525,15 @@ void CGame::SpawnMinionTimer() {
 	}
 	else
 	{
-		minion -> SetLocation(locX2, -450);
+		minion->SetLocation(locX2, -450);
 	}
 	mNumberMinions += 1;
 	mItems.push_back(minion);
 }
 
-void CGame::NewGame(double x, double y) 
+void CGame::NewGame(double x, double y)
 {
-	if ( (-540-200< x && x < -540) && (-380-112 <y && y < -380))
+	if ((-540 - 200< x && x < -540) && (-380 - 112 <y && y < -380))
 	{
 		CGameReset visitor;
 		mScoreBoard.Accept(&visitor);
@@ -556,7 +557,7 @@ void CGame::Accept(CGameVisitor *visitor)
 * if minion hits villian gets destroyed
 * \param item item that is eating
 * \param x, x is the x position of the piece that is moving
-* \param y, x is the y position of the piec that is moving 
+* \param y, x is the y position of the piec that is moving
 */
 void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 
@@ -570,15 +571,3 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 	}
 
 }
-
-
-
-//
-// Cohesion
-//
-//cv = cohesionCenter - GetP();
-//double l = cv.Length();
-//if (l > 0)
-//{
-//	cv /= l;
-//}
