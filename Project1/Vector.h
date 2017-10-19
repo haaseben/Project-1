@@ -5,9 +5,7 @@
  *
  * Simple 2D vector class
  */
-
 #pragma once
-
 /**
  * \brief Simple 2D vector class
  *
@@ -66,6 +64,7 @@ private:
 
 	/// Y component of vector
 	double mY;
+
 };
 
 CVector operator+(const CVector & a, const CVector & b);

@@ -474,29 +474,3 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 	}
 
 }
-
-/*Potential flocking functions.
-/ Adding all vectors.
-*/
-
-// Cohesion vector
-CVector cv;
-
-// Separation vector
-CVector sv;
-
-// Alignment vector
-CVector av;
-
-// Gru vector
-CVector gruV;
-
-//
-// Cohesion
-//
-//cv = cohesionCenter - GetP();
-//double l = cv.Length();
-//if (l > 0)
-//{
-//	cv /= l;
-//}

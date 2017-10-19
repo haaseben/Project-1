@@ -178,4 +178,20 @@ private:
 
 	/// If the game is over
 	bool mGameOver = false;
+
+	/*Potential flocking functions.
+	/ Adding all vectors.
+	*/
+
+	// Cohesion vector
+	CVector cv;
+
+	// Separation vector
+	CVector sv;
+
+	// Alignment vector
+	CVector av;
+
+	// Gru vector
+	CVector gruV;
 };
