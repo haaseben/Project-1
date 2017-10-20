@@ -65,8 +65,6 @@ void CMinion::Update(double elapsed)
 		}
 	}
 	
-	
-	double iegiahg = GetY();
 	//checks to see when the minion gets within 10 pixels of the edge in y direction on bottom
 	if (abs(mSpeedY) > 0 && 500 - GetY() - (hit) <= 2)
 	{
