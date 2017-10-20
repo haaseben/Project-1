@@ -1,7 +1,8 @@
 /**
  * \file GameVisitor.cpp
  *
- * \author team jorge
+ * \author Team Jorge
+ * Class that implements game visitor.
  */
 
 #include "stdafx.h"

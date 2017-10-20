@@ -2,6 +2,7 @@
  * \file Minion.cpp
  *
  * \author Team Jorge
+ * Class that implements  abstract minion.
  */
 
 #include "stdafx.h"
@@ -22,6 +23,8 @@ CMinion::CMinion(CGame *game, const std::wstring &filename) :
 
 }
 
+/** destructor
+*/
 CMinion::~CMinion()
 {
 }
@@ -47,7 +50,7 @@ void CMinion::Update(double elapsed)
 	double hit = mItemImage->GetHeight();
 
 	///checks to see when the minion gets within 10 pixels of the edge in x direction on right
-	if (GetX() >= 500)
+	if (abs(mSpeedX) > 0 && 500 - GetX() - (wid)+2 <= 2)
 	{
 		mV = CVector(-mV.X(), mV.Y());
 	}
@@ -62,17 +65,15 @@ void CMinion::Update(double elapsed)
 		}
 	}
 	
-	
-	double iegiahg = GetY();
 	//checks to see when the minion gets within 10 pixels of the edge in y direction on bottom
-	if (abs(mSpeedY) >= 0 && 500 - GetY() - (hit) <= 2)
+	if (abs(mSpeedY) > 0 && 500 - GetY() - (hit) <= 2)
 	{
 		mV = CVector(mV.X(), -mV.Y());
 	}
 	
 	
 	//checks to see when the minion gets within 10 pixels of the edge in y direction on top
-	if (mSpeedY <= 0 && GetY() <= -490)
+	if (mSpeedY < 0 && GetY() <= -490)
 	{
 		mV = CVector(mV.X(), -mV.Y());
 	}

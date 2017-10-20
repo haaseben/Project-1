@@ -2,6 +2,7 @@
  * \file MinionStuart.cpp
  *
  * \author Team Jorge
+ * Class that implements stuart minion.
  */
 
 #include "stdafx.h"

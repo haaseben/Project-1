@@ -2,6 +2,7 @@
  * \file ScoreBoard.cpp
  *
  * \author Team Jorge
+ * Implements presentation of scoreboard
  */
 
 #include <memory>

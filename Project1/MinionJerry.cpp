@@ -2,6 +2,7 @@
  * \file MinionJerry.cpp
  *
  * \author Team Jorge
+ * Class that implements jerry minion.
  */
 
 #include "stdafx.h"

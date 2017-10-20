@@ -3,7 +3,7 @@
 *
 * \author Team Jorge
 *
-* Class the implements Gru.
+* Class that implements Gru.
 */
 
 #include "stdafx.h"

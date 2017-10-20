@@ -23,6 +23,8 @@ CNewGame::CNewGame(CGame *game) :
 
 }
 
+/** destructor
+*/
 CNewGame::~CNewGame()
 {
 

@@ -3,7 +3,7 @@
 *
 * \author Team Jorge
 *
-* Class the implements Juicer.
+* Class that implements Juicer.
 */
 
 #include "stdafx.h"
