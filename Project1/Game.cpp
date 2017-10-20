@@ -82,9 +82,9 @@ void CGame::AddInitialObjects()
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
 		mGru = Gru;
+
 		/**Draw NewGame Button
 		*/
-
 		auto NewGameButton = make_shared<CNewGame>(this);
 		NewGameButton->SetLocation(-740, -490.0);
 		mItems.push_back(NewGameButton);

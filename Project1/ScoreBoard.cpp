@@ -74,7 +74,7 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 
 
 	int seconds = (int)mTotalTime % 60;
-	int minutes = mTotalTime / 60;
+	int minutes = (int)mTotalTime / 60;
 	wstring secondsString = to_wstring(seconds);
 	if (seconds < 10) 
 	{

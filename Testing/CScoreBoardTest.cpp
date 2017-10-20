@@ -28,22 +28,12 @@ namespace Testing
 			CScoreBoard scoreboard;
 		}
 
-		TEST_METHOD(TestCScroreBoardTimer)
+		TEST_METHOD(TestCScroreBoardAryaScore)
 		{
 			CScoreBoard scoreboard;
-			double elapsed = 60;
-			const wchar_t*  count  = nullptr;
-			int TotalTime = elapsed;
-			int seconds = 0;
-			int minutes = 1;
-			wstring secondsString = to_wstring(seconds);
-			if (seconds < 10) {
-				secondsString = to_wstring(0) + secondsString;
-			}
-			wstring fullTimeFormat = to_wstring(minutes) + L":" + secondsString;
-			count = fullTimeFormat.c_str();
+			scoreboard.SetAryaScore(3);
 
-			Assert::IsTrue(scoreboard.mCounter ==count);
+			Assert::IsTrue(scoreboard.GetAryaScore()==3);
 
 
 			

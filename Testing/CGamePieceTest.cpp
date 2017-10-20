@@ -22,7 +22,11 @@ namespace Testing
 		* \param graphics The graphics context to draw on */
 		virtual void Draw(Gdiplus::Graphics *graphics) {}
 
-		virtual bool GruOrNot() {};
+		virtual bool GruOrNot() { return false; }
+
+		/** Accept a visitor
+		* \param visitor The visitor we accept */
+		virtual void Accept(CGameVisitor *visitor) override { }
 	};
 	TEST_CLASS(CGamePieceTest)
 	{
