@@ -55,6 +55,10 @@ public:
 	*/
 	void SetAryaScore(int score);
 	
+	/**  gets mAryaScore
+	* \return mAryaScore
+	*/
+	int GetAryaScore() {return mAryaScore;}
 
 private:
 
