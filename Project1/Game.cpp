@@ -230,12 +230,12 @@ void CGame::Update(double elapsed)
 */
 void CGame::Flocking()
 {
-	if (!mGameOver) {
+
 		CVector cohesionCenter = CohesionCenter();
 
 		for (auto item : mItems)
 		{
-			if (item->CanCollide() == true)
+			if (item->CanCollide() == true && item->GetX()<(500 - item->GetHeight()-10) && item->GetX()>(-500 + item->GetHeight()) && (item->GetY()<500-item->GetHeight()) && (item->GetY()>-500+ item->GetHeight()))
 			{
 				double itemx = item->GetX(); double itemy = item->GetY();
 				if (mGru!= nullptr && mGru->HitTest((int)itemx, (int)itemy) ){
@@ -255,7 +255,7 @@ void CGame::Flocking()
 				/////////////////////////////////////////////
 
 				///Seperation Vector
-
+				
 				sv = Seperation(item);
 
 				///Alignment
@@ -283,7 +283,15 @@ void CGame::Flocking()
 					gruV.Normalize();
 				}
 
-				CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+				CVector mV;
+				if (!mGameOver) {
+					mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+				}
+				if (mGameOver) 
+				{
+					mV = cv * 1 + sv * 3 + av * 5;
+				}
+
 				mV.Normalize();
 				mV = mV * (item->GetBaseSpeed());
 				item->SetVelocity(mV);
@@ -296,7 +304,7 @@ void CGame::Flocking()
 
 		CVector mV = CVector(0, 0);
 		//return mV;
-	}
+	
 }
 /**
 * \brief alligns minions properly
