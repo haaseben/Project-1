@@ -32,7 +32,6 @@ namespace Testing
 		{
 			CScoreBoard scoreboard;
 			double elapsed = 60;
-			scoreboard.Timer(elapsed);
 			const wchar_t*  count  = nullptr;
 			int TotalTime = elapsed;
 			int seconds = 0;

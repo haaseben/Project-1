@@ -43,7 +43,6 @@ public:
 
 private:
 
-	const wchar_t *counter = nullptr; ///< counter
 
 	int mAryaScore = 0; ///< Score for Arya
 

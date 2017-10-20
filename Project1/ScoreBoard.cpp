@@ -99,7 +99,7 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 	Gdiplus::Font fontScore(&fontFamily, 15);
 
 
-	if (!mJuicerScore == 0)
+	if (mJuicerScore != 0)
 	{
 		int widJ = mJuicerImage->GetWidth();
 		int hitJ = mJuicerImage->GetHeight();
@@ -112,7 +112,7 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 			&green);    // The brush to draw the text with
 	}
 
-	if (!mPokeBallScore == 0)
+	if (mPokeBallScore != 0)
 	{
 		int widP = mPokeballImage->GetWidth();
 		int hitP = mPokeballImage->GetHeight();
@@ -125,7 +125,7 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 			&green);    // The brush to draw the text with
 	}
 
-	if (!mAryaScore == 0)
+	if (mAryaScore != 0)
 	{
 		int widA = mAryaImage->GetWidth();
 		int hitA = mAryaImage->GetHeight();

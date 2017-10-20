@@ -1,11 +1,4 @@
 /**
- * \file Game.cpp
- *
- * \author Tiezheng Shao
- */
-
-
-/**
 * \file Game.cpp
 *
 * \author Team Jorge
@@ -78,7 +71,9 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 
 	mPlayingArea.OnDraw(graphics, mGameOver);
 }
-
+/**
+* \brief adds initial objects, gru, and villians
+*/
 void CGame::AddInitialObjects()
 {
 	if (mVillainDrawn == 0)
@@ -230,7 +225,9 @@ void CGame::Update(double elapsed)
 
 }
 
-
+/**
+* \brief handles the flocking of minions
+*/
 void CGame::Flocking()
 {
 	if (!mGameOver) {
@@ -301,7 +298,11 @@ void CGame::Flocking()
 		//return mV;
 	}
 }
-
+/**
+* \brief alligns minions properly
+* \param minion minion we're using
+*\returns vector to minion
+*/
 CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 {
 	int alignmentCount = 0;
@@ -327,7 +328,9 @@ CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 
 	
 }
-
+/**
+* \brief keeps minions separated
+*/
 CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 {
 	
@@ -358,6 +361,9 @@ CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 
 }
 
+/**
+* \brief helps with flocking
+*/
 CVector CGame::CohesionCenter()
 {
 	CVector cohesionCenter=CVector(0,0);
@@ -575,6 +581,9 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 	}
 }
 
+/**
+* \brief assigns minion based on speed
+*/
 std::shared_ptr<CGamePiece> CGame::MinionType() {
 	int counter = mNumberMinions - 3;
 	if (fmod(counter, 6) == 0 && counter >0)
@@ -594,6 +603,10 @@ std::shared_ptr<CGamePiece> CGame::MinionType() {
 		}
 	}
 }
+
+/**
+* \brief timer for minions to spawn
+*/
 void CGame::SpawnMinionTimer() {
 
 	std::shared_ptr<CGamePiece> minion = MinionType();
@@ -613,6 +626,11 @@ void CGame::SpawnMinionTimer() {
 	mItems.push_back(minion);
 }
 
+/**
+* \brief creates new game 
+* \param x value used to create new game
+* \param y value used to create new game
+*/
 void CGame::NewGame(double x, double y)
 {
 	if ((-540 - 200< x && x < -540) && (-380 - 112 <y && y < -380))
@@ -627,6 +645,10 @@ void CGame::NewGame(double x, double y)
 
 }
 
+/**
+* Accept visitor
+* \param visitor used to check type
+*/
 void CGame::Accept(CGameVisitor *visitor)
 {
 	for (auto item : mItems)
