@@ -15,9 +15,12 @@ class CMinionVisitor :
 	public CGameVisitor
 {
 public:
-	CMinionVisitor();
-	~CMinionVisitor();
-
+	CMinionVisitor(); ///< constructor
+	~CMinionVisitor(); ///< minion destructor
+	/**
+	* visits minion
+	* \param minion
+	*/ 
 	virtual int VisitMinion(CMinion *minion) override;
 };
 
