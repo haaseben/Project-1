@@ -20,6 +20,7 @@ CMinionJerry::CMinionJerry(CGame *game) :
 {
 	
 	mV = CVector(100,100);
+	mBaseSpeed = 100;
 	
 }
 

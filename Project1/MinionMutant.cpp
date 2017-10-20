@@ -19,6 +19,7 @@ CMinionMutant::CMinionMutant(CGame *game) :
 	CMinion(game, MinionMutantImageName)
 {
 	mV = CVector(200, 200);
+	mBaseSpeed = 200;
 }
 
 /** destructor

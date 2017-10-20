@@ -96,6 +96,8 @@ public:
 	const CVector GetVelocity() { return mV; }
 
 	const CVector GetPVector() { return mP; }
+
+	const int GetBaseSpeed() { return mBaseSpeed; }
 	/** Accept a visitor
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) = 0;
@@ -119,7 +121,7 @@ protected:
 						 // Item location in the playing area
 	CVector mP;			///< Position 
 
-	
+	int mBaseSpeed;
 
 	CVector mV;
 

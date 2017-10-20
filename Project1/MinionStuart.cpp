@@ -19,6 +19,7 @@ CMinionStuart::CMinionStuart(CGame *game) :
 	CMinion(game, MinionStuartImageName)
 {
 	mV = CVector(100,100);
+	mBaseSpeed = 100;
 }
 
 /** destructor
