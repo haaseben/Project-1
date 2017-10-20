@@ -583,8 +583,8 @@ void CGame::SpawnMinionTimer() {
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
 	double signValue = ((double)rand() / RAND_MAX); ///Value to set minion location at random when spawning
-	double locX = ((double)rand() / RAND_MAX) * 450; ///Value to set minion location at random when spawning
-	double locX2 = ((double)rand() / RAND_MAX) * -460; ///Value to set minion location at random when spawning
+	double locX = ((double)rand() / RAND_MAX) * 400; ///Value to set minion location at random when spawning
+	double locX2 = ((double)rand() / RAND_MAX) * -400; ///Value to set minion location at random when spawning
 
 	if (signValue < .5)
 	{
