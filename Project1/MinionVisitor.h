@@ -15,7 +15,12 @@ class CMinionVisitor :
 	public CGameVisitor
 {
 public:
+	/** constructor minion visitor
+	*/
 	CMinionVisitor();
+
+	/** destructor for minion visitor
+	*/
 	~CMinionVisitor();
 	
 

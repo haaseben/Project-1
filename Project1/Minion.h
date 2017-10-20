@@ -35,7 +35,7 @@ public:
 
 	///Updates the display over time
 	/// \param elapsed amount of time since start of project
-	void CMinion::Update(double elapsed);
+	void Update(double elapsed);
 
 	/** See if we can collide this object
 	* \return bool */
@@ -49,13 +49,13 @@ public:
 	/** Get the minion position
 	*\return mP Minion position
 	*/
-	CVector CMinion::GetP() { return mP; }
+	CVector GetP() { return mP; }
 
 	/// destructor
-	CMinion::~CMinion();
+	~CMinion();
 
 protected:
-	CMinion::CMinion(CGame *game, const std::wstring &filename);
+	CMinion(CGame *game, const std::wstring &filename); ///< 
 
 
 

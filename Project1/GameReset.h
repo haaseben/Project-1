@@ -10,13 +10,17 @@
 #include "GameVisitor.h"
 
  /**
- * ScoreBoard visitor class
+ * Gamereset, resets the game
  */
 class CGameReset :
 	public CGameVisitor
 {
 public:
+
+	/// constructor
 	CGameReset();
+
+	///destructor
 	virtual ~CGameReset();
 
 	/** Visit a CScoreBoard object

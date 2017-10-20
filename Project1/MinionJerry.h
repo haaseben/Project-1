@@ -24,15 +24,13 @@ public:
 	/// Copy constructor (disabled)
 	CMinionJerry(const CMinionJerry &) = delete;
 
+	/// destructor
 	~CMinionJerry();
 
+	/** constructor for mutant
+	* \param game
+	*/
 	CMinionJerry(CGame *game);
-
-
-	//virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinionJerry(this); }
-
-
-private:
 
 };
 
