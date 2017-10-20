@@ -1,3 +1,4 @@
+
 /**
 * \file Game.cpp
 *
@@ -25,8 +26,6 @@
 using namespace std;
 using namespace Gdiplus;
 
-
-
 /**
 * Draw the game area
 * \param graphics The GDI+ graphics context to draw on
@@ -47,8 +46,8 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	float scaleY = float(height) / float(Height);
 	mScale = min(scaleX, scaleY);
 
-	mXOffset = width / 2.0f;
-	mYOffset = height / 2.0f;
+	mXOffset = width / 2.0f; ///Offsets for hit test - X direction
+	mYOffset = height / 2.0f; ///Offsets for hit test - Y direction
 
 	graphics->TranslateTransform(mXOffset, mYOffset);
 	graphics->ScaleTransform(mScale, mScale);
@@ -72,6 +71,8 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 }
 /**
 * \brief adds initial objects, gru, and villians
+* Inserts initial items into a vector, mItems.
+* Gru is put into mGru pointer.
 */
 void CGame::AddInitialObjects()
 {
@@ -131,7 +132,7 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 		{
 			return mGru;
 		}
-		else if ((*i)->HitTest(x, y) )
+		else if ((*i)->HitTest(x, y))
 		{
 			return *i;
 		}
@@ -151,14 +152,14 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 */
 std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item)
 {
-		for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
+	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
+	{
+		if ((*i)->HitTest(x - 50, y - 70) && *i != item)
 		{
-			if ((*i)->HitTest(x - 50, y - 70) && *i != item)
-			{
-				mGameOver = true;
-				return *i;
-			}
+			mGameOver = true;
+			return *i;
 		}
+	}
 
 	return  nullptr;
 }
@@ -177,51 +178,43 @@ void CGame::Add(std::shared_ptr<CGamePiece> item)
 
 /** Handle updates for animation
 * \param elapsed The time since the last update
+* Also spawns the minions.
+* Sets the groundwork for flocking.
 */
 void CGame::Update(double elapsed)
 {
-	mTotalTime += elapsed;
-	bool spawn = true;
-	double halfSec = 0.5;
+	mTotalTime += elapsed; ///Total time the game has elapsed.
+	bool spawn = true; ///Knows whether or not sto spawn minions
 
-	if ((fmod(mTotalTime, 1) < .025) && spawn == true)
+	if ((fmod(mTotalTime, 1) < .02) && spawn == true)
 	{
 		SpawnMinionTimer();
 		spawn = false;
 	}
-	if ((fmod(mTotalTime, 1) > .2) && spawn == false)
+	if ((fmod(mTotalTime, 1) > .05) && spawn == false)
 	{
 
 		spawn = true;
 	}
-	//mGru->Update(elapsed);
-
-	int sizeOfItems = mItems.size();
+	int sizeOfItems = mItems.size(); ///Vector size, used to destroy/update the vector.
 	for (auto item : mItems)
 	{
 		item->Update(elapsed);
 		Destroy(item, (int)item->GetX(), (int)item->GetY());
-		int sizeOf = mItems.size();
+		int sizeOf = mItems.size(); ///Variable to compare to orignal vector size. Breaks loop.
 		if (sizeOf < sizeOfItems)
 		{
 			break;
 		}
 	}
 
-	double x = 0;
+	double x = 0;  ///Variable to get X location for Gru, our grabbed item.
 	if (mGrabbedItem != nullptr) {
 		double x = mGrabbedItem->GetX();
 	}
 
-
-	/// Flocking Stuff//////////////////////////////////////////////////////
+	/// Flocking
 	Flocking();
-	int counter = 0;
-	
-	int count2 = counter;
-	
-
-
 }
 
 /**
@@ -229,54 +222,42 @@ void CGame::Update(double elapsed)
 */
 void CGame::Flocking()
 {
-
-		CVector cohesionCenter = CohesionCenter();
-
-		for (auto item : mItems)
+	CVector cohesionCenter = CohesionCenter();
+	for (auto item : mItems)
+	{
+		if (item->CanCollide() == true)
 		{
-			if (item->CanCollide() == true )
-			{
-				double itemx = item->GetX(); double itemy = item->GetY();
-				if (mGru!= nullptr && mGru->HitTest((int)itemx, (int)itemy) ){
-					Remove(mGru);
-					mGameOver = true;
-				}
+			double itemx = item->GetX(); double itemy = item->GetY();  ///Getting x and y posigions for minions
+			if (mGru != nullptr && mGru->HitTest((int)itemx, (int)itemy)) {
+				Remove(mGru);
+				mGameOver = true;
+			}
 
-				if (item->GetX() < (500 - item->GetHeight() - 10) && item->GetX() > (-500 + item->GetHeight()) && (item->GetY() < 500 - item->GetHeight()) && (item->GetY() > -500 + item->GetHeight()))
-				{
+			if (item->GetX() < (500 - item->GetHeight() - 10) && item->GetX() > (-500 + item->GetHeight()) && (item->GetY() < 500 - item->GetHeight()) && (item->GetY() > -500 + item->GetHeight()))
+			{
 
 				CVector minionVector = item->GetPVector();
-				////////////////////////////////////////////
+
 				cv = cohesionCenter - minionVector;
 				double l = cv.Length();
 				if (l > 0)
 				{
 					cv /= l;
 				}
-				/////////////////////////////////////////////
-
 				///Seperation Vector
-				
 				sv = Seperation(item);
-
 				///Alignment
-				double x = 0;
-				double y = 0;
+				double x = 0;  ///Value to use to check nullptr below.
+				double y = 0; ///Value to use to check nullptr below.
 				av = Alignment(item);
-				if (mGru == nullptr)
-				{
-					x = 0;
-					y = 0;
-				}
-				else
+				if (mGru != nullptr)
 				{
 					x = mGru->GetX();
 					y = mGru->GetY();
 				}
 
-
 				/// gruv vector
-				//double test = &mGru->GetX();
+				//Normalized vector for using w/ flocking.
 				gruV = CVector(x, y);
 				gruV = gruV - minionVector;
 				if (gruV.Length() > 0)
@@ -288,7 +269,7 @@ void CGame::Flocking()
 				if (!mGameOver) {
 					mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
 				}
-				if (mGameOver) 
+				if (mGameOver)
 				{
 					mV = cv * 1 + sv * 3 + av * 5;
 				}
@@ -297,18 +278,13 @@ void CGame::Flocking()
 				mV = mV * (item->GetBaseSpeed());
 				item->SetVelocity(mV);
 				////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
-
-
 			}
-
-			}
-
 		}
+	}
 
-		CVector mV = CVector(0, 0);
-		//return mV;
-	
+	CVector mV = CVector(0, 0);
 }
+
 /**
 * \brief alligns minions properly
 * \param minion minion we're using
@@ -316,9 +292,9 @@ void CGame::Flocking()
 */
 CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 {
-	int alignmentCount = 0;
+	int alignmentCount = 0; ///Used for allignment, for velocity in following loop.
 	CVector minionVector = minion->GetPVector();
-	CVector alignmentAverage=CVector(0,0);
+	CVector alignmentAverage = CVector(0, 0);
 
 	for (auto item : mItems)
 	{
@@ -337,7 +313,7 @@ CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 	av = av.Normalize();
 	return av;
 
-	
+
 }
 /**
 * \brief keeps minions separated
@@ -346,7 +322,7 @@ CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 */
 CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 {
-	
+
 	CVector closestMinionVector;
 	CVector minionVector = minion->GetPVector();
 	double distance = 10000;
@@ -363,7 +339,7 @@ CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 					closestMinionVector = item->GetPVector();
 					distance = testDistance;
 				}
-				
+
 			}
 		}
 	}
@@ -377,7 +353,7 @@ CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 
 CVector CGame::CohesionCenter()
 {
-	CVector cohesionCenter=CVector(0,0);
+	CVector cohesionCenter = CVector(0, 0);
 	int numMinions = 0;
 
 	for (auto item : mItems)
@@ -394,8 +370,6 @@ CVector CGame::CohesionCenter()
 	return cohesionCenter;
 }
 
-
-
 /**  Delete an item from the game
 *
 * \param item The item to delete.
@@ -408,8 +382,6 @@ void CGame::DeleteItem(std::shared_ptr<CGamePiece> item)
 		mItems.erase(loc);
 	}
 }
-
-
 
 CGame::CGame()
 {
@@ -441,10 +413,10 @@ void CGame::Remove(std::shared_ptr<CGamePiece> item)
 */
 void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	double oX = (point.x - mXOffset) / mScale;
-	double oY = (point.y - mYOffset) / mScale;
+	double oX = (point.x - mXOffset) / mScale; ///Points to check with hittest for Gru below (X).
+	double oY = (point.y - mYOffset) / mScale; ///Points to check with hittest for Gru below (Y).
 	NewGame(oX, oY);
-	mGrabbedItem = HitTest((int)oX-35, (int)oY-75);
+	mGrabbedItem = HitTest((int)oX - 35, (int)oY - 75);
 	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
@@ -461,44 +433,41 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 */
 void CGame::OnMouseMove(UINT nFlags, CPoint point)
 {
-	double oX = (point.x - mXOffset) / mScale;
-	double oY = (point.y - mYOffset) / mScale;
+	double oX = (point.x - mXOffset) / mScale; ///Points to check with hittest for Gru below (X).
+	double oY = (point.y - mYOffset) / mScale; ///Points to check with hittest for Gru below (Y).
 
-	// See if an item is currently being moved by the mouse
+											   // See if an item is currently being moved by the mouse
 	if (mGrabbedItem == mGru)
 	{
-
 		// If an item is being moved, we only continue to 
 		// move it while the left button is down.
 		if (nFlags & MK_LBUTTON)
 		{
 			//outside of left side
-			if (oX <= -500.0 +30)
+			if (oX <= -500.0 + 30)
 			{
 				//top left diagnol
-				if (oY <= -500.0+50)
+				if (oY <= -500.0 + 50)
 				{
-					mGrabbedItem->SetLocation(-500.0, -500.0 );
+					mGrabbedItem->SetLocation(-500.0, -500.0);
 
 				}
 				//bottom left diagnal
-				else if (oY >= 500 -100)
+				else if (oY >= 500 - 100)
 				{
 					mGrabbedItem->SetLocation(-500.0, 500.0 - mGrabbedItem->GetHeight());
 				}
 				//rest
 				else
 				{
-					mGrabbedItem->SetLocation(-500.0, oY-45);
+					mGrabbedItem->SetLocation(-500.0, oY - 45);
 				}
-
 			}
-
 			//outside of right side
-			else if (oX >= 500 -40) {
+			else if (oX >= 500 - 40) {
 
 				//top right diagnal
-				if (oY < -500 +50 )
+				if (oY < -500 + 50)
 				{
 					mGrabbedItem->SetLocation(500.0 - mGrabbedItem->GetWidth(), -500.0);
 
@@ -539,7 +508,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 				}
 			}
 			//outside of the bottom
-			else if (oY > 500.0 -100 )
+			else if (oY > 500.0 - 100)
 			{
 				//bottom right corner
 				if (oX >= 500.0 - mGrabbedItem->GetWidth() / 2.0 && oX <= 500.0)
@@ -560,7 +529,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 
 			}
 
-			else if (oX > -500.0 && oY > -500.0 && oX  < 500.0  && oY < 500.0 ) {
+			else if (oX > -500.0 && oY > -500.0 && oX  < 500.0  && oY < 500.0) {
 
 				mGrabbedItem->SetLocation(oX - 30.0, oY - 50.0);
 
@@ -613,9 +582,9 @@ void CGame::SpawnMinionTimer() {
 
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
-	double signValue = ((double)rand() / RAND_MAX);
-	double locX = ((double)rand() / RAND_MAX) * 450;
-	double locX2 = ((double)rand() / RAND_MAX) * -460;
+	double signValue = ((double)rand() / RAND_MAX); ///Value to set minion location at random when spawning
+	double locX = ((double)rand() / RAND_MAX) * 450; ///Value to set minion location at random when spawning
+	double locX2 = ((double)rand() / RAND_MAX) * -460; ///Value to set minion location at random when spawning
 
 	if (signValue < .5)
 	{
@@ -630,7 +599,7 @@ void CGame::SpawnMinionTimer() {
 }
 
 /**
-* \brief creates new game 
+* \brief creates new game
 * \param x value used to create new game
 * \param y value used to create new game
 */
@@ -670,23 +639,23 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 
 	for (auto i = mItems.begin(); i != mItems.end(); i++)
 	{
-		if ((*i)->HitTest(x , y ) && (*i) != item && !(*i)->CanCollide() && !mGameOver)
+		if ((*i)->HitTest(x, y) && (*i) != item && !(*i)->CanCollide() && !mGameOver)
 		{
 			double itemx = item->GetX();
 			double itemy = item->GetY();
-			if ((-350 < (int)itemx && (int)itemx < -150) && (-230 > (int)itemy && (int)itemy >-420))
+			if ((-350 < (int)itemx && (int)itemx < -150) && (-230 >(int)itemy && (int)itemy >-420))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetJuicerSocre(points);
 			}
 
-			if ((150 < (int)itemx && (int)itemx < 250) && (-210 > (int)itemy && (int)itemy >-290))
+			if ((150 < (int)itemx && (int)itemx < 250) && (-210 >(int)itemy && (int)itemy >-290))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetPokeScore(points);
 			}
 
-			if ((-200 < (int)itemx && (int)itemx < 100) && (350 > (int)itemy && (int)itemy >100))
+			if ((-200 < (int)itemx && (int)itemx < 100) && (350 >(int)itemy && (int)itemy >100))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetAryaScore(points);

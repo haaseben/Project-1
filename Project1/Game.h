@@ -1,10 +1,11 @@
+
 /**
- * \file Game.h
- *
- * \author Team Jorge
- *
- * The main game class
- */
+* \file Game.h
+*
+* \author Team Jorge
+*
+* The main game class
+*/
 
 #pragma once
 #include <memory>
@@ -14,9 +15,9 @@
 #include "ScoreBoard.h"
 #include "Vector.h"
 
- /**
- * The class that handle the game and all components in the game. 
- */
+/**
+* The class that handle the game and all components in the game.
+*/
 class CGame
 {
 
@@ -35,7 +36,7 @@ public:
 	* \param height Height
 	* \param elapsed Elapsed tiem
 	*/
-	void OnDraw(Gdiplus::Graphics * graphics,int width,int height, double elapsed);
+	void OnDraw(Gdiplus::Graphics * graphics, int width, int height, double elapsed);
 
 	/*Potential flocking functions.
 	/ Adding all vectors.
@@ -113,10 +114,10 @@ public:
 	{
 	public:
 		/** Constructor
-		* \param city The city we are iterating over
+		* \param game The game we are iterating over
 		* \param pos postion
 		*/
-		Iter(CGame *city, int pos) : mGame(city), mPos(pos) {}
+		Iter(CGame *game, int pos) : mGame(game), mPos(pos) {}
 
 		/** Test for end of the iterator
 		* \param other comparison
@@ -156,10 +157,10 @@ public:
 private:
 
 	/// Minion Counter
-	int mNumberMinions=0;
+	int mNumberMinions = 0;
 
 	/// Any item we are currently dragging
-	std::shared_ptr<CGamePiece> mGrabbedItem; 
+	std::shared_ptr<CGamePiece> mGrabbedItem;
 
 	/// All of the items to populate in game
 	std::vector<std::shared_ptr<CGamePiece> > mItems;
@@ -196,7 +197,7 @@ private:
 
 	double mTotalTime = 0; ///< Count the total time passed
 
-	/// An object that describes the scorebaord
+						   /// An object that describes the scorebaord
 	CScoreBoard mScoreBoard;
 
 	/// If the game is over
