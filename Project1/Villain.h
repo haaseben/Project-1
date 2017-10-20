@@ -39,8 +39,6 @@ protected:
 	*/
 	CVillain::CVillain(CGame *game, const std::wstring &filename);
 
-private:
-
 
 };
 

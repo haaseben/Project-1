@@ -22,16 +22,14 @@ public:
 	/// Copy constructor (disabled)
 	CMinionStuart(const CMinionStuart &) = delete;
 
+	/** destructor for stuart
+	*/
 	~CMinionStuart();
-
+	
+	/** constructor for minion stuart
+	* \param game
+	*/
 	CMinionStuart(CGame *game);
-
-
-	//virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinionStuart(this); }
-
-
-
-private:
 
 };
 

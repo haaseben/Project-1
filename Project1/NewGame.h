@@ -16,6 +16,9 @@ class CNewGame : public CGamePiece
 {
 
 public:
+	/** constructor for mutant
+	* \param game
+	*/
 	CNewGame(CGame *game);
 
 	/// Default constructor (disabled)
@@ -24,6 +27,8 @@ public:
 	/// Copy constructor (disabled)
 	CNewGame(const CNewGame &) = delete;
 
+	/** destructor for new game
+	*/
 	virtual ~CNewGame();
 
 	/** Accept a visitor
