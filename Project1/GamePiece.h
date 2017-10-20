@@ -38,9 +38,12 @@ public:
 
 	///  Copy constructor (disabled)
 	CGamePiece(const CGamePiece &) = delete;
-
+	/// destructor
 	virtual ~CGamePiece();
 
+	/**  sets the image of the game piece
+	*\param file file name
+	* \return velocity */
 	void SetImage(const std::wstring &file);
 
 	/**  Get the file name for this tile image
@@ -78,7 +81,12 @@ public:
 	/// \returns game pointer
 	CGame *GetGame() { return mGame; }
 
+	/**  gets the height of the game piece
+	* \return velocity */
 	double CGamePiece::GetHeight();
+
+	/**  gets the width of the game piece
+	* \return velocity */
 	double CGamePiece::GetWidth();
 
 
@@ -91,13 +99,22 @@ public:
 	/// determines if a game piece can be deleted
 	virtual bool CanCollide() { return false; }
 
+	/**  sets the velocity of the game piece
+	* \return void */
 	void SetVelocity(CVector NewVector) { mV = NewVector; }/// Velocity in virtual pixels/second
 
+	/**  gets the velocity of the game piece
+	 * \return velocity */
 	const CVector GetVelocity() { return mV; }
 
+	/**  gets the vector of the game piece
+	* \return vecotr */
 	const CVector GetPVector() { return mP; }
 
+	/**  gets the base speed of the game piece
+	* \return base speed */
 	const int GetBaseSpeed() { return mBaseSpeed; }
+	
 	/** Accept a visitor
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) = 0;
@@ -121,9 +138,9 @@ protected:
 						 // Item location in the playing area
 	CVector mP;			///< Position 
 
-	int mBaseSpeed;
+	int mBaseSpeed;///< base speed used for movement
 
-	CVector mV;
+	CVector mV; ///< vector thats used
 
 
 private:
