@@ -661,7 +661,7 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 		{
 			int itemx = item->GetX();
 			int itemy = item->GetY();
-			if ((-330 < itemx && itemx < -170) && (-270 > itemy && itemy >-380))
+			if ((-350 < itemx && itemx < -150) && (-230 > itemy && itemy >-420))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetJuicerSocre(points);
