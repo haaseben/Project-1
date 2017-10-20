@@ -184,7 +184,7 @@ void CGame::Update(double elapsed)
 	bool spawn = true;
 	double halfSec = 0.5;
 
-	if ((fmod(mTotalTime, 1) < .05) && spawn == true)
+	if ((fmod(mTotalTime, 1) < .025) && spawn == true)
 	{
 		SpawnMinionTimer();
 		spawn = false;
@@ -215,7 +215,6 @@ void CGame::Update(double elapsed)
 
 
 	/// Flocking Stuff//////////////////////////////////////////////////////
-	//
 	Flocking();
 	int counter = 0;
 	
@@ -615,9 +614,10 @@ void CGame::SpawnMinionTimer() {
 	std::shared_ptr<CGamePiece> minion = MinionType();
 
 	double signValue = ((double)rand() / RAND_MAX);
-	double locX = ((double)rand() / RAND_MAX) * 460;
-	double locX2 = ((double)rand() / RAND_MAX) *-460;
-	if (signValue > 0 && signValue < .5)
+	double locX = ((double)rand() / RAND_MAX) * 450;
+	double locX2 = ((double)rand() / RAND_MAX) * -460;
+
+	if (signValue < .5)
 	{
 		minion->SetLocation(locX, -450);
 	}
