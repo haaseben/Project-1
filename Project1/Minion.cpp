@@ -47,13 +47,9 @@ void CMinion::Update(double elapsed)
 	double hit = mItemImage->GetHeight();
 
 	///checks to see when the minion gets within 10 pixels of the edge in x direction on right
-	if (500 - GetX() - (wid) <= 10)
+	if (abs(mSpeedX) > 0 && 500 - GetX() - (wid) <= 10)
 	{
-		if (abs(mSpeedX) > 0 && GetX() >= 460)
-		{
-			mV = CVector(-mV.X(), mV.Y());
-		}
-
+		mV = CVector(-mV.X(), mV.Y());
 	}
 
 	
@@ -69,47 +65,21 @@ void CMinion::Update(double elapsed)
 	
 	double iegiahg = GetY();
 	//checks to see when the minion gets within 10 pixels of the edge in y direction on bottom
-	if (520 - GetY() - (hit) <= 10)
+	if (abs(mSpeedY) > 0 && 500 - GetY() - (hit) <= 10)
 	{
-		if (abs(mSpeedY) > 0 )//&& GetY() >= 510)
-		{
-			mV = CVector(mV.X(), -mV.Y());
-
-		}
-
+		mV = CVector(mV.X(), -mV.Y());
 	}
 	
 	
 	//checks to see when the minion gets within 10 pixels of the edge in y direction on top
-	if (GetY() <= -500)
+	if (mSpeedY < 0 && GetY() <= -490)
 	{
-		if (mSpeedY < 0 )//&& GetY() <= 0)
-		{
-			mV = CVector(mV.X(), -mV.Y());
-		}
+		mV = CVector(mV.X(), -mV.Y());
 	}
 		
 }
 
 
 
-
-
-
-//void CMinion::Update(double elapsed)
-
-	//CVector newP = GetP() + mV * elapsed;
-
-	//SetLocation(newP.X(), newP.Y());
-
-	//SetLocation(GetX() + mSpeedX * elapsed,
-	//	GetY() + mSpeedY * elapsed);
-
-
-
-
-	
-
-//}
 
 

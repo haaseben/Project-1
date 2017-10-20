@@ -114,18 +114,7 @@ void CGame::AddInitialObjects()
 		arya->SetLocation(-50.0, 225.0);
 		mItems.push_back(arya);
 
-		//auto minion1 = make_shared<CMinionStuart>(this);
-		//minion1->SetLocation(280, 225);
-		//mItems.push_back(minion1);
 
-		//auto minion2 = make_shared<CMinionStuart>(this);
-		//minion2->SetLocation(-250, 225.0);
-		//mItems.push_back(minion2);
-
-		//auto minion3 = make_shared<CMinionStuart>(this);
-		//minion3->SetLocation(290,250);
-		//mItems.push_back(minion3);
-		
 
 	}
 	mVillainDrawn = 1;
@@ -148,7 +137,7 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 		{
 			return mGru;
 		}
-		else if ((*i)->HitTest(x, y))
+		else if ((*i)->HitTest(x, y) )
 		{
 			return *i;
 		}
@@ -157,6 +146,7 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 			return nullptr;
 		}
 	}
+	return nullptr;
 }
 /** Test an x,y click location to see if it clicked
 * on some item in the game.
@@ -167,14 +157,15 @@ std::shared_ptr<CGamePiece> CGame::HitTest(int x, int y)
 */
 std::shared_ptr<CGamePiece> CGame::CollisionTest(int x, int y, std::shared_ptr<CGamePiece> item)
 {
-	for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
-	{
-		if ((*i)->HitTest(x - 50, y - 70) && *i != item)
+		for (auto i = mItems.rbegin(); i != mItems.rend(); i++)
 		{
-			mGameOver = true;
-			return *i;
+			if ((*i)->HitTest(x - 50, y - 70) && *i != item)
+			{
+				mGameOver = true;
+				return *i;
+			}
 		}
-	}
+
 	return  nullptr;
 }
 
@@ -221,22 +212,13 @@ void CGame::Update(double elapsed)
 			break;
 		}
 	}
-	auto minion = make_shared<CMinionJerry>(this);
-	std::vector<std::shared_ptr<CGamePiece> > temp;
-	for (auto i : mItems) {
-		if (i->GruOrNot() == minion->GruOrNot())
-		{
-			temp.push_back(i);
-		}
-	}
-	for (auto i : temp)
-	{
-		//DeleteItem(i);
-	}
+
 	double x = 0;
 	if (mGrabbedItem != nullptr) {
 		double x = mGrabbedItem->GetX();
 	}
+
+
 	/// Flocking Stuff//////////////////////////////////////////////////////
 	//
 	Flocking();
@@ -251,67 +233,73 @@ void CGame::Update(double elapsed)
 
 void CGame::Flocking()
 {
-	CVector cohesionCenter = CohesionCenter();
-	int counter = 0;
+	if (!mGameOver) {
+		CVector cohesionCenter = CohesionCenter();
 
-	for (auto item : mItems)
-	{
-		if (item->CanCollide() == true)
+		for (auto item : mItems)
 		{
-			///counter = counter + 1;
-			///Cohesion Vector for each Minion
-			
-			CVector minionVector = item->GetPVector();
-			////////////////////////////////////////////
-			cv = cohesionCenter - minionVector;
-			double l = cv.Length();
-			if (l > 0)
+			if (item->CanCollide() == true)
 			{
-				cv /= l;
-			}
-			/////////////////////////////////////////////
+				int itemx = item->GetX(); int itemy = item->GetY();
+				if (mGru!= nullptr && mGru->HitTest(itemx, itemy) ){
+					Remove(mGru);
+					mGameOver = true;
+				}
 
-			///Seperation Vector
-			
-			sv = Seperation(item);
 
-			///Alignment
-			double x = 0;
-			double y = 0;
-			av = Alignment(item);
-			if (mGru == nullptr)
-			{
-				x = 0;
-				y = 0;
+				CVector minionVector = item->GetPVector();
+				////////////////////////////////////////////
+				cv = cohesionCenter - minionVector;
+				double l = cv.Length();
+				if (l > 0)
+				{
+					cv /= l;
+				}
+				/////////////////////////////////////////////
+
+				///Seperation Vector
+
+				sv = Seperation(item);
+
+				///Alignment
+				double x = 0;
+				double y = 0;
+				av = Alignment(item);
+				if (mGru == nullptr)
+				{
+					x = 0;
+					y = 0;
+				}
+				else
+				{
+					x = mGru->GetX();
+					y = mGru->GetY();
+				}
+
+
+				/// gruv vector
+				//double test = &mGru->GetX();
+				gruV = CVector(x, y);
+				gruV = gruV - minionVector;
+				if (gruV.Length() > 0)
+				{
+					gruV.Normalize();
+				}
+
+				CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
+				mV.Normalize();
+				mV = mV * 100;
+				item->SetVelocity(mV);
+				////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
+
+
 			}
-			else
-			{
-				x = mGru->GetX();
-				y = mGru->GetY();
-			}
-			
-			
-			/// gruv vector
-			//double test = &mGru->GetX();
-			gruV = CVector(x, y);
-			gruV = gruV - minionVector;
-			if (gruV.Length() > 0)
-			{
-				gruV.Normalize();
-			}
-			
-			CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
-			mV.Normalize();
-			mV = mV * 100;
-			item->SetVelocity(mV);
-			////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
 		}
 
+		CVector mV = CVector(0, 0);
+		//return mV;
 	}
-
-	CVector mV = CVector(0,0);
-	//return mV;
 }
 
 CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
@@ -657,7 +645,7 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 
 	for (auto i = mItems.begin(); i != mItems.end(); i++)
 	{
-		if ((*i)->HitTest(x - ((*i)->GetWidth() / 2), y - 30) && (*i) != item && !(*i)->CanCollide())
+		if ((*i)->HitTest(x - ((*i)->GetWidth() / 2), y - 30) && (*i) != item && !(*i)->CanCollide() && !mGameOver)
 		{
 			DeleteItem(item);
 			break;
