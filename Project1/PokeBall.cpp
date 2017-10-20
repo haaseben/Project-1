@@ -1,5 +1,5 @@
 /**
-* \file Pokeball.cpp
+* \file PokeBall.cpp
 *
 * \author Team Jorge
 *
