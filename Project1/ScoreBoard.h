@@ -45,6 +45,7 @@ public:
 	/// \return mAryaScore
 	int GetAryaScore() { return mAryaScore; }
 
+
 	void SetJuicerSocre(int socre);
 	void SetPokeScore(int socre);
 	void SetAryaScore(int score);

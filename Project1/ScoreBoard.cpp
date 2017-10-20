@@ -26,6 +26,10 @@ const wstring JuicerImageName = L"images/juicer.png";
 /// Minion filename 
 const wstring PokeballImageName = L"images/pokeball.png";
 
+
+/**
+ * Constructor, draws images
+ */
 CScoreBoard::CScoreBoard()
 {
 	mJuicerImage = unique_ptr<Bitmap>(Bitmap::FromFile(JuicerImageName.c_str()));
@@ -56,13 +60,21 @@ CScoreBoard::CScoreBoard()
 }
 
 
+/**
+ * destructor
+ */
 CScoreBoard::~CScoreBoard()
 {
 }
 
 
 
-/// Draw the socreboard
+/**
+ * draws timer and counter
+ * \param graphics 
+ * \param elapsed 
+ * \param gameover 
+ */
 void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool gameover)
 {
 
@@ -146,16 +158,26 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 
 }
 
+/**
+ * sets jucier score
+ * \param score 
+ */
 void CScoreBoard::SetJuicerSocre(int score)
 {
 	mJuicerScore += score*2;
 }
-
+/**
+* sets pokeball score
+* \param score
+*/
 void CScoreBoard::SetPokeScore(int score)
 {
 	mPokeBallScore += score*3;
 }
-
+/**
+* sets arya score
+* \param score
+*/
 void CScoreBoard::SetAryaScore(int score)
 {
 	mAryaScore += score;

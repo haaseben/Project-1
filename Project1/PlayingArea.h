@@ -35,8 +35,11 @@ public:
 	/// default destructor
 	~CPlayingArea();
 
-	/// drawfunction
-	/// \param graphics what we use to draw
+	/**
+	* draws 
+	* \param graphics 
+	* \param gameover
+	*/
 	void OnDraw(Gdiplus::Graphics * graphics, bool gameover);
 
 private:
