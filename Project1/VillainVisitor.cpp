@@ -22,12 +22,3 @@ CVillainVisitor::~CVillainVisitor()
 {
 }
 
-
-
-/** \brief Visit a CVillain object
-* \param villain villain tile we are visiting 
-*/
-int CVillainVisitor::VisitVillain(CVillain *villain)
-{
-	return villain->GetMultiplier();
-}

@@ -32,16 +32,7 @@ public:
 	/// destructor
 	virtual ~CPokeBall();
 
-	/**
-	* Gru identifier
-	* \return CMinionStuart::GruOrNot If the object is Gru
-	*/
-	bool CPokeBall::GruOrNot();
-
-	int CPokeBall::GetMultiplier();
-
 
 private:
-	int mMultiplier = 3;
 
 };

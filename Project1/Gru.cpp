@@ -32,7 +32,3 @@ CGru::~CGru()
 }
 
 
-bool CGru::GruOrNot()
-{
-	return true;
-}

@@ -40,8 +40,19 @@ public:
 	*/
 	void Initializer() { mInitialStatus = 1; }
 
-	void SetJuicerSocre(int socre);
-	void SetPokeScore(int socre);
+	/**  sets the Juicer score
+	* \param score Score we want to set
+	*/
+	void SetJuicerSocre(int score);
+
+	/**  sets the PokeBall score
+	* \param score Score we want to set
+	*/
+	void SetPokeScore(int score);
+
+	/**  sets the Ary score
+	* \param score Score we want to set
+	*/
 	void SetAryaScore(int score);
 	
 
@@ -55,7 +66,7 @@ private:
 
 	double mTotalTime = 0; ///< Count the total time passed
 
-	bool mInitialStatus = 0;
+	bool mInitialStatus = 0; ///< If we need to perform a reset
 
 	/// The image of this item
 	std::unique_ptr<Gdiplus::Bitmap> mJuicerImage;

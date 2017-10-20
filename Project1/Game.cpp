@@ -329,6 +329,8 @@ CVector CGame::Alignment(std::shared_ptr<CGamePiece> minion)
 }
 /**
 * \brief keeps minions separated
+* \param minion Minion object
+* \return Cvector Cvector
 */
 CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 {
@@ -360,9 +362,7 @@ CVector CGame::Seperation(std::shared_ptr<CGamePiece> minion)
 
 }
 
-/**
-* \brief helps with flocking
-*/
+
 CVector CGame::CohesionCenter()
 {
 	CVector cohesionCenter=CVector(0,0);

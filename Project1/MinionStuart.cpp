@@ -29,8 +29,3 @@ CMinionStuart::~CMinionStuart()
 {
 }
 
-bool CMinionStuart::GruOrNot()
-{
-	return false;
-}
-

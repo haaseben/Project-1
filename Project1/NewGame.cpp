@@ -28,7 +28,3 @@ CNewGame::~CNewGame()
 
 }
 
-bool CNewGame::GruOrNot()
-{
-	return false;
-}

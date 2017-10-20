@@ -11,6 +11,7 @@
 #include "GamePiece.h"
 #include <memory>
 
+ /** Describe the newgame button */
 class CNewGame : public CGamePiece
 {
 
@@ -29,10 +30,6 @@ public:
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitNewGame(this); }
 
-	/**
-	* Gru identifier
-	* \return CMinionStuart::GruOrNot If the object is Gru
-	*/
-	bool CNewGame::GruOrNot();
+
 };
 

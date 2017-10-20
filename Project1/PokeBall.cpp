@@ -32,13 +32,3 @@ CPokeBall::~CPokeBall()
 {
 }
 
-
-bool CPokeBall::GruOrNot()
-{
-	return false;
-}
-
-int CPokeBall::GetMultiplier()
-{
-	return mMultiplier;
-}

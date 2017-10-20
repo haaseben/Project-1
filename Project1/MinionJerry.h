@@ -32,12 +32,6 @@ public:
 	//* \param visitor The visitor we accept */
 	//virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinionJerry(this); }
 
-	/**
-	* Gru identifier
-	* \return CMinionStuart::GruOrNot If the object is Gru
-	*/
-	bool CMinionJerry::GruOrNot();
-
 
 private:
 

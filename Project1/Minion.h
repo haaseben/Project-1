@@ -37,6 +37,8 @@ public:
 	/// \param elapsed amount of time since start of project
 	void CMinion::Update(double elapsed);
 
+	/** See if we can collide this object
+	* \return bool */
 	bool CanCollide() { return true; }
 
 	/** Accept a visitor
@@ -54,8 +56,6 @@ public:
 
 protected:
 	CMinion::CMinion(CGame *game, const std::wstring &filename);
-
-	
 
 
 

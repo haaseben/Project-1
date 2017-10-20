@@ -30,8 +30,3 @@ CMinionJerry::~CMinionJerry()
 }
 
 
-bool CMinionJerry::GruOrNot()
-{
-	return false;
-}
-

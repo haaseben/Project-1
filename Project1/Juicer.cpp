@@ -34,12 +34,4 @@ CJuicer::~CJuicer()
 {
 }
 
-bool CJuicer::GruOrNot()
-{
-	return false;
-}
 
-int CJuicer::GetMultiplier()
-{
-	return mMultiplier;
-}

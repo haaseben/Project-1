@@ -9,6 +9,9 @@
 #pragma once
 #include "GameVisitor.h"
 
+ /**
+ * ScoreBoard visitor class
+ */
 class CGameReset :
 	public CGameVisitor
 {
@@ -17,7 +20,7 @@ public:
 	virtual ~CGameReset();
 
 	/** Visit a CScoreBoard object
-	* \param minion Minion we are visiting */
+	* \param scoreboard ScoreBoard we are visiting */
 	virtual void CGameReset::VisitSocreBoard(CScoreBoard *scoreboard) override;
 
 };

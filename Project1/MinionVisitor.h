@@ -17,7 +17,7 @@ class CMinionVisitor :
 public:
 	CMinionVisitor();
 	~CMinionVisitor();
+	
 
-	virtual int VisitMinion(CMinion *minion) override;
 };
 

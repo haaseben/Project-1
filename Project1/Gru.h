@@ -20,6 +20,8 @@ class CGru : public CGamePiece
 {
 public:
 
+	/** See if we can collide this item
+	* \return bool */
 	bool CanCollide() { return  false; };
 	CGru(CGame *game);
 
@@ -35,9 +37,5 @@ public:
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitGru(this); }
 
-	/**
-	* Gru identifier
-	* \return CMinionStuart::GruOrNot If the object is Gru
-	*/
-	bool CGru::GruOrNot();
+
 };

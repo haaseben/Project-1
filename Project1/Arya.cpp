@@ -33,12 +33,3 @@ CArya::~CArya()
 {
 }
 
-bool CArya::GruOrNot()
-{
-	return false;
-}
-
-int CArya::GetMultiplier()
-{
-	return mMultiplier;
-}

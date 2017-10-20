@@ -28,10 +28,6 @@ public:
 	virtual ~CGame();
 
 
-	
-
-	
-
 	/**
 	* OnDraw
 	* \param graphics What we use to draw
@@ -45,19 +41,22 @@ public:
 	/ Adding all vectors.
 	*/
 
-	// Cohesion vector
+	/// Cohesion vector
 	CVector cv;
 
-	// Separation vector
+	/// Separation vector
 	CVector sv;
 
-	// Alignment vector
+	/// Alignment vector
 	CVector av;
 
-	// Gru vector
+	/// Gru vector
 	CVector gruV;
 
-
+	/**
+	* \brief helps with flocking
+	* \return Cvector Cvector
+	*/
 	CVector CGame::CohesionCenter();
 
 	/**
@@ -140,10 +139,6 @@ public:
 		}
 
 
-
-
-
-
 	private:
 		CGame *mGame;   ///< City we are iterating over
 		int mPos;       ///< Position in the collection
@@ -172,8 +167,10 @@ private:
 	/// Any item we are currently dragging
 	std::shared_ptr<CGamePiece> mGru;
 
+	/// Gru x coordinate
 	double mGruX;
 
+	/// Gru x coordinate
 	double mGruY;
 
 	/// Game area width in virtual pixels

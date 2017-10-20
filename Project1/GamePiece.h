@@ -89,18 +89,14 @@ public:
 	* \return velocity */
 	double CGamePiece::GetWidth();
 
-
-	///virtual function for determining if gru
-	/// \returns true if it is
-	virtual bool GruOrNot()=0 ;
-
-	//virtual CVector CGamePiece::GetP
-
-	/// determines if a game piece can be deleted
+	/**  gets the height of the game piece
+	* \return bool */
 	virtual bool CanCollide() { return false; }
 
 	/**  sets the velocity of the game piece
-	* \return void */
+	* \return void 
+	* \param NewVector
+	*/
 	void SetVelocity(CVector NewVector) { mV = NewVector; }/// Velocity in virtual pixels/second
 
 	/**  gets the velocity of the game piece
