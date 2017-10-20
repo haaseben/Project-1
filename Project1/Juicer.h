@@ -28,10 +28,8 @@ public:
 	/// Copy constructor (disabled)
 	CJuicer(const CJuicer &) = delete;
 
+	/// constructor
 	virtual ~CJuicer();
-
-
-private:
 
 
 };

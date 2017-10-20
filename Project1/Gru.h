@@ -31,6 +31,7 @@ public:
 	/// Copy constructor (disabled)
 	CGru(const CGru &) = delete;
 
+	///Gru destructor
 	virtual ~CGru();
 
 	/** Accept a visitor

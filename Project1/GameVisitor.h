@@ -24,7 +24,10 @@ class CMinion;
 class CGameVisitor
 {
 public:
+	/// constructor
 	CGameVisitor();
+
+	/// destructor
 	virtual ~CGameVisitor();
 
 	/** Visit a CScoreBoard object
