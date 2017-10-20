@@ -40,6 +40,9 @@ public:
 	*/
 	void Initializer() { mInitialStatus = 1; }
 
+
+	/// Get aryas score for test
+	/// \return mAryaScore
 	int GetAryaScore() { return mAryaScore; }
 
 	void SetJuicerSocre(int socre);
