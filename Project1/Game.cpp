@@ -82,9 +82,9 @@ void CGame::AddInitialObjects()
 		auto Gru = make_shared<CGru>(this);
 		Gru->SetLocation(-15.0, -50.0);
 		mGru = Gru;
+
 		/**Draw NewGame Button
 		*/
-
 		auto NewGameButton = make_shared<CNewGame>(this);
 		NewGameButton->SetLocation(-740, -490.0);
 		mItems.push_back(NewGameButton);
@@ -200,8 +200,9 @@ void CGame::Update(double elapsed)
 	for (auto item : mItems)
 	{
 		item->Update(elapsed);
-		Destroy(item, item->GetX(), item->GetY());
-		if (mItems.size() < sizeOfItems)
+		Destroy(item, (int)item->GetX(), (int)item->GetY());
+		int sizeOf = mItems.size();
+		if (sizeOf < sizeOfItems)
 		{
 			break;
 		}
@@ -236,8 +237,8 @@ void CGame::Flocking()
 		{
 			if (item->CanCollide() == true)
 			{
-				int itemx = item->GetX(); int itemy = item->GetY();
-				if (mGru!= nullptr && mGru->HitTest(itemx, itemy) ){
+				double itemx = item->GetX(); double itemy = item->GetY();
+				if (mGru!= nullptr && mGru->HitTest((int)itemx, (int)itemy) ){
 					Remove(mGru);
 					mGameOver = true;
 				}
@@ -432,7 +433,7 @@ void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	double oX = (point.x - mXOffset) / mScale;
 	double oY = (point.y - mYOffset) / mScale;
 	NewGame(oX, oY);
-	mGrabbedItem = HitTest(oX-35, oY-75);
+	mGrabbedItem = HitTest((int)oX-35, (int)oY-75);
 	if (mGrabbedItem != nullptr)
 	{
 		// adds a duplicate to the end of the list of items
@@ -555,7 +556,7 @@ void CGame::OnMouseMove(UINT nFlags, CPoint point)
 			}
 
 			//calls collision test to see if Gru has been killed
-			shared_ptr<CGamePiece> OtherItem = CollisionTest(oX, oY, mGrabbedItem);
+			shared_ptr<CGamePiece> OtherItem = CollisionTest((int)oX, (int)oY, mGrabbedItem);
 
 			if (mGrabbedItem == mGru)
 			{
@@ -659,21 +660,21 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 	{
 		if ((*i)->HitTest(x , y ) && (*i) != item && !(*i)->CanCollide() && !mGameOver)
 		{
-			int itemx = item->GetX();
-			int itemy = item->GetY();
-			if ((-350 < itemx && itemx < -150) && (-230 > itemy && itemy >-420))
+			double itemx = item->GetX();
+			double itemy = item->GetY();
+			if ((-350 < (int)itemx && (int)itemx < -150) && (-230 > (int)itemy && (int)itemy >-420))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetJuicerSocre(points);
 			}
 
-			if ((150 < itemx && itemx < 250) && (-210 > itemy && itemy >-290))
+			if ((150 < (int)itemx && (int)itemx < 250) && (-210 > (int)itemy && (int)itemy >-290))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetPokeScore(points);
 			}
 
-			if ((-200 < itemx && itemx < 100) && (350 > itemy && itemy >100))
+			if ((-200 < (int)itemx && (int)itemx < 100) && (350 > (int)itemy && (int)itemy >100))
 			{
 				int points = item->GetPoints();
 				mScoreBoard.SetAryaScore(points);
