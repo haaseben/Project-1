@@ -36,10 +36,8 @@ public:
 	*/
 	bool CMinionStuart::GruOrNot();
 
-	int CMinionStuart::GetPoints();
 
 private:
-	///points minion is worth
-	int mPoints = 1;
+
 };
 

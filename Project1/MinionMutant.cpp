@@ -20,6 +20,7 @@ CMinionMutant::CMinionMutant(CGame *game) :
 {
 	mV = CVector(200, 200);
 	mBaseSpeed = 200;
+	mPoints = 5;
 }
 
 /** destructor
@@ -34,7 +35,3 @@ bool CMinionMutant::GruOrNot()
 	return false;
 }
 
-int CMinionMutant::GetPoints()
-{
-	return mPoints;
-}

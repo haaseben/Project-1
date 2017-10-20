@@ -65,10 +65,7 @@ CScoreBoard::~CScoreBoard()
 /// Draw the socreboard
 void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool gameover)
 {
-	CVillainVisitor visitor;
-	mJuicerScore = visitor.GetJuicerScore();
-	mPokeBallScore = visitor.GetPokeScore();
-	mAryaScore = visitor.GetAryaScore();
+
 
 	if (!gameover)
 	{
@@ -149,5 +146,18 @@ void CScoreBoard::OnDraw(Gdiplus::Graphics * graphics, double elapsed, bool game
 
 }
 
+void CScoreBoard::SetJuicerSocre(int score)
+{
+	mJuicerScore += score*2;
+}
 
+void CScoreBoard::SetPokeScore(int score)
+{
+	mPokeBallScore += score*3;
+}
+
+void CScoreBoard::SetAryaScore(int score)
+{
+	mAryaScore += score;
+}
 

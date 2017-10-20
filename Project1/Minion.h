@@ -43,7 +43,6 @@ public:
 	* \param visitor The visitor we accept */
 	virtual void Accept(CGameVisitor *visitor) override { visitor->VisitMinion(this); }
 
-	virtual int GetPoints() = 0;
 
 	/** Get the minion position
 	*\return mP Minion position

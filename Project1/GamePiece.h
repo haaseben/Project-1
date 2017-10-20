@@ -114,6 +114,10 @@ public:
 	/**  gets the base speed of the game piece
 	* \return base speed */
 	const int GetBaseSpeed() { return mBaseSpeed; }
+
+	/**  gets the base speed of the game piece
+	* \return base speed */
+	const int GetPoints() { return mPoints; }
 	
 	/** Accept a visitor
 	* \param visitor The visitor we accept */
@@ -139,6 +143,8 @@ protected:
 	CVector mP;			///< Position 
 
 	int mBaseSpeed;///< base speed used for movement
+
+	int mPoints; ///< Minion Points
 
 	CVector mV; ///< vector thats used
 

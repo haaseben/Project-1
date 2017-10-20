@@ -53,7 +53,6 @@ void CGame::OnDraw(Gdiplus::Graphics *graphics, int width, int height, double el
 	graphics->TranslateTransform(mXOffset, mYOffset);
 	graphics->ScaleTransform(mScale, mScale);
 
-
 	// From here on you are drawing virtual pixels
 
 	AddInitialObjects();
@@ -398,16 +397,7 @@ void CGame::DeleteItem(std::shared_ptr<CGamePiece> item)
 	}
 }
 
-/**
-*  Clear the game data.
-*
-* Deletes all known items in the game.
-*/
-void CGame::Clear()
-{
 
-	mItems.clear();
-}
 
 CGame::CGame()
 {
@@ -667,8 +657,28 @@ void CGame::Destroy(std::shared_ptr<CGamePiece> item, int x, int y) {
 
 	for (auto i = mItems.begin(); i != mItems.end(); i++)
 	{
-		if ((*i)->HitTest(x - ((*i)->GetWidth() / 2), y - 30) && (*i) != item && !(*i)->CanCollide() && !mGameOver)
+		if ((*i)->HitTest(x , y ) && (*i) != item && !(*i)->CanCollide() && !mGameOver)
 		{
+			int itemx = item->GetX();
+			int itemy = item->GetY();
+			if ((-330 < itemx && itemx < -170) && (-270 > itemy && itemy >-380))
+			{
+				int points = item->GetPoints();
+				mScoreBoard.SetJuicerSocre(points);
+			}
+
+			if ((150 < itemx && itemx < 250) && (-210 > itemy && itemy >-290))
+			{
+				int points = item->GetPoints();
+				mScoreBoard.SetPokeScore(points);
+			}
+
+			if ((-200 < itemx && itemx < 100) && (350 > itemy && itemy >100))
+			{
+				int points = item->GetPoints();
+				mScoreBoard.SetAryaScore(points);
+			}
+
 			DeleteItem(item);
 			break;
 		}

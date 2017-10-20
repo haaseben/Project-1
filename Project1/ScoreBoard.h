@@ -39,16 +39,19 @@ public:
 	/**  sets up the intial status
 	*/
 	void Initializer() { mInitialStatus = 1; }
+
+	void SetJuicerSocre(int socre);
+	void SetPokeScore(int socre);
+	void SetAryaScore(int score);
 	
 
 private:
 
-
-	int mAryaScore = 0; ///< Score for Arya
-
 	int mJuicerScore = 0; ///< Score for Juicer
 
 	int mPokeBallScore = 0; ///< Score for PokeBall
+
+	int mAryaScore = 0; ///< Score for Arya
 
 	double mTotalTime = 0; ///< Count the total time passed
 

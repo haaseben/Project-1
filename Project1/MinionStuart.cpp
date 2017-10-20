@@ -20,6 +20,7 @@ CMinionStuart::CMinionStuart(CGame *game) :
 {
 	mV = CVector(100,100);
 	mBaseSpeed = 100;
+	mPoints = 1;
 }
 
 /** destructor
@@ -33,7 +34,3 @@ bool CMinionStuart::GruOrNot()
 	return false;
 }
 
-int CMinionStuart::GetPoints()
-{
-	return mPoints;
-}

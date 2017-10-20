@@ -82,10 +82,6 @@ public:
 
 	void Destroy(std::shared_ptr<CGamePiece> item, int x, int y);
 
-
-	/// clear items
-	void Clear();
-
 	/// add game initial objects
 	void CGame::AddInitialObjects();
 
@@ -107,8 +103,6 @@ public:
 	* \param visitor The visitor for the collection
 	*/
 	void CGame::Accept(CGameVisitor *visitor);
-
-
 
 
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
