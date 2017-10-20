@@ -22,14 +22,14 @@ namespace Testing
 			// This is an empty test just to ensure the system is working
 		}
 
-		TEST_METHOD(TestCMinionJerryConstruct)
+		TEST_METHOD(TestCGruConstruct)
 		{
 			CGame game;
 			CGru Gru(&game);
 		}
 
 
-		TEST_METHOD(TestCMinionJerryHitTest)
+		TEST_METHOD(TestCGruHitTest)
 		{
 			// Create a minion to test
 			CGame game;

@@ -34,31 +34,33 @@ namespace Testing
 
 		TEST_METHOD(TestCGameHitTest)
 		{
+			//tests for hittest but also villain placement
 			CGame game;
+			CPokeBall pokeball(&game);
+			
 
-			Assert::IsTrue(game.HitTest(100, 200) == nullptr,
-				L"Testing empty game");
+			// Give it a location
+			// Always make the numbers different, in case they are mixed up
+			pokeball.SetLocation(300, 150);
 
-			auto arya = make_shared<CArya>(&game);
-			arya->SetLocation(-50.0, 225.0);
-			game.Add(arya);
+			// Center of the game piece should be a true
+			Assert::IsTrue(pokeball.HitTest(300, 150));
 
-			Assert::IsTrue(game.HitTest(-50.0, 225.0) == arya,
-				L"Testing minion at 100, 200");
+			// Left of the game piece
+			Assert::IsFalse(pokeball.HitTest(10, 150));
 
-			auto juicer = make_shared<CJuicer>(&game);
-			juicer->SetLocation(-250.0, -325.0);
-			game.Add(juicer);
+			// Right of the game piece
+			Assert::IsFalse(pokeball.HitTest(150, 150));
 
-			Assert::IsTrue(game.HitTest(-250.0, -325.0) == juicer,
-				L"Testing game for second return");
+			// Above the game piece
+			Assert::IsFalse(pokeball.HitTest(300, 0));
 
-			auto gru = make_shared<CGru>(&game);
-			gru->SetLocation(-15.0, -50.0);
-			game.Add(gru);
+			// Below the game piece
+			Assert::IsFalse(pokeball.HitTest(300, 300));
 
-			Assert::IsTrue(game.HitTest(-15.0, -50.0) == gru,
-				L"Testing game for third return");
+			// Of game piece transparent pixel
+			Assert::IsFalse(pokeball.HitTest(100 - 125 / 2 + 17, 200 - 117 / 2 + 16));
+			
 
 		}
 
