@@ -2,6 +2,7 @@
  * \file PlayingArea.cpp
  *
  * \author Team Jorge
+ * Draws the playing area for the game
  */
 
 #include "stdafx.h"
@@ -42,6 +43,7 @@ CPlayingArea::~CPlayingArea()
 
 /** Ondraw
 *\param graphics used to draw
+*\param gameover used as flag for gameover possiblity
 */
 void CPlayingArea::OnDraw(Gdiplus::Graphics * graphics, bool gameover)
 {

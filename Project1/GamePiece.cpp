@@ -17,16 +17,6 @@ using namespace Gdiplus;
 const std::wstring CGamePiece::ImagesDirectory = L"images/";
 
 
-/**
-*  Distance from center for inside of tiles.
-*
-* Our tiles are a diamond that is 64 pixels tall and 128 pixels
-* wide. So, if we take the distance from the center vertically and
-* double it, it would be as if we had a 64 by 64 diamond. The
-* "Manhattan distance" from the center would be no more than 64
-* in that case.
-*/
-const int InsideTolerance = 64;
 
 /**  Constructor
 * \param game The game this item is a member of

@@ -2,6 +2,7 @@
  * \file MinionMutant.cpp
  *
  * \author Team Jorge
+ * Class that implements mutant minion.
  */
 
 #include "stdafx.h"

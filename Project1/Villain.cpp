@@ -2,6 +2,7 @@
  * \file Villain.cpp
  *
  * \author Team Jorge
+ * Implements abstract villain class
  */
 
 #include "stdafx.h"
@@ -9,9 +10,7 @@
 #include "Game.h"
 
 
-//CVillain::CVillain()
-//{
-//}
+
 
 /** Constructor
 *\param game game we're using

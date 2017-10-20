@@ -2,6 +2,7 @@
  * \file Minion.cpp
  *
  * \author Team Jorge
+ * Class that implements  abstract minion.
  */
 
 #include "stdafx.h"
@@ -22,6 +23,8 @@ CMinion::CMinion(CGame *game, const std::wstring &filename) :
 
 }
 
+/** destructor
+*/
 CMinion::~CMinion()
 {
 }
