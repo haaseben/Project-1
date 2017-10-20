@@ -288,7 +288,7 @@ void CGame::Flocking()
 
 				CVector mV = cv * 1 + sv * 3 + av * 5 + gruV * 10;
 				mV.Normalize();
-				mV = mV * 100;
+				mV = mV * (item->GetBaseSpeed());
 				item->SetVelocity(mV);
 				////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
