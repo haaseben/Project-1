@@ -235,7 +235,7 @@ void CGame::Flocking()
 
 		for (auto item : mItems)
 		{
-			if (item->CanCollide() == true && item->GetX()<(500 - item->GetHeight()-10) && item->GetX()>(-500 + item->GetHeight()) && (item->GetY()<500-item->GetHeight()) && (item->GetY()>-500+ item->GetHeight()))
+			if (item->CanCollide() == true )
 			{
 				double itemx = item->GetX(); double itemy = item->GetY();
 				if (mGru!= nullptr && mGru->HitTest((int)itemx, (int)itemy) ){
@@ -243,6 +243,8 @@ void CGame::Flocking()
 					mGameOver = true;
 				}
 
+				if (item->GetX() < (500 - item->GetHeight() - 10) && item->GetX() > (-500 + item->GetHeight()) && (item->GetY() < 500 - item->GetHeight()) && (item->GetY() > -500 + item->GetHeight()))
+				{
 
 				CVector minionVector = item->GetPVector();
 				////////////////////////////////////////////
@@ -297,6 +299,8 @@ void CGame::Flocking()
 				item->SetVelocity(mV);
 				////		///SET THE MINIONVECTOR SPEED VECTOR TO mv
 
+
+			}
 
 			}
 
